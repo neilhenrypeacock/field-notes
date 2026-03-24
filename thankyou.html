@@ -39,7 +39,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 48px 24px 40px;
+      padding: 32px 24px 28px;
       position: relative;
     }
 
@@ -60,23 +60,23 @@
       background: var(--parchment);
       color: #333;
       border-radius: 8px;
-      padding: 48px 40px 44px;
-      max-width: 480px;
+      padding: 36px 36px 32px;
+      max-width: 460px;
       width: 100%;
       box-shadow: 0 8px 40px rgba(0,0,0,0.35);
     }
 
     .check {
-      width: 52px;
-      height: 52px;
+      width: 44px;
+      height: 44px;
       background: var(--green);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 24px;
+      margin: 0 auto 18px;
     }
-    .check svg { width: 26px; height: 26px; }
+    .check svg { width: 22px; height: 22px; }
 
     .label {
       font-size: 11px;
@@ -89,17 +89,17 @@
 
     h1 {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(32px, 6vw, 44px);
+      font-size: clamp(28px, 5vw, 38px);
       color: var(--green);
       line-height: 1.1;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
 
     .intro {
-      font-size: 16px;
+      font-size: 15px;
       color: #555;
       line-height: 1.6;
-      margin-bottom: 32px;
+      margin-bottom: 24px;
     }
 
     .divider {
@@ -198,50 +198,35 @@
     .scroll-cue {
       position: relative;
       z-index: 1;
-      margin-top: 32px;
+      margin-top: 24px;
       text-align: center;
-      display: flex;
+      display: inline-flex;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
+      text-decoration: none;
       opacity: 0;
       animation: fadeUp 1s ease 1.2s forwards;
+      cursor: pointer;
     }
     .scroll-cue span {
-      font-size: 11px;
-      letter-spacing: 3px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.45);
+      color: rgba(255,255,255,0.6);
+      transition: color 0.2s;
     }
-    .scroll-line {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, var(--gold), transparent);
-      animation: scrollPulse 2s ease-in-out 2.2s infinite;
+    .scroll-cue:hover span { color: var(--gold); }
+    .scroll-cue svg {
+      width: 22px;
+      height: 22px;
+      color: var(--gold);
+      animation: arrowBounce 1.8s ease-in-out 2s infinite;
     }
-
-    /* ═══════════════════════════════════════════════════
-       MAP TRANSITION STRIP
-    ═══════════════════════════════════════════════════ */
-    .map-strip {
-      background: var(--green2);
-      padding: 36px 24px;
-      text-align: center;
-      overflow: hidden;
-    }
-    .map-strip img {
-      display: block;
-      max-width: 680px;
-      width: 100%;
-      margin: 0 auto 16px;
-      opacity: 0.75;
-      filter: brightness(1.8) saturate(0.6);
-    }
-    .map-counties {
-      font-size: 11px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.45);
+    @keyframes arrowBounce {
+      0%, 100% { transform: translateY(0); opacity: 0.7; }
+      50%       { transform: translateY(5px); opacity: 1; }
     }
 
     /* ═══════════════════════════════════════════════════
@@ -522,25 +507,19 @@
 
     </div><!-- /card -->
 
-    <div class="scroll-cue" id="scrollCue">
-      <span>The story of your land</span>
-      <div class="scroll-line"></div>
-    </div>
+    <a class="scroll-cue" id="scrollCue" href="#story">
+      <span>Read the story of farming in East Anglia</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </a>
 
   </section><!-- /above-fold -->
 
   <!-- ═══════════════════════════════════════════════════
-       MAP TRANSITION STRIP
-  ═══════════════════════════════════════════════════ -->
-  <div class="map-strip">
-    <img src="assets/fn_map_east_anglia_banner.svg" alt="Map of East Anglia">
-    <p class="map-counties">Norfolk &nbsp;·&nbsp; Suffolk &nbsp;·&nbsp; Cambridgeshire</p>
-  </div>
-
-  <!-- ═══════════════════════════════════════════════════
        STORY
   ═══════════════════════════════════════════════════ -->
-  <section class="story-section">
+  <section class="story-section" id="story">
 
     <div class="story-intro">
       <p class="story-intro-label">While you wait</p>
