@@ -95,47 +95,30 @@ async function handleUpdateProfile(request, env) {
     return jsonResponse({ error: 'invalid JSON' }, 400, cors);
   }
 
-  const { email, first_name, role } = body;
+  const { email, first_name } = body;
   if (!email) return jsonResponse({ error: 'missing email' }, 400, cors);
+  if (!first_name) return jsonResponse({ ok: true }, 200, cors); // nothing to update
 
   try {
-    // 1. Find the contact ID by listing contacts and matching email
-    const listRes = await resendRequest(
-      'GET',
-      `/audiences/${env.RESEND_AUDIENCE_ID}/contacts`,
-      env
-    );
-
-    if (!listRes.ok) {
-      console.error('Could not list contacts:', await listRes.text());
-      return jsonResponse({ error: 'lookup failed' }, 500, cors);
+    // 1. POST /contacts acts as upsert — gives us the contact ID without a separate lookup.
+    const upsertRes = await resendRequest('POST', '/contacts', env, {
+      email,
+      audience_id: env.RESEND_AUDIENCE_ID,
+      unsubscribed: false,
+    });
+    if (!upsertRes.ok) {
+      console.error('Upsert error:', await upsertRes.text());
+      return jsonResponse({ error: 'upsert failed' }, 500, cors);
     }
+    const { id: contactId } = await upsertRes.json();
 
-    const { data: contacts } = await listRes.json();
-    const contact = contacts.find(
-      (c) => c.email.toLowerCase() === email.toLowerCase()
-    );
-
-    if (!contact) {
-      return jsonResponse({ error: 'contact not found' }, 404, cors);
-    }
-
-    // 2. PATCH the contact with first_name (built-in Resend field)
-    // Role is stored as a custom property — Resend supports this via the
-    // properties key on the PATCH body.
-    const patch = {};
-    if (first_name) patch.first_name = first_name.trim();
-    if (role) patch.unsubscribed = false; // keep subscribed; role stored below
-
-    const patchRes = await resendRequest(
-      'PATCH',
-      `/audiences/${env.RESEND_AUDIENCE_ID}/contacts/${contact.id}`,
-      env,
-      patch
-    );
-
+    // 2. PATCH /contacts/{id} to set first_name (audience_id required in body).
+    const patchRes = await resendRequest('PATCH', `/contacts/${contactId}`, env, {
+      audience_id: env.RESEND_AUDIENCE_ID,
+      first_name: first_name.trim(),
+    });
     if (!patchRes.ok) {
-      console.error('PATCH contact error:', await patchRes.text());
+      console.error('PATCH error:', await patchRes.text());
       return jsonResponse({ error: 'update failed' }, 500, cors);
     }
 
