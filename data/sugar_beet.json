@@ -1,0 +1,14 @@
+{
+  "contract_year": "2026/27",
+  "base_price_per_tonne": 30.00,
+  "price_options": "Fixed £30/t (65% of contract) · Market-linked from £25/t base · Index-linked option available",
+  "campaign_status": "Between campaigns — next intake Oct 2026",
+  "factory_dates": {
+    "bury_st_edmunds": "TBC",
+    "cantley": "TBC",
+    "wissington": "TBC"
+  },
+  "notes": "2026/27 price down £3/t from 2025/26. Contract holiday option available for up to 750,000t.",
+  "source_url": "https://www.britishsugar.co.uk/about-sugar/our-factories",
+  "last_updated": "2026-03-24"
+}

@@ -1,0 +1,11 @@
+This is a factual margin indicator — not advice.
+
+Rules:
+- Do NOT include a heading or title line — the heading is provided separately
+- State the current wheat price and the key input costs
+- Calculate the indicative margin against a typical East Anglian cost of production (£160–180/t — use this range if no more specific data is provided)
+- State whether the margin is positive, negative, or tight
+- Include the week-on-week wheat price change if available in the data (wheat_change field)
+- Do NOT tell the farmer what to do. Do NOT use language like "consider selling", "lock in margins", or "we recommend"
+- Keep it to 3–4 sentences maximum
+- One factual caveat is fine: "Individual costs vary"

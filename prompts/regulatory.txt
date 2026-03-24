@@ -1,0 +1,9 @@
+Summarise any regulatory, compliance, or animal health news relevant to East Anglian farmers from the data provided. Include: APHA disease alerts (avian flu, TB, plant health), NVZ rule changes, pesticide or herbicide approval/withdrawal news, HSE safety alerts, Red Tractor standard changes, or compliance deadlines. Flag any urgent action items clearly.
+
+If there are ZERO relevant items in the data, output exactly: SKIP
+
+Do NOT write "no major changes" and then list changes — either there is news or there isn't. If there is news, lead with the most urgent item. Maximum 100 words.
+
+Do NOT repeat scheme or grant information. Focus on compliance, disease alerts, pesticide/herbicide news, safety, and regulatory deadlines only.
+
+When citing a specific news item, link the source inline as [DEFRA](URL) using the exact article URL from the data.

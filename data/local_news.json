@@ -1,0 +1,221 @@
+{
+  "sources": [
+    "Agriland UK",
+    "Defra Blog",
+    "NFU",
+    "Farmers Guardian"
+  ],
+  "active_sources": [
+    "Farmers Guardian",
+    "Agriland UK",
+    "NFU",
+    "Defra Blog"
+  ],
+  "articles": [
+    {
+      "source": "Farmers Guardian",
+      "title": "The Farmers Guardian podcast: Farmers take Government to the High Court",
+      "url": "https://www.farmersguardian.com/news/4527374/farmers-guardian-podcast-farmers-government-court",
+      "published": "2026-03-24T00:00:00Z",
+      "summary": "The Farmers Guardian news team speak to claimant Tom Martin and discuss last week's court case",
+      "relevance_keywords": [
+        "farm"
+      ]
+    },
+    {
+      "source": "Farmers Guardian",
+      "title": "Iran war - Kemi Badenoch: \"We need to make sure we can grow more of our own food\"",
+      "url": "https://www.farmersguardian.com/news/4527362/iran-war-kemi-badenoch-grow-food",
+      "published": "2026-03-24T00:00:00Z",
+      "summary": "Conservative Party Leader Kemi Badenoch told Farmers Guardian that conflict in the Middle East must be a wake up call for the Government to back food production in the UK",
+      "relevance_keywords": [
+        "farm"
+      ]
+    },
+    {
+      "source": "Farmers Guardian",
+      "title": "Teenage farm worker crushed to death in bale wrapper, inquest hears",
+      "url": "https://www.farmersguardian.com/news/4527351/teenage-farm-worker-crushed-death-bale-wrapper-inquest-hears",
+      "published": "2026-03-24T00:00:00Z",
+      "summary": "A teenage farm worker was crushed to death in a bale wrapping machine - as his older brother worked in an adjacent field",
+      "relevance_keywords": [
+        "farm"
+      ]
+    },
+    {
+      "source": "Agriland UK",
+      "title": "Defra warns capital grants applications may exceed £225m funding",
+      "url": "https://www.agriland.co.uk/farming-news/defra-warns-capital-grants-applications-may-exceed-225m-funding/",
+      "published": "2026-03-23T17:15:00Z",
+      "summary": "The Department for Environment, Food and Rural Affairs (Defra) has revealed that £225 million will be provided through capital grants...The postDefra warns capital grants applications may exceed £225m fundingappeared first onAgriland.co.uk.",
+      "relevance_keywords": [
+        "defra"
+      ]
+    },
+    {
+      "source": "NFU",
+      "title": "SFI26 – top 6 changes you need to know",
+      "url": "https://www.nfuonline.com/news/sfi26-what-you-need-to-know/",
+      "published": "2026-03-23T16:00:00Z",
+      "summary": "",
+      "relevance_keywords": [
+        "sfi"
+      ]
+    },
+    {
+      "source": "Agriland UK",
+      "title": "Is endometritis costing you money in lost fertility?",
+      "url": "https://www.agriland.co.uk/farming-news/is-endometritis-costing-you-money-in-lost-fertility/",
+      "published": "2026-03-23T06:10:00Z",
+      "summary": "There are still plenty of cows to calve down, but with breeding quickly approaching, farmers should start carrying out pre-breeding...The postIs endometritis costing you money in lost fertility?appeared first onAgriland.co.uk.",
+      "relevance_keywords": [
+        "farm"
+      ]
+    },
+    {
+      "source": "Farmers Guardian",
+      "title": "Poultry classes postponed at Balmoral Show due to avian flu 'uncertainty'",
+      "url": "https://www.farmersguardian.com/news/4527361/poultry-classes-postponed-balmoral-show-avian-flu-uncertainty",
+      "published": "2026-03-23T00:00:00Z",
+      "summary": "The Royal Ulster Agricultural Society said the decision has been taken due to the uncertainty of when any ban on bird gatherings may be lifted",
+      "relevance_keywords": [
+        "poultry",
+        "avian flu"
+      ]
+    },
+    {
+      "source": "Farmers Guardian",
+      "title": "Landward to celebrate milestone anniversary with special episode",
+      "url": "https://www.farmersguardian.com/news/4527343/landward-celebrate-milestone-anniversary",
+      "published": "2026-03-23T00:00:00Z",
+      "summary": "The first episode of ‘Scotland's farming programme’ aired on April 4 1976",
+      "relevance_keywords": [
+        "farm",
+        "farming"
+      ]
+    },
+    {
+      "source": "Farmers Guardian",
+      "title": "£3 Million Secured to Continue Welsh Sheep Genetics Programme",
+      "url": "https://www.farmersguardian.com/news/4527342/million-secured-continue-welsh-sheep-genetics-programme",
+      "published": "2026-03-23T00:00:00Z",
+      "summary": "Welsh sheep farmers are set to receive funding towards a programme which will allow them to improve efficiency, productivity and environmental performance",
+      "relevance_keywords": [
+        "farm"
+      ]
+    },
+    {
+      "source": "Farmers Guardian",
+      "title": "The Big Farm Tea Break: 'A small chat can make a huge difference'",
+      "url": "https://www.farmersguardian.com/news/4527316/big-farm-tea-break-small-chat-huge-difference",
+      "published": "2026-03-23T00:00:00Z",
+      "summary": "Take time to stop, pop the kettle on, make a phone call, and catch up with a friend during the Big Farm Tea Break (March 23-29)",
+      "relevance_keywords": [
+        "farm"
+      ]
+    },
+    {
+      "source": "Farmers Guardian",
+      "title": "Dog attack on 34 pregnant ewes could cost farmer £15k",
+      "url": "https://www.farmersguardian.com/news/4527278/dog-attack-34-sheep-cost-farmer-15k",
+      "published": "2026-03-23T00:00:00Z",
+      "summary": "Lincolnshire Police said four sheep died at the scene, and 30 additional sheep later died as a result of shock and injuries sustained during the dog attack",
+      "relevance_keywords": [
+        "farm"
+      ]
+    },
+    {
+      "source": "Farmers Guardian",
+      "title": "Five men – including a farmer – sentenced after DNA tests exposed organised cattle theft on Anglesey",
+      "url": "https://www.farmersguardian.com/news/4527274/farmer-sentenced-dna-tests-exposed-organised-cattle-theft-anglesey",
+      "published": "2026-03-23T00:00:00Z",
+      "summary": "Police officers recovered 12 stolen cattle, with DNA tests on nine of them proving they were from an Anglesey farm in 2022",
+      "relevance_keywords": [
+        "farm"
+      ]
+    },
+    {
+      "source": "Agriland UK",
+      "title": "Proposed planning rules changes to help farmers install small wind turbines",
+      "url": "https://www.agriland.co.uk/farming-news/proposed-planning-rules-changes-to-help-farmers-install-small-wind-turbines/",
+      "published": "2026-03-22T13:00:00Z",
+      "summary": "The government has announced proposals to relax planning rules to make it easier for farmers to install small-scale wind turbines....The postProposed planning rules changes to help farmers install small wind turbinesappeared first onAgriland.co.uk.",
+      "relevance_keywords": [
+        "farm"
+      ]
+    },
+    {
+      "source": "Agriland UK",
+      "title": "Why Dale Farm and Aurivo pulled the plug on merger talks",
+      "url": "https://www.agriland.co.uk/farming-news/why-dale-farm-and-aurivo-pulled-the-plug-on-merger-talks/",
+      "published": "2026-03-22T11:19:42Z",
+      "summary": "After months and months of discussions and many, many meetings north and south, the prospect of a fully blown merger...The postWhy Dale Farm and Aurivo pulled the plug on merger talksappeared first onAgriland.co.uk.",
+      "relevance_keywords": [
+        "farm"
+      ]
+    },
+    {
+      "source": "Agriland UK",
+      "title": "AHDB to launch new web-based BYDV management tool",
+      "url": "https://www.agriland.co.uk/farming-news/ahdb-to-launch-new-web-based-bydv-management-tool/",
+      "published": "2026-03-22T06:20:00Z",
+      "summary": "The Agricultural and Horticultural Development Board is to launch a new Barley Yellow Dwarf Virus (BYDV) management tool. The web-based...The postAHDB to launch new web-based BYDV management toolappeared first onAgriland.co.uk.",
+      "relevance_keywords": [
+        "barley",
+        "ahdb"
+      ]
+    },
+    {
+      "source": "Agriland UK",
+      "title": "Watch: UK firefighters tackle tractor fire after flames destroy crop fields",
+      "url": "https://www.agriland.co.uk/farming-news/watch-uk-firefighters-tackle-tractor-fire-after-flames-destroy-crop-fields/",
+      "published": "2026-03-20T19:15:00Z",
+      "summary": "Firefighters in the UK were called to a farm after a tractor went up in flames and spread to nearby...The postWatch: UK firefighters tackle tractor fire after flames destroy crop fieldsappeared first onAgriland.co.uk.",
+      "relevance_keywords": [
+        "farm"
+      ]
+    },
+    {
+      "source": "Agriland UK",
+      "title": "Court: NI farmer convicted for water pollution offence",
+      "url": "https://www.agriland.co.uk/farming-news/court-ni-farmer-convicted-for-water-pollution-offence-2/",
+      "published": "2026-03-20T16:30:00Z",
+      "summary": "A farmer in Northern Ireland has been convicted in court for water pollution offence that resulted in a fish kill....The postCourt: NI farmer convicted for water pollution offenceappeared first onAgriland.co.uk.",
+      "relevance_keywords": [
+        "farm"
+      ]
+    },
+    {
+      "source": "NFU",
+      "title": "Weekly look ahead – keep up to date with the NFU’s work",
+      "url": "https://www.nfuonline.com/news/weekly-look-ahead/",
+      "published": "2026-03-20T16:30:00Z",
+      "summary": "",
+      "relevance_keywords": [
+        "nfu"
+      ]
+    },
+    {
+      "source": "Agriland UK",
+      "title": "FFA: April 6 ‘key date’ in inheritance tax judicial review",
+      "url": "https://www.agriland.co.uk/farming-news/ffa-april-6-key-date-in-inheritance-tax-judicial-review/",
+      "published": "2026-03-20T16:15:00Z",
+      "summary": "A judicial review of the extension of inheritance tax to agricultural land and farm assets in the UK has been...The postFFA: April 6 ‘key date’ in inheritance tax judicial reviewappeared first onAgriland.co.uk.",
+      "relevance_keywords": [
+        "farm"
+      ]
+    },
+    {
+      "source": "NFU",
+      "title": "Watch now: Your weekly vlog from the NFU President",
+      "url": "https://www.nfuonline.com/news/watch-now-your-weekly-vlog-from-the-president/",
+      "published": "2026-03-20T16:15:00Z",
+      "summary": "",
+      "relevance_keywords": [
+        "nfu"
+      ]
+    }
+  ],
+  "count": 62,
+  "last_updated": "2026-03-24T09:57:07Z"
+}

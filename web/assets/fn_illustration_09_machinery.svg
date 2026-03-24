@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 80" width="140" height="80">
+  <!-- Soft background -->
+  <ellipse cx="70" cy="50" rx="55" ry="22" fill="#A08060" opacity="0.08"/>
+  <!-- Earth ground -->
+  <ellipse cx="70" cy="68" rx="54" ry="6" fill="#A08060" opacity="0.2"/>
+  <!-- Machine body - large rounded rectangle -->
+  <rect x="36" y="28" width="68" height="30" rx="8" fill="#B8956A" opacity="0.38"/>
+  <rect x="40" y="32" width="60" height="22" rx="6" fill="#B8956A" opacity="0.22"/>
+  <!-- Cab suggestion -->
+  <rect x="78" y="16" width="24" height="22" rx="5" fill="#A08060" opacity="0.35"/>
+  <rect x="82" y="20" width="16" height="14" rx="3" fill="#E8CC7A" opacity="0.2"/>
+  <!-- Large wheel - left -->
+  <circle cx="50" cy="60" r="16" fill="#A08060" opacity="0.45"/>
+  <circle cx="50" cy="60" r="11" fill="#B8956A" opacity="0.3"/>
+  <circle cx="50" cy="60" r="5" fill="#A08060" opacity="0.25"/>
+  <!-- Small wheel - right -->
+  <circle cx="96" cy="62" r="10" fill="#A08060" opacity="0.4"/>
+  <circle cx="96" cy="62" r="6" fill="#B8956A" opacity="0.25"/>
+  <circle cx="96" cy="62" r="3" fill="#A08060" opacity="0.2"/>
+  <!-- Gold accent - exhaust/highlight -->
+  <circle cx="38" cy="32" r="4" fill="#D4A843" opacity="0.3"/>
+</svg>

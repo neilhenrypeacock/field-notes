@@ -1,0 +1,28 @@
+{
+  "source": "AHDB UK Feed Ingredient Prices",
+  "week_ending": "2026-03-13",
+  "prices": [
+    {
+      "commodity": "Pelleted Wheat Feed (£/t)",
+      "unit": "£/tonne",
+      "spot_price": 152.0,
+      "prev_week_price": 151.0,
+      "change": 1.0
+    },
+    {
+      "commodity": "Soyameal Hi-Pro (£/t)",
+      "unit": "£/tonne",
+      "spot_price": 324.0,
+      "prev_week_price": 319.0,
+      "change": 5.0
+    },
+    {
+      "commodity": "Soyameal Brazilian 48% (£/t)",
+      "unit": "£/tonne",
+      "spot_price": 337.0,
+      "prev_week_price": 332.0,
+      "change": 5.0
+    }
+  ],
+  "last_updated": "2026-03-23T08:51:14Z"
+}

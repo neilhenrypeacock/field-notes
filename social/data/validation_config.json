@@ -1,0 +1,39 @@
+{
+  "_comment": "Gate 1 validation config. Edit these ranges as market conditions change.",
+  "_last_updated": "2026-03-24",
+
+  "price_ranges": {
+    "feed_wheat_per_tonne":        { "min": 100, "max": 400, "unit": "£/t",  "label": "Feed wheat" },
+    "milling_wheat_per_tonne":     { "min": 120, "max": 450, "unit": "£/t",  "label": "Milling wheat" },
+    "feed_barley_per_tonne":       { "min":  80, "max": 350, "unit": "£/t",  "label": "Feed barley" },
+    "oilseed_rape_per_tonne":      { "min": 250, "max": 700, "unit": "£/t",  "label": "Oilseed rape" },
+    "ammonium_nitrate_per_tonne":  { "min": 200, "max": 900, "unit": "£/t",  "label": "Ammonium nitrate" },
+    "urea_per_tonne":              { "min": 200, "max": 900, "unit": "£/t",  "label": "Urea" },
+    "soya_meal_per_tonne":         { "min": 200, "max": 700, "unit": "£/t",  "label": "Soya meal" },
+    "wheat_feed_per_tonne":        { "min":  80, "max": 300, "unit": "£/t",  "label": "Wheat feed" },
+    "milk_farmgate_per_litre":     { "min":  20, "max":  60, "unit": "ppl",  "label": "Milk farmgate" },
+    "pig_spp_per_kg":              { "min": 100, "max": 250, "unit": "p/kg", "label": "Pig SPP" }
+  },
+
+  "weather_ranges": {
+    "temperature_celsius":         { "min": -15, "max":  40, "unit": "°C",   "label": "Temperature" },
+    "rainfall_mm":                 { "min":   0, "max": 150, "unit": "mm",   "label": "Rainfall" },
+    "wind_speed_mph":              { "min":   0, "max": 100, "unit": "mph",  "label": "Wind speed" }
+  },
+
+  "staleness_rules": {
+    "max_data_age_days": 8,
+    "_comment": "Flag data older than this many days as stale"
+  },
+
+  "required_fields_by_section": {
+    "markets":   ["week_ending"],
+    "inputs":    ["week_ending"],
+    "livestock": ["last_updated"],
+    "schemes":   [],
+    "news":      [],
+    "land":      [],
+    "jobs":      [],
+    "machinery": []
+  }
+}

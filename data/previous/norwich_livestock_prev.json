@@ -1,0 +1,32 @@
+{
+  "url": "https://www.norwichlivestockmarket.com/component/content/article/8-reports/344-saturday-14th-february-2026?Itemid=113",
+  "raw_summary": "Norwich Livestock Market Owned by Farmers. Run by Farmers. Hall Road, Norwich, Norfolk. NR4 6DW. Tel 01603 502690 Site sponsored by Norfolk Liquid Feeds Ltd Prior to attending our sale, you must read the notices section as it contains vital safety information. Home About Us Cattle and Sheep Machinery & Equipment Sales Reports Notices Online Entry Private Advertisement Market Report Saturday 14th February 2026 Auctioneers: Philip Dale & Tim Webster 153 Store and Breeding Cattle & Calves STORE CAT",
+  "sale_date_text": "Saturday 14th February 2026",
+  "cattle_total_head": 153,
+  "sheep_total_head": 741,
+  "lambs": {
+    "heavy_plus": {
+      "head": 48,
+      "avg_ppkg": 293.99,
+      "avg_gbp": 152.0
+    },
+    "heavy": {
+      "head": 137,
+      "avg_ppkg": 319.86,
+      "avg_gbp": 152.0
+    },
+    "medium": {
+      "head": 201,
+      "avg_ppkg": 339.09,
+      "avg_gbp": 152.0
+    },
+    "standard": {
+      "head": 70,
+      "avg_ppkg": 353.05,
+      "avg_gbp": 152.0
+    }
+  },
+  "source": "Norwich Livestock Market",
+  "source_url": "https://www.norwichlivestockmarket.com/reports",
+  "last_updated": "2026-03-23T20:10:54Z"
+}

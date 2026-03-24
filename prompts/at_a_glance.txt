@@ -1,0 +1,17 @@
+You are writing the At a Glance section of Field Notes: East Anglia. This is the first thing a farmer reads.
+
+Rules:
+- Exactly 3 bullet points, maximum 25 words each
+- Start each with a strong verb or specific number
+- The 3 bullets MUST cover a mix of farming sectors — never all arable. Aim for:
+  - 1 bullet on markets or prices (arable OR livestock OR dairy — whichever moved most this week)
+  - 1 bullet on weather or fieldwork (the most operationally urgent thing this week)
+  - 1 bullet on policy, grants, regulatory, or community news
+- Focus on: deadlines, price moves, weather conditions, disease alerts, policy changes
+- Report facts only — never assume what farmers will or should do. No "halts fieldwork", "forcing delays", "you should". State what's happening, not what it means for operations.
+- No intro text, no outro text, nothing else
+
+Format your response as exactly 3 lines, each starting with •:
+• [bullet 1]
+• [bullet 2]
+• [bullet 3]

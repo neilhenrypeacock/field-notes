@@ -1,0 +1,36 @@
+{
+  "source": "AHDB UK Corn Returns (Eastern region)",
+  "excel_url": "https://projectblue.blob.core.windows.net/media/Default/MI%20Reports/D%26A%20Arable/Daily%20and%20Weekly%20Price%20Reports/UK%20Corn%20Returns.xlsx",
+  "frequency": "weekly",
+  "week_ending": "2026-03-12",
+  "prices": [
+    {
+      "commodity": "Feed Wheat",
+      "unit": "£/tonne",
+      "spot_price": 168.5,
+      "prev_week_price": 165.4,
+      "change": 3.1,
+      "change_pct": 1.87,
+      "forward_months": []
+    },
+    {
+      "commodity": "Milling Wheat",
+      "unit": "£/tonne",
+      "spot_price": 167.7,
+      "prev_week_price": 167.9,
+      "change": -0.2,
+      "change_pct": -0.12,
+      "forward_months": []
+    },
+    {
+      "commodity": "Feed Barley",
+      "unit": "£/tonne",
+      "spot_price": 153.3,
+      "prev_week_price": 148.4,
+      "change": 4.9,
+      "change_pct": 3.3,
+      "forward_months": []
+    }
+  ],
+  "last_updated": "2026-03-23T08:56:04Z"
+}

@@ -1,0 +1,65 @@
+{
+  "source": "AHDB GB Fertiliser Price Series",
+  "excel_url": "https://projectblue.blob.core.windows.net/media/Default/Market%20Intelligence/GBFertiliserPriceSeries.xlsx",
+  "frequency": "monthly",
+  "data_date": "2026-02-01",
+  "prices": [
+    {
+      "product": "AN – UK produced (34.5%N)",
+      "unit": "£/tonne",
+      "price": 402.42,
+      "prev_month_price": 392.9,
+      "change": 9.52,
+      "data_date": "2026-02-01"
+    },
+    {
+      "product": "AN – imported (34.5%N)",
+      "unit": "£/tonne",
+      "price": 403.8,
+      "prev_month_price": 399.38,
+      "change": 4.43,
+      "data_date": "2026-02-01"
+    },
+    {
+      "product": "Granular Urea (46%N)",
+      "unit": "£/tonne",
+      "price": 454.91,
+      "prev_month_price": 426.84,
+      "change": 28.07,
+      "data_date": "2026-02-01"
+    },
+    {
+      "product": "UAN (30%N)",
+      "unit": "£/tonne",
+      "price": 341.67,
+      "prev_month_price": 334.0,
+      "change": 7.66,
+      "data_date": "2026-02-01"
+    },
+    {
+      "product": "Muriate of Potash (MOP)",
+      "unit": "£/tonne",
+      "price": 365.29,
+      "prev_month_price": 359.81,
+      "change": 5.48,
+      "data_date": "2026-02-01"
+    },
+    {
+      "product": "DAP",
+      "unit": "£/tonne",
+      "price": 719.15,
+      "prev_month_price": 672.72,
+      "change": 46.43,
+      "data_date": "2026-02-01"
+    },
+    {
+      "product": "TSP",
+      "unit": "£/tonne",
+      "price": 525.81,
+      "prev_month_price": 508.49,
+      "change": 17.32,
+      "data_date": "2026-02-01"
+    }
+  ],
+  "last_updated": "2026-03-23T08:56:04Z"
+}

@@ -1,0 +1,84 @@
+{
+  "_comment": "Facebook groups for auto-posting. Add GROUP_ID by visiting the group on Facebook and copying the numeric ID from the URL. Set active to false to pause a group without deleting it. post_sections controls which content types get shared to each group.",
+
+  "groups": [
+    {
+      "name": "Norfolk Farming",
+      "group_id": "REPLACE_WITH_GROUP_ID",
+      "active": false,
+      "_note": "Find group ID from the group URL on Facebook",
+      "post_sections": ["markets", "weather", "schemes", "news"],
+      "max_posts_per_week": 2
+    },
+    {
+      "name": "Suffolk Farmers",
+      "group_id": "REPLACE_WITH_GROUP_ID",
+      "active": false,
+      "post_sections": ["markets", "weather", "schemes", "news"],
+      "max_posts_per_week": 2
+    },
+    {
+      "name": "Cambridgeshire Arable",
+      "group_id": "REPLACE_WITH_GROUP_ID",
+      "active": false,
+      "post_sections": ["markets", "inputs", "schemes", "news"],
+      "max_posts_per_week": 2
+    },
+    {
+      "name": "East Anglia Farming",
+      "group_id": "REPLACE_WITH_GROUP_ID",
+      "active": false,
+      "post_sections": ["markets", "weather", "schemes", "news", "inputs"],
+      "max_posts_per_week": 3
+    },
+    {
+      "name": "UK Grain Markets",
+      "group_id": "REPLACE_WITH_GROUP_ID",
+      "active": false,
+      "post_sections": ["markets"],
+      "max_posts_per_week": 1
+    },
+    {
+      "name": "NFU East Anglia Members",
+      "group_id": "REPLACE_WITH_GROUP_ID",
+      "active": false,
+      "post_sections": ["schemes", "news", "markets"],
+      "max_posts_per_week": 2
+    },
+    {
+      "name": "East Anglia Machinery & Farm Sales",
+      "group_id": "REPLACE_WITH_GROUP_ID",
+      "active": false,
+      "post_sections": ["machinery"],
+      "max_posts_per_week": 1
+    },
+    {
+      "name": "Norfolk & Suffolk Land & Property",
+      "group_id": "REPLACE_WITH_GROUP_ID",
+      "active": false,
+      "post_sections": ["land"],
+      "max_posts_per_week": 1
+    }
+  ],
+
+  "_setup_instructions": [
+    "1. Search for each group on Facebook",
+    "2. Open the group and copy the numeric ID from the URL",
+    "    e.g. facebook.com/groups/123456789 — ID is 123456789",
+    "3. Paste the ID into group_id above",
+    "4. Set active to true when ready",
+    "5. Your Page must be a member of the group before posting",
+    "6. Some groups require admin approval — check group rules first",
+    "IMPORTANT: Only post to groups where farming content is welcome.",
+    "Spamming irrelevant groups will get your page reported."
+  ],
+
+  "global_settings": {
+    "delay_between_group_posts_seconds": 30,
+    "_delay_comment": "Wait this long between each group post to avoid rate limiting",
+    "only_share_verified_posts": true,
+    "_verified_comment": "Only posts that passed Gate 1 and Gate 2 get shared to groups",
+    "only_share_high_value_posts": true,
+    "_high_value_comment": "Only posts flagged as high-value by the generator get auto-shared to groups"
+  }
+}

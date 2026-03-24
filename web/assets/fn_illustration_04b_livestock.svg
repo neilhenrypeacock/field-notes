@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 80" width="140" height="80">
+  <!-- Soft background wash -->
+  <ellipse cx="70" cy="42" rx="62" ry="30" fill="#C4886B" opacity="0.07"/>
+  <!-- Large terracotta circle — suggests body form -->
+  <circle cx="46" cy="44" r="24" fill="#C4886B" opacity="0.32"/>
+  <circle cx="46" cy="44" r="16" fill="#D4956A" opacity="0.22"/>
+  <!-- Sage green circle — overlapping -->
+  <circle cx="72" cy="38" r="22" fill="#8FBF96" opacity="0.35"/>
+  <circle cx="72" cy="38" r="14" fill="#A8D4AC" opacity="0.22"/>
+  <!-- Gold circle — overlapping -->
+  <circle cx="96" cy="46" r="18" fill="#D4A843" opacity="0.38"/>
+  <circle cx="96" cy="46" r="11" fill="#E8CC7A" opacity="0.25"/>
+  <!-- Small accent circle top-left -->
+  <circle cx="30" cy="26" r="9" fill="#C4886B" opacity="0.2"/>
+  <!-- Soft ground line -->
+  <ellipse cx="70" cy="70" rx="52" ry="5" fill="#B8956A" opacity="0.18"/>
+</svg>

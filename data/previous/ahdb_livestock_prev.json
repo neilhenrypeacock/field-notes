@@ -1,0 +1,24 @@
+{
+  "source": "AHDB / DEFRA",
+  "pig_prices": {
+    "series": "GB Standard Pig Price (UK Spec)",
+    "unit": "p/kg deadweight",
+    "week_ending": "2026-03-14",
+    "price": 181.48,
+    "prev_week_price": 181.48,
+    "change": -0.08
+  },
+  "milk_prices": {
+    "series": "UK Farmgate Milk Price",
+    "unit": "ppl",
+    "period": "2026-01-01",
+    "price": 37.75,
+    "prev_period_price": 39.81,
+    "change": -2.05
+  },
+  "egg_prices": {
+    "error": "No table found on egg statistics page",
+    "note": "Quarterly data from DEFRA"
+  },
+  "last_updated": "2026-03-23T08:49:21Z"
+}

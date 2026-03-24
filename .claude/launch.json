@@ -1,0 +1,23 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "newsletter-preview",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "7654", "--directory", "/Users/neilpeacock/farm/field-notes/newsletter/output"],
+      "port": 7654
+    },
+    {
+      "name": "web-preview",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "7655", "--directory", "/Users/neilpeacock/farm/field-notes/web"],
+      "port": 7655
+    }
+    ,{
+      "name": "brand-preview",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "7656", "--directory", "/Users/neilpeacock/Projects/fieldnotes"],
+      "port": 7656
+    }
+  ]
+}

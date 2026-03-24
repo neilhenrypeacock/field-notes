@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 80" width="140" height="80">
+  <!-- Soft background -->
+  <ellipse cx="70" cy="42" rx="45" ry="30" fill="#B5D4B8" opacity="0.08"/>
+  <!-- Tall document -->
+  <rect x="40" y="6" width="60" height="68" rx="6" fill="#8FBF96" opacity="0.32"/>
+  <rect x="44" y="10" width="52" height="60" rx="4" fill="#B5D4B8" opacity="0.3"/>
+  <rect x="48" y="14" width="44" height="52" rx="3" fill="#8FBF96" opacity="0.12"/>
+  <!-- Gold text/rule lines -->
+  <rect x="52" y="22" width="36" height="3" rx="1.5" fill="#D4A843" opacity="0.45"/>
+  <rect x="52" y="32" width="32" height="3" rx="1.5" fill="#D4A843" opacity="0.35"/>
+  <rect x="52" y="42" width="36" height="3" rx="1.5" fill="#D4A843" opacity="0.3"/>
+  <rect x="52" y="52" width="28" height="3" rx="1.5" fill="#D4A843" opacity="0.25"/>
+  <!-- Terracotta accent dot — official stamp -->
+  <circle cx="86" cy="62" r="6" fill="#C4886B" opacity="0.45"/>
+  <circle cx="86" cy="62" r="3.5" fill="#C4886B" opacity="0.25"/>
+</svg>

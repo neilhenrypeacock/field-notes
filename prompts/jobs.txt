@@ -1,0 +1,6 @@
+Select the 3-4 most relevant agricultural job opportunities from the data for East Anglian farmers and rural professionals. Prefer farm management, agronomist, specialist technical, or senior roles.
+
+Output ONLY a JSON array — no markdown, no intro, no explanation:
+[{"title": "...", "employer": "...", "location": "...", "why": "one sentence why this role is interesting or different", "url": "..."}]
+
+Use the exact URL from the data for each job. If fewer than 3 relevant jobs are available, include what there is.

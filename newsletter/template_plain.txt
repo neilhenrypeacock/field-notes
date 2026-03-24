@@ -1,0 +1,95 @@
+================================================================
+FIELD NOTES: EAST ANGLIA
+$date_display
+================================================================
+
+$preview_text
+
+THIS WEEK: $this_week_hooks
+
+----------------------------------------------------------------
+AT A GLANCE
+----------------------------------------------------------------
+$at_a_glance
+
+FIELDWORK VERDICT: $fieldwork_verdict
+
+----------------------------------------------------------------
+WEATHER — YOUR WEEK AHEAD
+----------------------------------------------------------------
+$weather_summary
+
+$weather_table_plain
+
+----------------------------------------------------------------
+MARKETS — WHAT YOU'RE SELLING
+----------------------------------------------------------------
+$markets_summary
+
+$price_table_grain_plain
+
+----------------------------------------------------------------
+COSTS — WHAT YOU'RE PAYING
+----------------------------------------------------------------
+$costs_summary
+
+$price_table_fertiliser_plain
+
+----------------------------------------------------------------
+MARGIN WATCH
+----------------------------------------------------------------
+$margin_watch
+
+----------------------------------------------------------------
+LIVESTOCK & DAIRY
+----------------------------------------------------------------
+$livestock_summary
+
+----------------------------------------------------------------
+FROM THE SOIL
+----------------------------------------------------------------
+$from_the_soil
+
+----------------------------------------------------------------
+SCHEMES & GRANTS
+----------------------------------------------------------------
+$schemes_grants
+
+Tool of the week: JustFarm's free eligibility checker scans your holding against every open scheme.
+Check your eligibility: https://justfarm.app
+
+$regulatory
+
+$events
+
+$land_property
+
+----------------------------------------------------------------
+JOBS
+----------------------------------------------------------------
+$jobs
+
+----------------------------------------------------------------
+$machinery
+
+----------------------------------------------------------------
+TECH WATCH
+----------------------------------------------------------------
+$tech_watch
+
+----------------------------------------------------------------
+ONE GOOD READ
+----------------------------------------------------------------
+$one_good_read
+
+================================================================
+Know a farmer who'd find this useful? Forward this — Field Notes is free.
+Or subscribe: $subscribe_url
+
+Field Notes is a weekly briefing for the East Anglian farming
+community. Data from AHDB, Defra, Met Office, and public sources.
+Summarised with AI, curated by the editor. Not financial advice.
+
+Unsubscribe: $unsubscribe_url
+fieldnoteseastanglia.co.uk
+================================================================

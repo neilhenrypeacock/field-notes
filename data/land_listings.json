@@ -1,0 +1,176 @@
+{
+  "sources": [
+    "Brown & Co",
+    "Savills",
+    "Strutt & Parker"
+  ],
+  "active_sources": [
+    "Savills",
+    "Brown & Co"
+  ],
+  "listings": [
+    {
+      "agent": "Savills",
+      "title": "Denton Road…",
+      "location": "Earsham, Bungay, Norfolk, NR35 2AR",
+      "acreage": 46.56,
+      "guide_price": "£400,000",
+      "guide_price_per_acre": 8591,
+      "url": "https://search.savills.com/property-detail/gbnorular260016",
+      "is_new": true
+    },
+    {
+      "agent": "Savills",
+      "title": "Denton Road…",
+      "location": "Earsham, Bungay, Norfolk, NR35 2AR",
+      "acreage": 295.83,
+      "guide_price": "£2,635,000",
+      "guide_price_per_acre": 8907,
+      "url": "https://search.savills.com/property-detail/gbnorular260015",
+      "is_new": true
+    },
+    {
+      "agent": "Savills",
+      "title": "Denton Road…",
+      "location": "Earsham, Bungay, Norfolk, NR35 2AR",
+      "acreage": 329.98,
+      "guide_price": "£2,890,000",
+      "guide_price_per_acre": 8758,
+      "url": "https://search.savills.com/property-detail/gbnorular260014",
+      "is_new": true
+    },
+    {
+      "agent": "Savills",
+      "title": "Denton Road…",
+      "location": "Earsham, Bungay, Norfolk, NR35 2AR",
+      "acreage": 677.94,
+      "guide_price": "£6,900,000",
+      "guide_price_per_acre": 10177,
+      "url": "https://search.savills.com/property-detail/gbnorular260012",
+      "is_new": true
+    },
+    {
+      "agent": "Brown & Co",
+      "title": "Residential Development — Development Opportunity, Long Stratton, Norfolk",
+      "location": "Development Opportunity, Long Stratton, Norfolk",
+      "acreage": 168.85,
+      "guide_price": "POA",
+      "guide_price_per_acre": null,
+      "url": "https://www.brown-co.com/services/rural/property/residential-development-long-stratton-nr15-ap446276?",
+      "is_new": false
+    },
+    {
+      "agent": "Brown & Co",
+      "title": "Commercial Development — Strategic Rural Portfolio",
+      "location": "Strategic Rural Portfolio",
+      "acreage": 515.7,
+      "guide_price": "£11,500,000",
+      "guide_price_per_acre": 22299,
+      "url": "https://www.brown-co.com/services/rural/property/commercial-development-ox15-ap443162?",
+      "is_new": false
+    },
+    {
+      "agent": "Brown & Co",
+      "title": "Foxhill & Ridgeway Farms, Callas Hill, Foxhill, Swindon, Wiltshire",
+      "location": "Foxhill & Ridgeway Farms, Callas Hill, Foxhill, Swindon, Wiltshire",
+      "acreage": 1075.58,
+      "guide_price": "£9,000,000",
+      "guide_price_per_acre": 8367,
+      "url": "https://www.brown-co.com/services/rural/property/swindon-sn4-ap447109?",
+      "is_new": false
+    },
+    {
+      "agent": "Brown & Co",
+      "title": "Investment — White House Farm, Main Street, Gedney Dyke, Spalding, Lincolnshire, PE12 0AJ",
+      "location": "White House Farm, Main Street, Gedney Dyke, Spalding, Lincolnshire, PE12 0AJ",
+      "acreage": 420.51,
+      "guide_price": "£9,000,000",
+      "guide_price_per_acre": 21402,
+      "url": "https://www.brown-co.com/services/rural/property/investment-spalding-pe12-ap444409?",
+      "is_new": false
+    },
+    {
+      "agent": "Brown & Co",
+      "title": "Wormingford Hall Estate, Wormingford, Colchester, Essex, CO6 3AA",
+      "location": "Wormingford Hall Estate, Wormingford, Colchester, Essex, CO6 3AA",
+      "acreage": 651.92,
+      "guide_price": "£8,500,000",
+      "guide_price_per_acre": 13038,
+      "url": "https://www.brown-co.com/services/rural/property/colchester-co6-ap436153?",
+      "is_new": false
+    },
+    {
+      "agent": "Brown & Co",
+      "title": "Residential Development — The Langridge, Land Off Bardwell Road, Ixworth, Bury St Edmunds, Suffolk, IP31 2HB",
+      "location": "The Langridge, Land Off Bardwell Road, Ixworth, Bury St Edmunds, Suffolk, IP31 2HB",
+      "acreage": 21.03,
+      "guide_price": "POA",
+      "guide_price_per_acre": null,
+      "url": "https://www.brown-co.com/services/rural/property/residential-development-bury-st-edmunds-ip31-ap450764?",
+      "is_new": false
+    },
+    {
+      "agent": "Brown & Co",
+      "title": "Commercial Development — New House Farm & Binwell Lane Farm, Westcott, Aylesbury, HP18 0QD",
+      "location": "New House Farm & Binwell Lane Farm, Westcott, Aylesbury, HP18 0QD",
+      "acreage": 371.12,
+      "guide_price": "£6,725,000",
+      "guide_price_per_acre": 18120,
+      "url": "https://www.brown-co.com/services/rural/property/commercial-development-westcott-hp18-ap447083?",
+      "is_new": false
+    },
+    {
+      "agent": "Brown & Co",
+      "title": "Whisby Hall Farm, Whisby, Lincoln, LN6 9BT",
+      "location": "Whisby Hall Farm, Whisby, Lincoln, LN6 9BT",
+      "acreage": 392.81,
+      "guide_price": "£5,250,000",
+      "guide_price_per_acre": 13365,
+      "url": "https://www.brown-co.com/services/rural/property/ln6-ap442339?",
+      "is_new": false
+    },
+    {
+      "agent": "Brown & Co",
+      "title": "Hole Farm, Stambourne Road, Finchingfield, Braintree, Essex, CM7 4PG",
+      "location": "Hole Farm, Stambourne Road, Finchingfield, Braintree, Essex, CM7 4PG",
+      "acreage": 423.44,
+      "guide_price": "£5,200,000",
+      "guide_price_per_acre": 12280,
+      "url": "https://www.brown-co.com/services/rural/property/braintree-cm7-ap449197?",
+      "is_new": false
+    },
+    {
+      "agent": "Brown & Co",
+      "title": "Residential Development — Residential Development - Land At Park Farm, Tadmarton Road, Bloxham, Banbury, Oxfordshire, OX15 4HR",
+      "location": "Residential Development - Land At Park Farm, Tadmarton Road, Bloxham, Banbury, Oxfordshire, OX15 4HR",
+      "acreage": 9.06,
+      "guide_price": "POA",
+      "guide_price_per_acre": null,
+      "url": "https://www.brown-co.com/services/rural/property/residential-development-banbury-ox15-ap449495?",
+      "is_new": false
+    },
+    {
+      "agent": "Brown & Co",
+      "title": "Commercial Development — Land At North Park Farm, Godstone",
+      "location": "Land At North Park Farm, Godstone",
+      "acreage": 133.63,
+      "guide_price": "£4,500,000",
+      "guide_price_per_acre": 33675,
+      "url": "https://www.brown-co.com/services/rural/property/commercial-development-rh9-ap443163?",
+      "is_new": false
+    },
+    {
+      "agent": "Brown & Co",
+      "title": "Commercial Development — The Hulcott Estate, Aylesbury",
+      "location": "The Hulcott Estate, Aylesbury",
+      "acreage": 346.8,
+      "guide_price": "£4,500,000",
+      "guide_price_per_acre": 12975,
+      "url": "https://www.brown-co.com/services/rural/property/commercial-development-aylesbury-hp22-ap443164?",
+      "is_new": false
+    }
+  ],
+  "total_count": 16,
+  "new_this_week": 4,
+  "last_updated": "2026-03-24T09:45:43Z"
+}

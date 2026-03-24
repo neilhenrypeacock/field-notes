@@ -1,0 +1,32 @@
+{
+  "_comment": "Rotating first comments posted automatically after each Facebook post. The system picks randomly and tracks recent usage to avoid repeating the same comment within a 7-day window. Add new variations freely — the more the better.",
+
+  "comments": [
+    "📬 Get this every Monday, free → fieldnoteseastanglia.co.uk",
+    "🌾 Free weekly newsletter for East Anglian farmers → fieldnoteseastanglia.co.uk",
+    "📊 All 12 sections. Every Monday. Free → fieldnoteseastanglia.co.uk",
+    "👇 Want the full picture? Free newsletter → fieldnoteseastanglia.co.uk",
+    "🗞️ This is one item from this week's Field Notes → fieldnoteseastanglia.co.uk",
+    "⏱️ Save 2 hours of scrolling every Monday → fieldnoteseastanglia.co.uk",
+    "📥 Land it in your inbox every Monday morning → fieldnoteseastanglia.co.uk",
+    "🔍 Prices, schemes, weather, land — all in one place → fieldnoteseastanglia.co.uk",
+    "📋 12 sections. Every data source that matters. Free → fieldnoteseastanglia.co.uk",
+    "🌤 Grain prices, weather, grants and more — free every Monday → fieldnoteseastanglia.co.uk",
+    "📌 The weekly briefing East Anglian farmers actually read → fieldnoteseastanglia.co.uk",
+    "✅ Free. No login. No paywall. Just useful → fieldnoteseastanglia.co.uk",
+    "📡 Pulled from AHDB, Met Office, DEFRA and more — free weekly → fieldnoteseastanglia.co.uk",
+    "🚜 Built for Norfolk, Suffolk and Cambridgeshire farmers → fieldnoteseastanglia.co.uk",
+    "📈 Margins, markets, schemes — your Monday morning edge → fieldnoteseastanglia.co.uk",
+    "👨‍🌾 Written for East Anglian farmers. Free every Monday → fieldnoteseastanglia.co.uk",
+    "🗓️ Every Monday morning, before the week starts → fieldnoteseastanglia.co.uk",
+    "💷 Know your numbers before anyone else does — free → fieldnoteseastanglia.co.uk",
+    "📰 No waffle. No marketing. Just the week's farming intel → fieldnoteseastanglia.co.uk",
+    "🔔 Subscribe free — new edition every Monday at 6am → fieldnoteseastanglia.co.uk"
+  ],
+
+  "recently_used": [],
+  "_recently_used_comment": "Managed automatically by schedule_posts.py — do not edit manually",
+
+  "cooldown_days": 7,
+  "_cooldown_comment": "A comment won't be reused until this many days have passed since last use"
+}
