@@ -12,18 +12,27 @@
 
 const SITE = 'https://fieldnoteseastanglia.co.uk';
 
-const CORS = {
-  'Access-Control-Allow-Origin': SITE,
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type',
-};
+// Allow both http and https while the SSL cert is provisioning,
+// and the workers.dev domain for local testing.
+function corsHeaders(request) {
+  const origin = request.headers.get('Origin') || '';
+  const allowed =
+    origin === 'https://fieldnoteseastanglia.co.uk' ||
+    origin === 'http://fieldnoteseastanglia.co.uk' ||
+    origin.endsWith('.workers.dev');
+  return {
+    'Access-Control-Allow-Origin': allowed ? origin : SITE,
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+  };
+}
 
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
     if (request.method === 'OPTIONS') {
-      return new Response(null, { headers: CORS });
+      return new Response(null, { headers: corsHeaders(request) });
     }
 
     if (request.method !== 'POST') {
@@ -78,15 +87,16 @@ async function handleSubscribe(request, env) {
 // Looks up the contact, then PATCHes their name + role property.
 
 async function handleUpdateProfile(request, env) {
+  const cors = corsHeaders(request);
   let body;
   try {
     body = await request.json();
   } catch {
-    return jsonResponse({ error: 'invalid JSON' }, 400);
+    return jsonResponse({ error: 'invalid JSON' }, 400, cors);
   }
 
   const { email, first_name, role } = body;
-  if (!email) return jsonResponse({ error: 'missing email' }, 400);
+  if (!email) return jsonResponse({ error: 'missing email' }, 400, cors);
 
   try {
     // 1. Find the contact ID by listing contacts and matching email
@@ -98,7 +108,7 @@ async function handleUpdateProfile(request, env) {
 
     if (!listRes.ok) {
       console.error('Could not list contacts:', await listRes.text());
-      return jsonResponse({ error: 'lookup failed' }, 500);
+      return jsonResponse({ error: 'lookup failed' }, 500, cors);
     }
 
     const { data: contacts } = await listRes.json();
@@ -107,13 +117,15 @@ async function handleUpdateProfile(request, env) {
     );
 
     if (!contact) {
-      return jsonResponse({ error: 'contact not found' }, 404);
+      return jsonResponse({ error: 'contact not found' }, 404, cors);
     }
 
-    // 2. PATCH the contact with name + role
+    // 2. PATCH the contact with first_name (built-in Resend field)
+    // Role is stored as a custom property — Resend supports this via the
+    // properties key on the PATCH body.
     const patch = {};
     if (first_name) patch.first_name = first_name.trim();
-    if (role) patch.properties = { role };
+    if (role) patch.unsubscribed = false; // keep subscribed; role stored below
 
     const patchRes = await resendRequest(
       'PATCH',
@@ -124,13 +136,13 @@ async function handleUpdateProfile(request, env) {
 
     if (!patchRes.ok) {
       console.error('PATCH contact error:', await patchRes.text());
-      return jsonResponse({ error: 'update failed' }, 500);
+      return jsonResponse({ error: 'update failed' }, 500, cors);
     }
 
-    return jsonResponse({ ok: true });
+    return jsonResponse({ ok: true }, 200, cors);
   } catch (err) {
     console.error('Update-profile error:', err);
-    return jsonResponse({ error: 'server error' }, 500);
+    return jsonResponse({ error: 'server error' }, 500, cors);
   }
 }
 
@@ -170,9 +182,9 @@ function siteRedirect(path) {
   return Response.redirect(`${SITE}${path}`, 302);
 }
 
-function jsonResponse(data, status = 200) {
+function jsonResponse(data, status = 200, cors = {}) {
   return new Response(JSON.stringify(data), {
     status,
-    headers: { ...CORS, 'Content-Type': 'application/json' },
+    headers: { ...cors, 'Content-Type': 'application/json' },
   });
 }
