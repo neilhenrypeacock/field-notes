@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 80" width="140" height="80">
+  <!-- Soft background wash -->
+  <ellipse cx="70" cy="46" rx="50" ry="26" fill="#E8CC7A" opacity="0.1"/>
+  <!-- Left page -->
+  <rect x="22" y="16" width="46" height="52" rx="4" fill="#D4A843" opacity="0.35" transform="rotate(-4 45 42)"/>
+  <rect x="26" y="20" width="38" height="44" rx="3" fill="#E8CC7A" opacity="0.3" transform="rotate(-4 45 42)"/>
+  <!-- Right page -->
+  <rect x="72" y="16" width="46" height="52" rx="4" fill="#D4A843" opacity="0.38" transform="rotate(4 95 42)"/>
+  <rect x="76" y="20" width="38" height="44" rx="3" fill="#E8CC7A" opacity="0.3" transform="rotate(4 95 42)"/>
+  <!-- Spine -->
+  <rect x="66" y="14" width="8" height="56" rx="4" fill="#B8956A" opacity="0.45"/>
+  <rect x="68" y="18" width="4" height="48" rx="2" fill="#A08060" opacity="0.25"/>
+  <!-- Subtle text lines on left page -->
+  <rect x="32" y="30" width="24" height="2" rx="1" fill="#D4A843" opacity="0.2" transform="rotate(-4 44 31)"/>
+  <rect x="32" y="37" width="20" height="2" rx="1" fill="#D4A843" opacity="0.18" transform="rotate(-4 42 38)"/>
+  <rect x="32" y="44" width="22" height="2" rx="1" fill="#D4A843" opacity="0.15" transform="rotate(-4 43 45)"/>
+  <!-- Subtle text lines on right page -->
+  <rect x="82" y="30" width="24" height="2" rx="1" fill="#D4A843" opacity="0.2" transform="rotate(4 94 31)"/>
+  <rect x="82" y="37" width="20" height="2" rx="1" fill="#D4A843" opacity="0.18" transform="rotate(4 92 38)"/>
+  <rect x="82" y="44" width="22" height="2" rx="1" fill="#D4A843" opacity="0.15" transform="rotate(4 93 45)"/>
+</svg>

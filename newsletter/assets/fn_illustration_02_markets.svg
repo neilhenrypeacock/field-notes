@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 80" width="140" height="80">
+  <!-- Soft background wash -->
+  <ellipse cx="70" cy="50" rx="62" ry="28" fill="#E8CC7A" opacity="0.1"/>
+  <!-- Earth line -->
+  <ellipse cx="70" cy="68" rx="56" ry="6" fill="#B8956A" opacity="0.3"/>
+  <ellipse cx="70" cy="70" rx="48" ry="4" fill="#A08060" opacity="0.2"/>
+  <!-- Wheat stem 1 - left -->
+  <ellipse cx="32" cy="42" rx="5" ry="18" fill="#D4A843" opacity="0.45"/>
+  <circle cx="32" cy="22" r="6" fill="#D4A843" opacity="0.4"/>
+  <circle cx="32" cy="20" r="4" fill="#E8CC7A" opacity="0.35"/>
+  <!-- Wheat stem 2 - centre-left -->
+  <ellipse cx="52" cy="38" rx="5.5" ry="20" fill="#D4A843" opacity="0.4"/>
+  <circle cx="52" cy="16" r="7" fill="#D4A843" opacity="0.45"/>
+  <circle cx="52" cy="15" r="4.5" fill="#E8CC7A" opacity="0.3"/>
+  <!-- Wheat stem 3 - centre -->
+  <ellipse cx="70" cy="35" rx="6" ry="22" fill="#E8CC7A" opacity="0.5"/>
+  <circle cx="70" cy="12" r="8" fill="#D4A843" opacity="0.5"/>
+  <circle cx="70" cy="11" r="5" fill="#E8CC7A" opacity="0.35"/>
+  <!-- Wheat stem 4 - centre-right -->
+  <ellipse cx="88" cy="37" rx="5.5" ry="21" fill="#D4A843" opacity="0.42"/>
+  <circle cx="88" cy="14" r="7" fill="#D4A843" opacity="0.4"/>
+  <circle cx="88" cy="13" r="4.5" fill="#E8CC7A" opacity="0.3"/>
+  <!-- Wheat stem 5 - right -->
+  <ellipse cx="106" cy="40" rx="5" ry="19" fill="#D4A843" opacity="0.38"/>
+  <circle cx="106" cy="20" r="6" fill="#D4A843" opacity="0.35"/>
+  <circle cx="106" cy="19" r="4" fill="#E8CC7A" opacity="0.3"/>
+</svg>

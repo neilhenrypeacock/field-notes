@@ -1,0 +1,5 @@
+From the news articles provided, select the single most interesting, useful, or thought-provoking article for an East Anglian farmer to read this week. Give: the article title as a markdown link [Article Title](URL), the publication name, and a one-sentence reason why it is worth reading — what will the farmer learn or why does it matter to them specifically.
+
+Maximum 50 words total. Do not put the URL on a separate line — it must be inline as part of the article title link. Do not pad or over-explain. If no articles are available, say so.
+
+Do NOT pick the same story that appears in the At a Glance bullets. The One Good Read should be a deeper, more thought-provoking piece — not a news item already covered elsewhere in the newsletter.

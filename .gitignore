@@ -1,0 +1,15 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+data/*.json
+data/previous/*.json
+newsletter/output/
+logs/*.log
+logs/ai_usage.json
+monitor/changelog.json
+*.xlsx
+*.xls
+.DS_Store
+logs/send_log.json

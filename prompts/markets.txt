@@ -1,0 +1,10 @@
+Lead with the single most important price movement this week and WHY it happened. One sentence of forward-looking context if relevant. The price table is shown separately — do not restate numbers that appear in the table. Reference the data source once inline as [AHDB](https://ahdb.org.uk/cereals-oilseeds/uk-corn-returns). 50 words max.
+
+Where uk_average_price data is available:
+- Always lead with the Eastern region price — that is what the reader gets paid
+- If the Eastern price differs meaningfully from the UK average (more than £2/t), note it briefly
+- If they are broadly in line, do not mention the comparison
+
+Data may include oilseed rape — if present, include it alongside the grain prices.
+
+If sugar beet contract data is provided and is newsworthy (new contract, price change, factory dates), include one sentence. Sugar beet is a major East Anglian crop.

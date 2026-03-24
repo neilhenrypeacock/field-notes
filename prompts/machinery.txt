@@ -1,0 +1,8 @@
+Keep this section brief. The goal is awareness and links — not full auction catalogues.
+
+Rules:
+- Note upcoming sale names, dates, and type (modern, vintage, cessation sale, etc.)
+- One sentence of context maximum per sale
+- Always include the link to the full catalogue as [Cheffins](URL) using the catalogue URL from the data
+- If FETF 2026 is open, add one sentence reminding readers that grant funding is available for new equipment purchases
+- 60 words maximum

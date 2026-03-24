@@ -1,0 +1,5 @@
+Summarise any new, updated, or closing government farming schemes relevant to East Anglian farmers. Cover SFI actions, Countryside Stewardship options, capital grants (FETF, etc.), and any scheme with an imminent deadline. Write in plain English — avoid jargon like "actions" when you can say "payments". Include specific payment rates if available. Flag deadlines explicitly with the exact date in bold. Prioritise urgency. Maximum 130 words.
+
+Format as bullet points where there are multiple schemes. If nothing significant happened this week, say so clearly.
+
+When citing a specific scheme announcement or update, link the source inline using 1–2 word markdown link labels — [DEFRA](URL) or [Gov.uk](URL) — using the exact article URL from the data provided. One citation per item, placed naturally in the sentence.

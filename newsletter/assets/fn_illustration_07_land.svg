@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 80" width="140" height="80">
+  <!-- Sky wash -->
+  <ellipse cx="70" cy="20" rx="65" ry="18" fill="#C5DCF0" opacity="0.2"/>
+  <!-- Far hills -->
+  <ellipse cx="40" cy="52" rx="45" ry="18" fill="#B5D4B8" opacity="0.3"/>
+  <ellipse cx="105" cy="50" rx="40" ry="16" fill="#B5D4B8" opacity="0.25"/>
+  <!-- Near hills -->
+  <ellipse cx="60" cy="58" rx="50" ry="20" fill="#8FBF96" opacity="0.35"/>
+  <ellipse cx="95" cy="60" rx="38" ry="18" fill="#8FBF96" opacity="0.3"/>
+  <!-- Ground plane -->
+  <ellipse cx="70" cy="70" rx="60" ry="10" fill="#B5D4B8" opacity="0.25"/>
+  <!-- Farmhouse - terracotta triangle roof -->
+  <rect x="62" y="42" width="18" height="14" rx="2" fill="#B8956A" opacity="0.4"/>
+  <path d="M58,44 L71,30 L84,44 Z" fill="#C4886B" opacity="0.45"/>
+  <path d="M61,43 L71,33 L81,43 Z" fill="#C4886B" opacity="0.25"/>
+  <!-- Small window suggestion -->
+  <rect x="67" y="46" width="5" height="5" rx="1" fill="#E8CC7A" opacity="0.35"/>
+</svg>
