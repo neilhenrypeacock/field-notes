@@ -13,3 +13,4 @@ monitor/changelog.json
 *.xls
 .DS_Store
 logs/send_log.json
+worker/.wrangler/
