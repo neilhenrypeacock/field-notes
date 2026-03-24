@@ -14,6 +14,17 @@ newsletter/output/
 logs/
 social/logs/
 
+# Scraped data (large JSON files — regenerate by running scrapers)
+data/*.json
+data/previous/*.json
+
+# Excel downloads
+*.xlsx
+*.xls
+
+# Cloudflare Workers local state
+worker/.wrangler/
+
 # macOS
 .DS_Store
 
