@@ -32,7 +32,7 @@ function corsHeaders(request) {
 }
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
     if (request.method === 'OPTIONS') {
@@ -44,7 +44,7 @@ export default {
     }
 
     if (url.pathname === '/subscribe') {
-      return handleSubscribe(request, env);
+      return handleSubscribe(request, env, ctx);
     }
 
     if (url.pathname === '/update-profile') {
@@ -60,7 +60,7 @@ export default {
 // 2. Sends a welcome email
 // 3. Redirects to /thankyou.html?e=<email>
 
-async function handleSubscribe(request, env) {
+async function handleSubscribe(request, env, ctx) {
   const email = await getEmailFromForm(request);
 
   if (!email) {
@@ -84,9 +84,11 @@ async function handleSubscribe(request, env) {
     return siteRedirect('/?error=server');
   }
 
-  // Send welcome email (fire-and-forget — don't block the redirect)
-  sendWelcomeEmail(email, env).catch(err =>
-    console.error('Welcome email error:', err)
+  // Send welcome email after the response — ctx.waitUntil keeps the Worker alive
+  ctx.waitUntil(
+    sendWelcomeEmail(email, env).catch(err =>
+      console.error('Welcome email error:', err)
+    )
   );
 
   return siteRedirect(`/thankyou.html?e=${encodeURIComponent(email)}`);
