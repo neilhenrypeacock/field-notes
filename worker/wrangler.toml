@@ -5,3 +5,7 @@ compatibility_date = "2024-11-01"
 # Secrets are NOT stored here — set them with:
 #   wrangler secret put RESEND_API_KEY
 #   wrangler secret put RESEND_AUDIENCE_ID
+
+[[kv_namespaces]]
+binding = "SUBSCRIBERS"
+id = "1556f3b6b2644a7b8bd02ee92984321d"
