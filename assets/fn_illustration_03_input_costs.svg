@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 80" width="140" height="80">
+  <!-- Soft background wash -->
+  <ellipse cx="70" cy="42" rx="55" ry="30" fill="#E8CC7A" opacity="0.08"/>
+  <!-- Gold circle - grain (left) -->
+  <circle cx="48" cy="36" r="26" fill="#D4A843" opacity="0.35"/>
+  <circle cx="48" cy="36" r="19" fill="#E8CC7A" opacity="0.25"/>
+  <!-- Warm brown circle - fertiliser (right) -->
+  <circle cx="92" cy="38" r="24" fill="#B8956A" opacity="0.35"/>
+  <circle cx="92" cy="38" r="17" fill="#B8956A" opacity="0.2"/>
+  <!-- Sage circle - feed (centre-bottom) -->
+  <circle cx="70" cy="50" r="22" fill="#8FBF96" opacity="0.38"/>
+  <circle cx="70" cy="50" r="15" fill="#B5D4B8" opacity="0.25"/>
+  <!-- Centre overlap -->
+  <circle cx="70" cy="40" r="12" fill="#D4A843" opacity="0.15"/>
+</svg>
