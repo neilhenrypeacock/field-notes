@@ -283,6 +283,11 @@ const API = 'http://localhost:7657';
 const CORRECT_PASSWORD = 'fieldnotes2026';
 const PASS_KEY = 'fn_admin_pw';
 
+// When served from the live HTTPS site, the browser blocks fetch() to localhost.
+// So we handle it differently: live site = password gate + redirect to localhost.
+// Local server = full dashboard.
+const IS_LOCAL = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+
 const SECTION_IDS = ['glance','markets','costs','margins','livestock','schemes',
                      'weather','events','land','jobs','machinery','tech-watch',
                      'regulatory','read','from-the-soil'];
@@ -322,6 +327,19 @@ function tryLogin() {
     return;
   }
   sessionStorage.setItem(PASS_KEY, val);
+
+  if (!IS_LOCAL) {
+    // Live HTTPS site: navigate to the local admin server.
+    // Navigation HTTPS → http://localhost is allowed (unlike fetch).
+    // Pass an encoded token so the local page auto-authenticates.
+    window.location.href = 'http://localhost:7657/admin#auth=' + btoa(val);
+    return;
+  }
+
+  showDashboard();
+}
+
+function showDashboard() {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app').style.display = 'flex';
   initApp();
@@ -330,11 +348,27 @@ function tryLogin() {
 document.getElementById('pw-btn').addEventListener('click', tryLogin);
 document.getElementById('pw-input').addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
 
-if (storedPw() === CORRECT_PASSWORD) {
+// On local: auto-login if already authenticated this session
+if (IS_LOCAL && storedPw() === CORRECT_PASSWORD) {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app').style.display = 'flex';
   window.addEventListener('DOMContentLoaded', initApp);
 }
+
+// On local: auto-authenticate from #auth token passed by live site redirect
+window.addEventListener('DOMContentLoaded', () => {
+  if (!IS_LOCAL) return;
+  const m = window.location.hash.match(/[#&]auth=([^&]+)/);
+  if (!m) return;
+  try {
+    const pw = atob(m[1]);
+    if (pw === CORRECT_PASSWORD) {
+      sessionStorage.setItem(PASS_KEY, pw);
+      history.replaceState(null, '', window.location.pathname); // clean up URL
+      showDashboard();
+    }
+  } catch (_) {}
+});
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Tabs
@@ -842,37 +876,12 @@ document.getElementById('filter-bar').addEventListener('click', e => {
 // Init
 // ─────────────────────────────────────────────────────────────────────────────
 
-async function initApp() {
-  // Check the local admin server is reachable before loading anything
-  try {
-    await fetch(API + '/api/posts', { headers: apiHdr(), signal: AbortSignal.timeout(3000) });
-  } catch (_) {
-    showOffline();
-    return;
-  }
+function initApp() {
   loadNewsletter();
   loadPosts();
 }
 
-function showOffline() {
-  document.getElementById('login-screen').style.display = 'none';
-  document.getElementById('app').style.display = 'none';
-  document.body.innerHTML = `
-    <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;background:#1b3a2d;font-family:'Source Sans 3',sans-serif">
-      <div style="background:white;border-radius:8px;padding:40px 48px;max-width:420px;text-align:center">
-        <div style="font-size:32px;margin-bottom:16px">🔌</div>
-        <h2 style="font-family:'Playfair Display',serif;color:#1b3a2d;font-size:20px;margin-bottom:10px">Admin server not running</h2>
-        <p style="color:#888;font-size:14px;margin-bottom:24px">Start the local server from your project directory, then refresh this page.</p>
-        <code style="display:block;background:#f2f0eb;border:1px solid #e0dbd0;border-radius:4px;padding:12px 16px;font-size:13px;text-align:left;color:#1b3a2d;margin-bottom:24px">.venv/bin/python admin_server.py</code>
-        <button onclick="location.reload()" style="background:#1b3a2d;color:white;border:none;padding:10px 24px;border-radius:4px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">Retry</button>
-        <p style="color:#bbb;font-size:12px;margin-top:16px">This page only works when your local server is running on port 7657.</p>
-      </div>
-    </div>`;
-}
-
-if (storedPw() === CORRECT_PASSWORD) {
-  window.addEventListener('DOMContentLoaded', initApp);
-}
+// (local auto-login is handled above, near tryLogin)
 </script>
 </body>
 </html>
