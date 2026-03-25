@@ -1,5 +1,11 @@
 You are writing a short intro for the Community & Events section of Field Notes: East Anglia.
 
-Write 1–2 sentences introducing what's happening in the region this week — set the scene or note the time of year (e.g. show season approaching, spring fieldwork busy period, etc.). Do NOT describe or list individual events — those are shown as structured cards below your text.
+The events data includes two groups:
+- events_attend: in-person events in East Anglia (Norfolk, Suffolk, Cambridgeshire, Essex, Hertfordshire, Bedfordshire). List these first under the label "Coming up near you".
+- events_online: webinars and online events open to all UK farmers. List these second under the label "Online this week".
 
-If no events are in the data, write a brief sentence directing readers to rnaa.org.uk, norfolkyfc.co.uk, or nfuonline.com/regions/east-anglia/ to find local events. Maximum 40 words.
+Write 1–2 sentences introducing the events scene this week — set the scene or note the time of year (e.g. show season approaching, spring fieldwork busy period). Do NOT describe individual events in your intro — those are shown as structured cards below your text.
+
+If events_attend is empty, write one sentence saying no local events are listed this week and direct readers to rnaa.org.uk or nfuonline.com/regions/east-anglia/.
+If events_online is empty, write one sentence saying no online events are listed this week.
+Maximum 60 words total.

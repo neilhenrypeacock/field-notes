@@ -18,6 +18,7 @@ from bs4 import BeautifulSoup
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from scrapers.base import archive_current, save_data
+from scrapers.utils import load_keywords_flat
 
 logger = logging.getLogger("field_notes.local_news")
 
@@ -31,15 +32,20 @@ FEEDS = [
 NFU_NEWS_URL = "https://www.nfuonline.com/updates-and-information/"
 FG_NEWS_URL = "https://www.farmersguardian.com/news/"
 
-KEYWORDS = [
-    "farm", "farming", "arable", "wheat", "barley", "osr", "oilseed", "beet",
-    "sugar beet", "potato", "livestock", "pig", "poultry", "egg", "dairy",
-    "nfu", "ahdb", "defra", "sfi", "countryside stewardship", "fetf",
-    "norfolk", "suffolk", "cambridgeshire", "east anglia", "east anglian",
-    "fakenham", "norwich", "bury st edmunds", "ely", "peterborough",
-    "harvest", "drilling", "spraying", "agronomist", "agronomy",
-    "avian flu", "bird flu", "tb", "bovine", "apha",
-]
+# Keywords loaded from keywords.txt (Tier A + Tier B flattened)
+try:
+    KEYWORDS = load_keywords_flat()
+except Exception:
+    # Fallback to hardcoded list if keywords.txt is missing
+    KEYWORDS = [
+        "farm", "farming", "arable", "wheat", "barley", "osr", "oilseed", "beet",
+        "sugar beet", "potato", "livestock", "pig", "poultry", "egg", "dairy",
+        "nfu", "ahdb", "defra", "sfi", "countryside stewardship", "fetf",
+        "norfolk", "suffolk", "cambridgeshire", "east anglia", "east anglian",
+        "fakenham", "norwich", "bury st edmunds", "ely", "peterborough",
+        "harvest", "drilling", "spraying", "agronomist", "agronomy",
+        "avian flu", "bird flu", "tb", "bovine", "apha",
+    ]
 
 DAYS_BACK = 8
 

@@ -1,1 +1,82 @@
-[]
+[
+  {
+    "name": "Royal Norfolk Show",
+    "title": "Royal Norfolk Show",
+    "date_approx": "Late June (2 days)",
+    "date_start": "Late June",
+    "location": "Norfolk Showground, Norwich",
+    "url": "https://www.rnaa.org.uk",
+    "category": "events_attend",
+    "tier": "local"
+  },
+  {
+    "name": "Suffolk Show",
+    "title": "Suffolk Show",
+    "date_approx": "Late May (2 days)",
+    "date_start": "Late May",
+    "location": "Trinity Park, Ipswich",
+    "url": "https://www.suffolkshow.co.uk",
+    "category": "events_attend",
+    "tier": "local"
+  },
+  {
+    "name": "Hadleigh Show",
+    "title": "Hadleigh Show",
+    "date_approx": "Mid May",
+    "date_start": "Mid May",
+    "location": "Holbecks Park, Hadleigh, Suffolk",
+    "url": "https://www.hadleighshow.co.uk",
+    "category": "events_attend",
+    "tier": "local"
+  },
+  {
+    "name": "South Suffolk Show",
+    "title": "South Suffolk Show",
+    "date_approx": "Early May",
+    "date_start": "Early May",
+    "location": "Ampton, near Bury St Edmunds",
+    "url": "https://www.southsuffolkshow.co.uk",
+    "category": "events_attend",
+    "tier": "local"
+  },
+  {
+    "name": "Cambridgeshire County Show",
+    "title": "Cambridgeshire County Show",
+    "date_approx": "Early June",
+    "date_start": "Early June",
+    "location": "Cambridgeshire",
+    "url": "https://www.cambscountyshow.co.uk",
+    "category": "events_attend",
+    "tier": "local"
+  },
+  {
+    "name": "Tendring Show",
+    "title": "Tendring Show",
+    "date_approx": "Mid July",
+    "date_start": "Mid July",
+    "location": "Essex",
+    "url": "https://www.tendringshow.org.uk",
+    "category": "events_attend",
+    "tier": "local"
+  },
+  {
+    "name": "Wayland Show",
+    "title": "Wayland Show",
+    "date_approx": "Early August",
+    "date_start": "Early August",
+    "location": "Watton, Norfolk",
+    "url": "https://www.waylandshow.co.uk",
+    "category": "events_attend",
+    "tier": "local"
+  },
+  {
+    "name": "Aylsham Show",
+    "title": "Aylsham Show",
+    "date_approx": "August Bank Holiday Monday",
+    "date_start": "August Bank Holiday",
+    "location": "Aylsham, Norfolk",
+    "url": "https://www.aylshamshow.co.uk",
+    "category": "events_attend",
+    "tier": "local"
+  }
+]

@@ -18,6 +18,9 @@ social/logs/
 data/*.json
 data/previous/*.json
 
+# Pre-filter output (ephemeral runtime files)
+scrapers/filtered/
+
 # Excel downloads
 *.xlsx
 *.xls

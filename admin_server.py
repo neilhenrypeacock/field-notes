@@ -266,6 +266,10 @@ class AdminHandler(BaseHTTPRequestHandler):
             self._nl_regenerate()
             return
 
+        if path == "/api/posts/regenerate":
+            self._posts_regenerate()
+            return
+
         # Posts endpoints: /api/posts/{idx}/{action}
         m = re.match(r"^/api/posts/(\d+)/(approve|unapprove|edit|investigate|alternative)$", path)
         if not m:
@@ -401,6 +405,33 @@ Return ONLY the modified HTML. Do not add explanation. Keep the identical struct
             })
         except subprocess.TimeoutExpired:
             _error(self, "Newsletter regeneration timed out after 180s", 500)
+        except Exception as e:
+            _error(self, str(e), 500)
+
+    # ── Posts: regenerate all ────────────────────────────────────────────────
+
+    def _posts_regenerate(self):
+        try:
+            result = subprocess.run(
+                [str(BASE_DIR / ".venv/bin/python"), str(BASE_DIR / "social/generate_posts.py")],
+                capture_output=True,
+                text=True,
+                timeout=360,
+                cwd=str(BASE_DIR),
+            )
+            if result.returncode != 0:
+                _error(self, f"generate_posts.py failed:\n{result.stderr[-1200:]}", 500)
+                return
+            posts_data = _load_posts()
+            _json_response(self, {
+                "ok": True,
+                "posts": posts_data.get("posts", []),
+                "count": len(posts_data.get("posts", [])),
+                "generated_at": posts_data.get("generated_at", ""),
+                "log": result.stdout[-600:],
+            })
+        except subprocess.TimeoutExpired:
+            _error(self, "Post regeneration timed out after 360s", 500)
         except Exception as e:
             _error(self, str(e), 500)
 

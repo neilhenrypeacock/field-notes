@@ -38,6 +38,7 @@ run_scraper "Local News"         "scrapers/local_news.py"
 run_scraper "Events"             "scrapers/events.py"
 run_scraper "Machinery Auctions" "scrapers/machinery_auctions.py"
 run_scraper "EA Flood Alerts"   "scrapers/ea_alerts.py"
+run_scraper "Prefilter"         "newsletter/prefilter.py"
 
 echo "====== Scraper run complete: $(date) ======" >> "$LOG_FILE"
 echo "Scrapers complete. Log: $LOG_FILE"

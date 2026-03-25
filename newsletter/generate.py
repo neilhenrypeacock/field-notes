@@ -21,6 +21,7 @@ load_dotenv(override=True)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
+FILTERED_DIR = BASE_DIR / "scrapers" / "filtered"
 PROMPTS_DIR = BASE_DIR / "prompts"
 TEMPLATE_DIR = Path(__file__).resolve().parent
 OUTPUT_DIR = TEMPLATE_DIR / "output"
@@ -119,6 +120,20 @@ def load_json(filename: str) -> dict:
         return {"error": True, "message": str(exc)}
 
 
+def load_filtered(name):
+    # type: (str) -> list
+    """Load scrapers/filtered/{name}.json items list. Returns [] if absent or empty."""
+    path = FILTERED_DIR / "{}.json".format(name)
+    if not path.exists():
+        return []
+    try:
+        data = json.loads(path.read_text())
+        items = data if isinstance(data, list) else data.get("items", [])
+        return items if isinstance(items, list) else []
+    except Exception:
+        return []
+
+
 def load_prompt(name: str) -> str:
     path = PROMPTS_DIR / f"{name}.txt"
     if not path.exists():
@@ -133,10 +148,47 @@ def load_prompt(name: str) -> str:
 SHARED_CONTEXT = (
     "You are writing a section of 'Field Notes: East Anglia', a free weekly farming "
     "intelligence newsletter for professional arable and mixed farmers in Norfolk, Suffolk, "
-    "and Cambridgeshire. Readers are experienced farming professionals who want facts, "
-    "numbers, and practical implications — not general explanations or hedging. "
-    "Use farming-specific language where appropriate (ex-farm, delivered, p/kg dwt, £/t, "
-    "week-on-week). Be concise and direct. Today's date: {date}.\n\n"
+    "and Cambridgeshire.\n\n"
+    "ABOUT THE DATA YOU ARE RECEIVING:\n"
+    "All data passed to you has been scraped directly from official, verified sources: "
+    "AHDB, Met Office, GOV.UK, and other authoritative bodies. Every number you receive "
+    "is real and current. Do not hedge, qualify, or second-guess any figure you have "
+    "been given. Treat all data as authoritative fact.\n\n"
+    "ABOUT YOUR READERS:\n"
+    "Experienced farming professionals who want facts, numbers, and practical "
+    "implications — not general explanations, not hedging, not reassurance. "
+    "Use farming-specific language where appropriate: ex-farm, delivered, p/kg dwt, "
+    "£/t, week-on-week.\n\n"
+    "WRITING RULES:\n"
+    "- Be concise and direct. Lead with the most important fact.\n"
+    "- Write specifically for an East Anglian arable farmer growing wheat, barley "
+    "and oilseed rape in Norfolk, Suffolk or Cambridgeshire.\n"
+    "- Lead with local East Anglian information where it exists.\n"
+    "- If data is national rather than region-specific, say so in a single clause "
+    "and explain why it is relevant to farms in this region.\n"
+    "- Never use phrases like: \"appears to\", \"may reflect\", \"seems to suggest\", "
+    "\"could indicate\", \"it is possible that\", or any other hedging language.\n"
+    "- State what happened. State the number. State the implication if it is "
+    "mathematically derivable from the data. Stop.\n"
+    "- Do not editorialize. Do not advise. Do not presume to know the farmer's "
+    "situation. Let the numbers speak.\n\n"
+    "IF YOU HAVE NO DATA:\n"
+    "If you have received no usable data for this section, output exactly this "
+    "one sentence: \"No data available for this section this week.\" "
+    "Then output your confidence JSON. Do not pad, infer, speculate, or fill space.\n\n"
+    "CONFIDENCE SCORE — output this JSON on the final line of every response, "
+    "on its own line, with no other text before or after it on that line:\n"
+    "{{\"confidence\": 0.0, \"reason\": \"\", \"data_gaps\": []}}\n"
+    "Score rules:\n"
+    "- 0.9 to 1.0 — all expected data fields were received and are complete\n"
+    "- 0.6 to 0.8 — some fields missing but enough data to write a useful section\n"
+    "- 0.3 to 0.5 — data was thin, partial, or only one field available\n"
+    "- 0.0 to 0.2 — no usable data received for this section\n"
+    "The confidence score reflects DATA COMPLETENESS ONLY. "
+    "Never score low because you are uncertain about market interpretation or "
+    "because prices moved unexpectedly. That is analysis, not a data quality issue. "
+    "Score what you received, not what you think about it.\n\n"
+    "Today's date: {date}.\n\n"
 )
 
 
@@ -157,6 +209,8 @@ def get_ai_summary(section: str, data: dict, extra_context: str = "") -> str:
             messages=[{"role": "user", "content": full_prompt}],
         )
         text = message.content[0].text.strip()
+        # Strip trailing confidence JSON line added by SHARED_CONTEXT instruction
+        text = re.sub(r'\n\{"confidence":[^}]+\}\s*$', '', text).strip()
         # Log token usage
         _log_usage(section, message.usage)
         return text
@@ -969,8 +1023,28 @@ def generate_newsletter() -> tuple[str, str]:
     land = load_json("land_listings.json")
     jobs = load_json("jobs.json")
     machinery = load_json("machinery_auctions.json")
-    news = load_json("local_news.json")
-    events = load_json("events.json")
+    # News: prefer filtered output from prefilter.py; fall back to legacy local_news.json
+    _news_filtered = load_filtered("news")
+    if _news_filtered:
+        news = {
+            "articles": _news_filtered,
+            "sources": list(dict.fromkeys(a.get("source", "") for a in _news_filtered)),
+            "count": len(_news_filtered),
+        }
+    else:
+        news = load_json("local_news.json")
+
+    # Events: prefer filtered output; fall back to legacy events.json
+    _ev_attend = load_filtered("events_attend")
+    _ev_online = load_filtered("events_online")
+    if _ev_attend or _ev_online:
+        _combined = sorted(
+            _ev_attend + _ev_online,
+            key=lambda e: e.get("date_start") or "9999",
+        )
+        events = {"events": _combined, "count": len(_combined), "sources": []}
+    else:
+        events = load_json("events.json")
     community_events_raw = load_json("community_events.json")
     sugar_beet = load_json("sugar_beet.json")
     fuel = load_json("fuel.json")
@@ -1036,7 +1110,8 @@ def generate_newsletter() -> tuple[str, str]:
     machinery_text = get_ai_summary("machinery", machinery)
     regulatory_text = get_ai_summary("regulatory", regulatory_data)
     events_text = get_ai_summary("events", {
-        "events": events.get("events", []),
+        "events_attend": _ev_attend or events.get("events", []),
+        "events_online": _ev_online,
         "community_events": community_events,
     })
     read_text = get_ai_summary(

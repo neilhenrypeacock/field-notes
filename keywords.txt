@@ -1,0 +1,184 @@
+# ============================================================
+# FIELD NOTES EAST ANGLIA — KEYWORD FILTER FILE
+# Edit this file to add/remove keywords. No code changes needed.
+# ============================================================
+
+# TIER A — Hard local (EA geography and organisations)
+# Scoring: +3 points per match
+# An article matching any Tier A keyword is almost certainly relevant.
+
+Norfolk
+Suffolk
+Cambridgeshire
+Essex
+Hertfordshire
+Bedfordshire
+East Anglia
+East of England
+Fens
+Fenland
+Norfolk Broads
+Broads
+Breckland
+Waveney
+Brecks
+Norwich
+Ipswich
+Cambridge
+Peterborough
+Ely
+Kings Lynn
+Bury St Edmunds
+Newmarket
+Thetford
+Fakenham
+Diss
+Swaffham
+Downham Market
+Wisbech
+March
+Spalding
+Holkham
+British Sugar
+Cantley
+Wissington
+Frontier Agriculture
+Camgrain
+Openfield
+Fengrain
+Velcourt
+Cheffins
+Bidwells
+Brown and Co
+Strutt and Parker
+Savills Anglia
+Royal Norfolk Show
+Suffolk Show
+Hadleigh Show
+Aylsham Show
+Wayland Show
+Tendring Show
+Anglia Farmer
+NFU East
+Agri-TechE
+Norwich Market
+East of England Showground
+RNAA
+Norfolk FWAG
+Anglian Water
+Water Resources East
+Environment Agency East
+
+# TIER B — Topic relevance (crops, inputs, policy, tech)
+# Scoring: +1 point per match
+# An article matching Tier B keywords but no Tier A is nationally relevant
+# and should be passed through if from a Tier 1 or Tier 2 source.
+
+wheat
+barley
+oilseed rape
+OSR
+sugar beet
+sugar beet contract
+beet price
+field beans
+milling wheat
+feed wheat
+spring barley
+malting barley
+winter wheat
+winter barley
+blackgrass
+flea beetle
+cabbage stem flea beetle
+CSFB
+take-all
+septoria
+fusarium
+ramularia
+light land
+sandy soil
+chalk soil
+clay soil
+combinable crops
+arable
+grain price
+wheat price
+barley price
+OSR price
+rapeseed price
+fertiliser price
+urea
+ammonium nitrate
+AN fertiliser
+potash
+DAP
+phosphate
+glyphosate
+metaldehyde
+slug pellets
+fungicide
+herbicide
+insecticide
+SFI
+SFI26
+Sustainable Farming Incentive
+ELM
+ELMS
+Environmental Land Management
+Basic Payment Scheme
+BPS
+inheritance tax
+IHT
+family farm tax
+Nitrate Vulnerable Zone
+NVZ
+water abstraction
+abstraction licence
+drainage board
+flood alert
+Farming Equipment Technology Fund
+FETF
+Farming Innovation Programme
+ADOPT fund
+AHDB
+Defra
+agri-tech
+precision farming
+precision agriculture
+robotics
+autonomous tractor
+drone
+variable rate
+soil sensor
+satellite imagery
+digital farming
+farm management software
+cover crops
+no-till
+regenerative
+carbon credits
+biodiversity net gain
+BNG
+monitor farm
+Recommended List
+variety trial
+
+# TIER C — Discard signals
+# Scoring: -5 points per match
+# Articles about these topics with no Tier A match are not relevant.
+
+Northern Ireland
+Republic of Ireland
+Scotland only
+Wales only
+hill farming
+upland farming
+New Zealand
+Australia
+United States
+Canada
+citrus
+vineyard
+olive
+rice farming

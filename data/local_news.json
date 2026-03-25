@@ -14,32 +14,12 @@
   "articles": [
     {
       "source": "Farmers Guardian",
-      "title": "The Farmers Guardian podcast: Farmers take Government to the High Court",
-      "url": "https://www.farmersguardian.com/news/4527374/farmers-guardian-podcast-farmers-government-court",
+      "title": "Scottish Rural Support Plan sets out direct support commitments",
+      "url": "https://www.farmersguardian.com/news/4527444/scottish-rural-support-plan-sets-direct-support-commitments",
       "published": "2026-03-24T00:00:00Z",
-      "summary": "The Farmers Guardian news team speak to claimant Tom Martin and discuss last week's court case",
+      "summary": "The plan was laid before Parliament yesterday and published on March 24",
       "relevance_keywords": [
-        "farm"
-      ]
-    },
-    {
-      "source": "Farmers Guardian",
-      "title": "Iran war - Kemi Badenoch: \"We need to make sure we can grow more of our own food\"",
-      "url": "https://www.farmersguardian.com/news/4527362/iran-war-kemi-badenoch-grow-food",
-      "published": "2026-03-24T00:00:00Z",
-      "summary": "Conservative Party Leader Kemi Badenoch told Farmers Guardian that conflict in the Middle East must be a wake up call for the Government to back food production in the UK",
-      "relevance_keywords": [
-        "farm"
-      ]
-    },
-    {
-      "source": "Farmers Guardian",
-      "title": "Teenage farm worker crushed to death in bale wrapper, inquest hears",
-      "url": "https://www.farmersguardian.com/news/4527351/teenage-farm-worker-crushed-death-bale-wrapper-inquest-hears",
-      "published": "2026-03-24T00:00:00Z",
-      "summary": "A teenage farm worker was crushed to death in a bale wrapping machine - as his older brother worked in an adjacent field",
-      "relevance_keywords": [
-        "farm"
+        "march"
       ]
     },
     {
@@ -59,99 +39,29 @@
       "published": "2026-03-23T16:00:00Z",
       "summary": "",
       "relevance_keywords": [
-        "sfi"
+        "sfi",
+        "sfi26"
+      ]
+    },
+    {
+      "source": "NFU",
+      "title": "ELMs capital grants – essential information",
+      "url": "https://www.nfuonline.com/news/elms-capital-grants/",
+      "published": "2026-03-23T13:55:00Z",
+      "summary": "",
+      "relevance_keywords": [
+        "elm",
+        "elms"
       ]
     },
     {
       "source": "Agriland UK",
-      "title": "Is endometritis costing you money in lost fertility?",
-      "url": "https://www.agriland.co.uk/farming-news/is-endometritis-costing-you-money-in-lost-fertility/",
-      "published": "2026-03-23T06:10:00Z",
-      "summary": "There are still plenty of cows to calve down, but with breeding quickly approaching, farmers should start carrying out pre-breeding...The postIs endometritis costing you money in lost fertility?appeared first onAgriland.co.uk.",
+      "title": "NI police appeal for information after sheep found dead",
+      "url": "https://www.agriland.co.uk/farming-news/ni-police-appeal-for-information-after-sheep-found-dead/",
+      "published": "2026-03-22T12:02:08Z",
+      "summary": "Police in Northern Ireland are appealing for information after sheep were found dead in a field in Co. Antrim. Police...The postNI police appeal for information after sheep found deadappeared first onAgriland.co.uk.",
       "relevance_keywords": [
-        "farm"
-      ]
-    },
-    {
-      "source": "Farmers Guardian",
-      "title": "Poultry classes postponed at Balmoral Show due to avian flu 'uncertainty'",
-      "url": "https://www.farmersguardian.com/news/4527361/poultry-classes-postponed-balmoral-show-avian-flu-uncertainty",
-      "published": "2026-03-23T00:00:00Z",
-      "summary": "The Royal Ulster Agricultural Society said the decision has been taken due to the uncertainty of when any ban on bird gatherings may be lifted",
-      "relevance_keywords": [
-        "poultry",
-        "avian flu"
-      ]
-    },
-    {
-      "source": "Farmers Guardian",
-      "title": "Landward to celebrate milestone anniversary with special episode",
-      "url": "https://www.farmersguardian.com/news/4527343/landward-celebrate-milestone-anniversary",
-      "published": "2026-03-23T00:00:00Z",
-      "summary": "The first episode of ‘Scotland's farming programme’ aired on April 4 1976",
-      "relevance_keywords": [
-        "farm",
-        "farming"
-      ]
-    },
-    {
-      "source": "Farmers Guardian",
-      "title": "£3 Million Secured to Continue Welsh Sheep Genetics Programme",
-      "url": "https://www.farmersguardian.com/news/4527342/million-secured-continue-welsh-sheep-genetics-programme",
-      "published": "2026-03-23T00:00:00Z",
-      "summary": "Welsh sheep farmers are set to receive funding towards a programme which will allow them to improve efficiency, productivity and environmental performance",
-      "relevance_keywords": [
-        "farm"
-      ]
-    },
-    {
-      "source": "Farmers Guardian",
-      "title": "The Big Farm Tea Break: 'A small chat can make a huge difference'",
-      "url": "https://www.farmersguardian.com/news/4527316/big-farm-tea-break-small-chat-huge-difference",
-      "published": "2026-03-23T00:00:00Z",
-      "summary": "Take time to stop, pop the kettle on, make a phone call, and catch up with a friend during the Big Farm Tea Break (March 23-29)",
-      "relevance_keywords": [
-        "farm"
-      ]
-    },
-    {
-      "source": "Farmers Guardian",
-      "title": "Dog attack on 34 pregnant ewes could cost farmer £15k",
-      "url": "https://www.farmersguardian.com/news/4527278/dog-attack-34-sheep-cost-farmer-15k",
-      "published": "2026-03-23T00:00:00Z",
-      "summary": "Lincolnshire Police said four sheep died at the scene, and 30 additional sheep later died as a result of shock and injuries sustained during the dog attack",
-      "relevance_keywords": [
-        "farm"
-      ]
-    },
-    {
-      "source": "Farmers Guardian",
-      "title": "Five men – including a farmer – sentenced after DNA tests exposed organised cattle theft on Anglesey",
-      "url": "https://www.farmersguardian.com/news/4527274/farmer-sentenced-dna-tests-exposed-organised-cattle-theft-anglesey",
-      "published": "2026-03-23T00:00:00Z",
-      "summary": "Police officers recovered 12 stolen cattle, with DNA tests on nine of them proving they were from an Anglesey farm in 2022",
-      "relevance_keywords": [
-        "farm"
-      ]
-    },
-    {
-      "source": "Agriland UK",
-      "title": "Proposed planning rules changes to help farmers install small wind turbines",
-      "url": "https://www.agriland.co.uk/farming-news/proposed-planning-rules-changes-to-help-farmers-install-small-wind-turbines/",
-      "published": "2026-03-22T13:00:00Z",
-      "summary": "The government has announced proposals to relax planning rules to make it easier for farmers to install small-scale wind turbines....The postProposed planning rules changes to help farmers install small wind turbinesappeared first onAgriland.co.uk.",
-      "relevance_keywords": [
-        "farm"
-      ]
-    },
-    {
-      "source": "Agriland UK",
-      "title": "Why Dale Farm and Aurivo pulled the plug on merger talks",
-      "url": "https://www.agriland.co.uk/farming-news/why-dale-farm-and-aurivo-pulled-the-plug-on-merger-talks/",
-      "published": "2026-03-22T11:19:42Z",
-      "summary": "After months and months of discussions and many, many meetings north and south, the prospect of a fully blown merger...The postWhy Dale Farm and Aurivo pulled the plug on merger talksappeared first onAgriland.co.uk.",
-      "relevance_keywords": [
-        "farm"
+        "dap"
       ]
     },
     {
@@ -167,55 +77,96 @@
     },
     {
       "source": "Agriland UK",
-      "title": "Watch: UK firefighters tackle tractor fire after flames destroy crop fields",
-      "url": "https://www.agriland.co.uk/farming-news/watch-uk-firefighters-tackle-tractor-fire-after-flames-destroy-crop-fields/",
-      "published": "2026-03-20T19:15:00Z",
-      "summary": "Firefighters in the UK were called to a farm after a tractor went up in flames and spread to nearby...The postWatch: UK firefighters tackle tractor fire after flames destroy crop fieldsappeared first onAgriland.co.uk.",
-      "relevance_keywords": [
-        "farm"
-      ]
-    },
-    {
-      "source": "Agriland UK",
-      "title": "Court: NI farmer convicted for water pollution offence",
-      "url": "https://www.agriland.co.uk/farming-news/court-ni-farmer-convicted-for-water-pollution-offence-2/",
-      "published": "2026-03-20T16:30:00Z",
-      "summary": "A farmer in Northern Ireland has been convicted in court for water pollution offence that resulted in a fish kill....The postCourt: NI farmer convicted for water pollution offenceappeared first onAgriland.co.uk.",
-      "relevance_keywords": [
-        "farm"
-      ]
-    },
-    {
-      "source": "NFU",
-      "title": "Weekly look ahead – keep up to date with the NFU’s work",
-      "url": "https://www.nfuonline.com/news/weekly-look-ahead/",
-      "published": "2026-03-20T16:30:00Z",
-      "summary": "",
-      "relevance_keywords": [
-        "nfu"
-      ]
-    },
-    {
-      "source": "Agriland UK",
       "title": "FFA: April 6 ‘key date’ in inheritance tax judicial review",
       "url": "https://www.agriland.co.uk/farming-news/ffa-april-6-key-date-in-inheritance-tax-judicial-review/",
       "published": "2026-03-20T16:15:00Z",
       "summary": "A judicial review of the extension of inheritance tax to agricultural land and farm assets in the UK has been...The postFFA: April 6 ‘key date’ in inheritance tax judicial reviewappeared first onAgriland.co.uk.",
       "relevance_keywords": [
-        "farm"
+        "inheritance tax"
       ]
     },
     {
-      "source": "NFU",
-      "title": "Watch now: Your weekly vlog from the NFU President",
-      "url": "https://www.nfuonline.com/news/watch-now-your-weekly-vlog-from-the-president/",
-      "published": "2026-03-20T16:15:00Z",
-      "summary": "",
+      "source": "Agriland UK",
+      "title": "Defra announces England’s first Land Use Framework",
+      "url": "https://www.agriland.co.uk/farming-news/defra-announces-englands-first-land-use-framework/",
+      "published": "2026-03-20T11:30:00Z",
+      "summary": "The Department for Environment, Food and Rural Affairs (Defra) has published a new plan, the Land Use Framework, which will...The postDefra announces England’s first Land Use Frameworkappeared first onAgriland.co.uk.",
       "relevance_keywords": [
-        "nfu"
+        "defra"
+      ]
+    },
+    {
+      "source": "Agriland UK",
+      "title": "PDA publishes new potato crop nutrition advisory leaflet",
+      "url": "https://www.agriland.co.uk/farming-news/pda-publishes-new-potato-crop-nutrition-advisory-leaflet/",
+      "published": "2026-03-20T06:20:00Z",
+      "summary": "The Potash Development Association (PDA) has published a new potato crop nutrition guidance leaflet to facilitate UK and Irish growers....The postPDA publishes new potato crop nutrition advisory leafletappeared first onAgriland.co.uk.",
+      "relevance_keywords": [
+        "potash"
+      ]
+    },
+    {
+      "source": "Agriland UK",
+      "title": "Fatality confirmed on Tyrone farm",
+      "url": "https://www.agriland.co.uk/farming-news/fatality-confirmed-on-tyrone-farm/",
+      "published": "2026-03-19T18:14:42Z",
+      "summary": "A man has died following an incident on a farm in Co. Tyrone today (Thursday, March 19). The Police Service...The postFatality confirmed on Tyrone farmappeared first onAgriland.co.uk.",
+      "relevance_keywords": [
+        "march"
+      ]
+    },
+    {
+      "source": "Agriland UK",
+      "title": "Third NI climate change adaptation programme launched",
+      "url": "https://www.agriland.co.uk/farming-news/third-ni-climate-change-adaptation-programme-launched/",
+      "published": "2026-03-19T16:45:00Z",
+      "summary": "Northern Ireland’s third action plan for building climate change resilience was launched today by Minister of Agriculture, Environment and Rural...The postThird NI climate change adaptation programme launchedappeared first onAgriland.co.uk.",
+      "relevance_keywords": [
+        "dap"
+      ]
+    },
+    {
+      "source": "Agriland UK",
+      "title": "Foot-and-mouth outbreak confirmed within Greek cattle herd",
+      "url": "https://www.agriland.co.uk/farming-news/foot-and-mouth-outbreak-confirmed-within-greek-cattle-herd/",
+      "published": "2026-03-19T15:35:00Z",
+      "summary": "Foot-and-mouth disease (FMD) has been confirmed within a cattle herd on the Greek island of Lesvos, according to the World...The postFoot-and-mouth outbreak confirmed within Greek cattle herdappeared first onAgriland.co.uk.",
+      "relevance_keywords": [
+        "dap"
+      ]
+    },
+    {
+      "source": "Agriland UK",
+      "title": "Farmers and rural firms challenge UK inheritance tax reform in High Court",
+      "url": "https://www.agriland.co.uk/farming-news/farmers-and-rural-firms-challenge-uk-inheritance-tax-reform-in-high-court/",
+      "published": "2026-03-18T17:15:00Z",
+      "summary": "A judicial review to challenge the government’s inheritance tax reform is taking place in the High Court today (Wednesday, March...The postFarmers and rural firms challenge UK inheritance tax reform in High Courtappeared first onAgriland.co.uk.",
+      "relevance_keywords": [
+        "march",
+        "inheritance tax"
+      ]
+    },
+    {
+      "source": "Agriland UK",
+      "title": "New law to protect farm animals from dog attacks comes into force",
+      "url": "https://www.agriland.co.uk/farming-news/new-law-to-protect-farm-animals-from-dog-attacks-comes-into-force/",
+      "published": "2026-03-18T10:45:00Z",
+      "summary": "A new law comes into effect today (Wednesday, March 18) that will see farm animals in England and Wales get...The postNew law to protect farm animals from dog attacks comes into forceappeared first onAgriland.co.uk.",
+      "relevance_keywords": [
+        "march"
+      ]
+    },
+    {
+      "source": "Defra Blog",
+      "title": "FETF 2026: apply now for equipment and technology grants",
+      "url": "https://defrafarming.blog.gov.uk/2026/03/17/fetf-2026-apply-now-for-equipment-and-technology-grants/",
+      "published": "2026-03-17T10:31:48Z",
+      "summary": "Applications are open for FETF 2026, with £50 million available to help farmers, growers and contractors invest in equipment that improves productivity, animal health and welfare, and slurry management.",
+      "relevance_keywords": [
+        "fetf"
       ]
     }
   ],
-  "count": 62,
-  "last_updated": "2026-03-24T09:57:07Z"
+  "count": 15,
+  "last_updated": "2026-03-25T09:20:56Z"
 }
