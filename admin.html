@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Field Notes — Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green:  #1b3a2d;
+  --green2: #263f32;
+  --gold:   #d4a853;
+  --parch:  #f2f0eb;
+  --cream:  #f7f5f0;
+  --border: #e0dbd0;
+  --red:    #c62828;
+  --muted:  #888;
+  --header-h: 52px;
+}
+
+body { font-family: 'Source Sans 3', sans-serif; background: var(--parch); color: #222; min-height: 100vh; }
+
+/* ── Login ──────────────────────────────────────────────────────────────── */
+#login-screen { display:flex; align-items:center; justify-content:center; min-height:100vh; background:var(--green); }
+.login-card { background:white; border-radius:8px; padding:40px 48px; width:320px; text-align:center; }
+.login-card h1 { font-family:'Playfair Display',serif; color:var(--green); font-size:22px; margin-bottom:6px; }
+.login-card p { color:var(--muted); font-size:14px; margin-bottom:28px; }
+.login-card input[type="password"] { width:100%; padding:10px 14px; border:1px solid var(--border); border-radius:4px; font-family:inherit; font-size:15px; margin-bottom:12px; outline:none; }
+.login-card input[type="password"]:focus { border-color:var(--green); }
+.login-card button { width:100%; background:var(--green); color:white; border:none; padding:11px; border-radius:4px; font-family:inherit; font-size:15px; font-weight:600; cursor:pointer; }
+.login-card button:hover { background:var(--green2); }
+#login-error { color:var(--red); font-size:13px; margin-top:10px; min-height:18px; }
+
+/* ── App shell ──────────────────────────────────────────────────────────── */
+#app { display:none; height:100vh; display:none; flex-direction:column; }
+
+header { background:var(--green); color:white; padding:0 24px; display:flex; align-items:center; gap:24px; height:var(--header-h); flex-shrink:0; }
+.logo { font-family:'Playfair Display',serif; font-size:17px; color:var(--gold); white-space:nowrap; }
+nav { display:flex; gap:4px; }
+nav button { background:none; border:none; color:rgba(255,255,255,0.6); padding:6px 14px; border-radius:4px; font-family:inherit; font-size:14px; font-weight:600; cursor:pointer; }
+nav button:hover { color:white; background:rgba(255,255,255,0.08); }
+nav button.active { color:white; background:rgba(255,255,255,0.15); }
+.spacer { flex:1; }
+
+/* ── Tabs ───────────────────────────────────────────────────────────────── */
+.tab-content { display:none; flex:1; overflow:hidden; }
+.tab-content.active { display:flex; flex-direction:column; }
+
+/* ── Newsletter tab ─────────────────────────────────────────────────────── */
+#tab-newsletter { flex-direction:column; }
+
+.nl-meta-bar {
+  background:white; border-bottom:1px solid var(--border);
+  padding:10px 20px; display:flex; align-items:center; gap:16px;
+  font-size:13px; color:var(--muted); flex-shrink:0;
+}
+.nl-meta-bar strong { color:#222; }
+.nl-meta-bar .spacer { flex:1; }
+
+.nl-pane { display:flex; flex:1; overflow:hidden; }
+
+#nl-left {
+  flex:1; overflow-y:auto; background:var(--cream);
+  border-right:1px solid var(--border);
+  padding:16px;
+}
+/* Section hover/select styles applied via JS */
+.nl-section-clickable { cursor:pointer; transition:outline 0.1s; }
+.nl-section-clickable:hover { outline:2px dashed rgba(27,58,45,0.35); outline-offset:3px; }
+.nl-section-selected { outline:3px solid var(--green) !important; outline-offset:3px; }
+
+#nl-right {
+  width:380px; flex-shrink:0; display:flex; flex-direction:column;
+  background:white;
+}
+
+.chat-header {
+  padding:12px 16px; border-bottom:1px solid var(--border);
+  font-size:13px; font-weight:700; color:var(--green);
+  display:flex; align-items:center; gap:8px; flex-shrink:0;
+}
+.chat-header .section-pill {
+  background:var(--green); color:white; border-radius:12px;
+  padding:2px 10px; font-size:12px; font-weight:600;
+}
+.chat-header .hint { color:var(--muted); font-weight:400; font-size:12px; }
+
+#chat-messages {
+  flex:1; overflow-y:auto; padding:12px 14px;
+  display:flex; flex-direction:column; gap:10px;
+}
+
+.chat-msg-user { align-self:flex-end; max-width:85%; }
+.chat-msg-ai   { align-self:flex-start; max-width:95%; width:100%; }
+
+.bubble {
+  padding:9px 12px; border-radius:8px; font-size:13px; line-height:1.55;
+  white-space:pre-wrap; word-wrap:break-word;
+}
+.bubble-user { background:var(--green); color:white; border-bottom-right-radius:3px; }
+.bubble-ai   { background:var(--cream); border:1px solid var(--border); border-bottom-left-radius:3px; }
+.bubble-ai strong { font-weight:700; }
+
+.apply-row { margin-top:8px; display:flex; gap:8px; }
+
+.chat-loading { font-size:13px; color:var(--muted); font-style:italic; padding:4px 0; }
+.chat-error   { font-size:13px; color:var(--red); padding:4px 0; }
+
+.chat-input-area {
+  border-top:1px solid var(--border); padding:12px 14px;
+  display:flex; flex-direction:column; gap:8px; flex-shrink:0;
+}
+#chat-input {
+  width:100%; min-height:72px; max-height:140px;
+  padding:8px 10px; border:1px solid var(--border); border-radius:4px;
+  font-family:inherit; font-size:13px; resize:vertical; outline:none;
+  background:var(--parch);
+}
+#chat-input:focus { border-color:var(--green); background:white; }
+
+.chat-btn-row { display:flex; gap:8px; }
+
+/* ── Posts tab ──────────────────────────────────────────────────────────── */
+#tab-posts { overflow-y:auto; }
+
+.posts-scroll { padding:24px; max-width:860px; margin:0 auto; }
+
+.filter-bar { display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap; }
+.filter-btn { background:white; border:1px solid var(--border); border-radius:20px; padding:5px 14px; font-family:inherit; font-size:13px; cursor:pointer; color:#555; }
+.filter-btn:hover { border-color:var(--green); color:var(--green); }
+.filter-btn.active { background:var(--green); border-color:var(--green); color:white; }
+
+.posts-list { display:flex; flex-direction:column; gap:18px; }
+
+.post-card { background:white; border:1px solid var(--border); border-radius:6px; overflow:hidden; }
+.post-card.is-blocked { border-left:3px solid var(--red); }
+.post-card.is-posted  { opacity:0.5; }
+
+.post-header { display:flex; align-items:center; gap:10px; padding:11px 16px; background:var(--cream); border-bottom:1px solid var(--border); flex-wrap:wrap; }
+.post-day  { font-weight:700; font-size:14px; color:var(--green); }
+.post-date { font-size:13px; color:var(--muted); }
+.post-label { font-size:13px; color:#555; margin-left:auto; }
+
+.badge { display:inline-block; padding:2px 9px; border-radius:12px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; }
+.badge-ready    { background:#e8f5e9; color:#2e7d32; }
+.badge-blocked  { background:#ffebee; color:var(--red); }
+.badge-posted   { background:#eee; color:#777; }
+.badge-edited   { background:#fff8e1; color:#f57f17; }
+.badge-approved { background:#fff8e1; color:#b8860b; }
+
+.post-body { padding:14px 16px; display:flex; flex-direction:column; gap:10px; }
+.post-body label { display:block; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-bottom:4px; }
+
+.post-text-area { width:100%; min-height:130px; padding:9px 11px; border:1px solid var(--border); border-radius:4px; font-family:inherit; font-size:13px; line-height:1.55; resize:vertical; background:var(--parch); }
+.post-text-area:focus { outline:none; border-color:var(--green); background:white; }
+
+.first-comment-box { background:var(--cream); border:1px solid var(--border); border-radius:4px; padding:8px 11px; font-size:13px; color:#555; }
+.first-comment-box.pool { color:var(--muted); font-style:italic; }
+
+.block-info { background:#fff5f5; border:1px solid #ffcdd2; border-radius:4px; padding:10px 12px; font-size:13px; }
+.block-info .block-title { font-weight:700; color:var(--red); margin-bottom:4px; }
+.block-info .block-detail { color:#555; line-height:1.5; }
+
+/* Investigation / alternative response panels */
+.expand-panel { background:var(--cream); border:1px solid var(--border); border-radius:4px; padding:12px 14px; font-size:13px; line-height:1.6; white-space:pre-wrap; word-wrap:break-word; }
+.expand-panel strong { font-weight:700; }
+.expand-loading { font-size:13px; color:var(--muted); font-style:italic; }
+
+/* Alternative hint input */
+.alt-row { display:flex; gap:8px; align-items:center; }
+.alt-row input { flex:1; padding:7px 10px; border:1px solid var(--border); border-radius:4px; font-family:inherit; font-size:13px; outline:none; }
+.alt-row input:focus { border-color:var(--green); }
+
+.post-footer { padding:11px 16px; border-top:1px solid var(--border); display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.save-indicator { font-size:12px; color:#2e7d32; opacity:0; transition:opacity .3s; }
+.save-indicator.show { opacity:1; }
+
+/* ── Buttons ────────────────────────────────────────────────────────────── */
+.btn { padding:7px 14px; border-radius:4px; font-family:inherit; font-size:13px; font-weight:600; cursor:pointer; border:none; white-space:nowrap; }
+.btn:disabled { opacity:.4; cursor:not-allowed; }
+.btn-primary   { background:var(--green); color:white; }
+.btn-primary:hover:not(:disabled)   { background:var(--green2); }
+.btn-secondary { background:white; color:var(--green); border:1px solid var(--green); }
+.btn-secondary:hover:not(:disabled) { background:var(--cream); }
+.btn-warn      { background:white; color:#b8860b; border:1px solid #d4a853; }
+.btn-warn:hover:not(:disabled)      { background:#fffbf0; }
+.btn-danger    { background:white; color:var(--red); border:1px solid #ffcdd2; }
+.btn-danger:hover:not(:disabled)    { background:#fff5f5; }
+.btn-sm { padding:5px 11px; font-size:12px; }
+
+/* ── Misc ───────────────────────────────────────────────────────────────── */
+.spinner { display:inline-block; width:14px; height:14px; border:2px solid var(--border); border-top-color:var(--green); border-radius:50%; animation:spin .7s linear infinite; vertical-align:middle; margin-right:6px; }
+@keyframes spin { to { transform:rotate(360deg); } }
+
+.empty-state { text-align:center; padding:60px 20px; color:var(--muted); font-size:15px; }
+.empty-state strong { display:block; font-size:17px; color:#555; margin-bottom:8px; }
+
+.nl-loading { padding:40px; text-align:center; color:var(--muted); font-size:14px; }
+</style>
+</head>
+<body>
+
+<!-- Login -->
+<div id="login-screen">
+  <div class="login-card">
+    <h1>Field Notes</h1>
+    <p>Admin dashboard</p>
+    <input type="password" id="pw-input" placeholder="Password" autocomplete="current-password">
+    <button id="pw-btn">Sign in</button>
+    <div id="login-error"></div>
+  </div>
+</div>
+
+<!-- App -->
+<div id="app">
+  <header>
+    <span class="logo">Field Notes · Admin</span>
+    <nav>
+      <button class="active" data-tab="newsletter">Newsletter</button>
+      <button data-tab="posts">Facebook Posts</button>
+    </nav>
+    <span class="spacer"></span>
+  </header>
+
+  <!-- Newsletter tab -->
+  <div id="tab-newsletter" class="tab-content active">
+    <div class="nl-meta-bar" id="nl-meta-bar" style="display:none">
+      <div><strong id="nl-filename"></strong></div>
+      <div id="nl-date"></div>
+      <span class="spacer"></span>
+      <button class="btn btn-secondary btn-sm" id="btn-regen">↻ Regenerate newsletter</button>
+    </div>
+    <div id="nl-loading-outer" class="nl-loading"><span class="spinner"></span> Loading newsletter…</div>
+
+    <div class="nl-pane" id="nl-pane" style="display:none">
+      <!-- Left: newsletter HTML -->
+      <div id="nl-left">
+        <div id="nl-content"></div>
+      </div>
+
+      <!-- Right: chat panel -->
+      <div id="nl-right">
+        <div class="chat-header" id="chat-header">
+          <span class="hint">← Click any section to select it</span>
+        </div>
+        <div id="chat-messages"></div>
+        <div class="chat-input-area">
+          <textarea id="chat-input" placeholder="Ask a question about the selected section, or give an instruction to update copy…"></textarea>
+          <div class="chat-btn-row">
+            <button class="btn btn-primary" id="btn-ask">Ask</button>
+            <button class="btn btn-secondary" id="btn-update">Update copy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Posts tab -->
+  <div id="tab-posts" class="tab-content">
+    <div class="posts-scroll">
+      <div class="filter-bar" id="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="ready">Ready</button>
+        <button class="filter-btn" data-filter="approved">Approved</button>
+        <button class="filter-btn" data-filter="blocked">Blocked</button>
+        <button class="filter-btn" data-filter="posted">Posted</button>
+      </div>
+      <div id="posts-loading" style="padding:40px;text-align:center;color:var(--muted)"><span class="spinner"></span> Loading posts…</div>
+      <div class="posts-list" id="posts-list"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────────────────────────────────────
+// Config
+// ─────────────────────────────────────────────────────────────────────────────
+
+const API = 'http://localhost:7657';
+const CORRECT_PASSWORD = 'fieldnotes2026';
+const PASS_KEY = 'fn_admin_pw';
+
+const SECTION_IDS = ['glance','markets','costs','margins','livestock','schemes',
+                     'weather','events','land','jobs','machinery','tech-watch',
+                     'regulatory','read','from-the-soil'];
+const SECTION_LABELS = {
+  'glance':'At a Glance','markets':'Markets','costs':'Input Costs',
+  'margins':'Margin Watch','livestock':'Livestock & Dairy','schemes':'Schemes & Grants',
+  'weather':'Weather','events':'Events','land':'Land & Property','jobs':'Jobs',
+  'machinery':'Machinery','tech-watch':'Tech Watch','regulatory':'Regulatory',
+  'read':'One Good Read','from-the-soil':'From the Soil'
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Auth helpers
+// ─────────────────────────────────────────────────────────────────────────────
+
+function storedPw() { return sessionStorage.getItem(PASS_KEY) || ''; }
+function apiHdr() { return { 'X-Admin-Password': storedPw(), 'Content-Type': 'application/json' }; }
+
+async function apiFetch(path, opts={}) {
+  const res = await fetch(API + path, { ...opts, headers: { ...apiHdr(), ...(opts.headers||{}) } });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({ error: res.statusText }));
+    throw new Error(err.error || res.statusText);
+  }
+  return res.json();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Login
+// ─────────────────────────────────────────────────────────────────────────────
+
+function tryLogin() {
+  const val = document.getElementById('pw-input').value.trim();
+  if (val !== CORRECT_PASSWORD) {
+    document.getElementById('login-error').textContent = 'Incorrect password.';
+    document.getElementById('pw-input').select();
+    return;
+  }
+  sessionStorage.setItem(PASS_KEY, val);
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'flex';
+  initApp();
+}
+
+document.getElementById('pw-btn').addEventListener('click', tryLogin);
+document.getElementById('pw-input').addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
+
+if (storedPw() === CORRECT_PASSWORD) {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'flex';
+  window.addEventListener('DOMContentLoaded', initApp);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Tabs
+// ─────────────────────────────────────────────────────────────────────────────
+
+document.querySelectorAll('nav button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Utilities
+// ─────────────────────────────────────────────────────────────────────────────
+
+function esc(s) {
+  if (s == null) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function fmtDate(iso) {
+  if (!iso) return '';
+  const d = new Date(iso + 'T00:00:00');
+  return d.toLocaleDateString('en-GB', { day:'numeric', month:'short' });
+}
+
+// Minimal markdown → HTML for Claude responses
+function mdToHtml(text) {
+  return esc(text)
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    .replace(/^(\d+)\.\s/gm, '<br><strong>$1.</strong> ')
+    .replace(/^[-•]\s/gm, '• ')
+    .replace(/\n/g, '<br>');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Newsletter — load & section clicks
+// ─────────────────────────────────────────────────────────────────────────────
+
+let selectedSection = null;
+
+async function loadNewsletter() {
+  try {
+    const data = await apiFetch('/api/newsletter');
+    document.getElementById('nl-loading-outer').style.display = 'none';
+
+    if (!data.html) {
+      document.getElementById('nl-loading-outer').style.display = 'block';
+      document.getElementById('nl-loading-outer').textContent = 'No newsletter found in newsletter/output/';
+      return;
+    }
+
+    document.getElementById('nl-filename').textContent = data.filename;
+    document.getElementById('nl-date').textContent = 'Generated: ' + data.generated_at;
+    document.getElementById('nl-meta-bar').style.display = 'flex';
+    document.getElementById('nl-pane').style.display = 'flex';
+
+    renderNewsletterHtml(data.html);
+  } catch (err) {
+    document.getElementById('nl-loading-outer').textContent = 'Error: ' + err.message;
+  }
+}
+
+function renderNewsletterHtml(html) {
+  // Strip outer html/head/body wrappers, remove font @imports (already loaded)
+  let h = html
+    .replace(/<html[^>]*>/i,'').replace(/<\/html>/i,'')
+    .replace(/<head[\s\S]*?<\/head>/i,'')
+    .replace(/<body[^>]*>/i,'').replace(/<\/body>/i,'')
+    .replace(/@import url\([^)]+\);/g,'');
+
+  document.getElementById('nl-content').innerHTML = h;
+  setupSectionClicks();
+}
+
+function setupSectionClicks() {
+  SECTION_IDS.forEach(id => {
+    // Use attribute selector so hyphens in IDs work correctly
+    const el = document.querySelector(`#nl-content [id="${id}"]`);
+    if (!el) return;
+    el.classList.add('nl-section-clickable');
+    el.addEventListener('click', e => {
+      e.stopPropagation();
+      if (selectedSection && selectedSection.el) {
+        selectedSection.el.classList.remove('nl-section-selected');
+      }
+      el.classList.add('nl-section-selected');
+      selectedSection = {
+        id,
+        label: SECTION_LABELS[id] || id,
+        el,
+        text: (el.innerText || el.textContent || '').slice(0, 2500),
+        html: el.outerHTML.slice(0, 4000),
+      };
+      updateChatHeader();
+    });
+  });
+}
+
+function updateChatHeader() {
+  const h = document.getElementById('chat-header');
+  if (selectedSection) {
+    h.innerHTML = `<span>Discussing:</span> <span class="section-pill">${esc(selectedSection.label)}</span>`;
+  } else {
+    h.innerHTML = `<span class="hint">← Click any section to select it</span>`;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Newsletter — chat
+// ─────────────────────────────────────────────────────────────────────────────
+
+function addChatMsg(role, content, extra={}) {
+  const msgs = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = `chat-msg-${role}`;
+
+  if (role === 'user') {
+    div.innerHTML = `<div class="bubble bubble-user">${esc(content)}</div>`;
+  } else if (role === 'loading') {
+    div.id = 'chat-loading-msg';
+    div.innerHTML = `<div class="chat-loading"><span class="spinner"></span> Thinking…</div>`;
+  } else if (role === 'error') {
+    div.innerHTML = `<div class="chat-error">Error: ${esc(content)}</div>`;
+  } else {
+    // AI response
+    let html = `<div class="bubble bubble-ai">${mdToHtml(content)}</div>`;
+    if (extra.action === 'update' && extra.rawHtml) {
+      html += `<div class="apply-row">
+        <button class="btn btn-warn btn-sm" onclick="applyUpdate(${JSON.stringify(extra.rawHtml)})">Apply to section</button>
+        <button class="btn btn-secondary btn-sm" onclick="copyText(${JSON.stringify(content)})">Copy text</button>
+      </div>`;
+    } else if (role === 'ai') {
+      html += `<div class="apply-row"><button class="btn btn-secondary btn-sm" onclick="copyText(${JSON.stringify(content)})">Copy</button></div>`;
+    }
+    div.innerHTML = html;
+  }
+
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+  return div;
+}
+
+function copyText(text) {
+  navigator.clipboard.writeText(text).then(() => {
+    // brief visual confirmation
+    const btn = event.target;
+    const orig = btn.textContent;
+    btn.textContent = 'Copied!';
+    setTimeout(() => { btn.textContent = orig; }, 1500);
+  });
+}
+
+function applyUpdate(newHtml) {
+  if (!selectedSection || !selectedSection.el) {
+    alert('No section selected. Click a section in the newsletter first.');
+    return;
+  }
+  const temp = document.createElement('div');
+  temp.innerHTML = newHtml;
+  const newEl = temp.firstElementChild;
+  if (!newEl) { alert('Could not parse the updated HTML.'); return; }
+  newEl.classList.add('nl-section-clickable', 'nl-section-selected');
+  selectedSection.el.replaceWith(newEl);
+  selectedSection.el = newEl;
+  selectedSection.text = (newEl.innerText || '').slice(0, 2500);
+  selectedSection.html = newEl.outerHTML.slice(0, 4000);
+  // Re-attach click handler
+  newEl.addEventListener('click', e => {
+    e.stopPropagation();
+    document.querySelectorAll('.nl-section-selected').forEach(x => x.classList.remove('nl-section-selected'));
+    newEl.classList.add('nl-section-selected');
+    selectedSection.el = newEl;
+    selectedSection.text = (newEl.innerText || '').slice(0, 2500);
+    selectedSection.html = newEl.outerHTML.slice(0, 4000);
+    updateChatHeader();
+  });
+}
+
+async function sendChat(action) {
+  const input = document.getElementById('chat-input');
+  const question = input.value.trim();
+  if (!question) return;
+
+  if (action === 'update' && !selectedSection) {
+    addChatMsg('error', 'Please click a section in the newsletter first, then give your update instruction.');
+    return;
+  }
+
+  addChatMsg('user', (action === 'update' ? '✏️ Update: ' : '❓ ') + question);
+  input.value = '';
+  const loadEl = addChatMsg('loading', '');
+
+  try {
+    const data = await apiFetch('/api/newsletter/chat', {
+      method: 'POST',
+      body: JSON.stringify({
+        action,
+        question,
+        section_id: selectedSection ? selectedSection.id : '',
+        section_text: selectedSection ? selectedSection.text : '',
+        section_html: selectedSection ? selectedSection.html : '',
+      }),
+    });
+    loadEl.remove();
+    addChatMsg('ai', data.response, { action: data.action, rawHtml: data.action === 'update' ? data.response : null });
+  } catch (err) {
+    loadEl.remove();
+    addChatMsg('error', err.message);
+  }
+}
+
+document.getElementById('btn-ask').addEventListener('click', () => sendChat('ask'));
+document.getElementById('btn-update').addEventListener('click', () => sendChat('update'));
+document.getElementById('chat-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) sendChat('ask');
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Newsletter — regenerate
+// ─────────────────────────────────────────────────────────────────────────────
+
+document.getElementById('btn-regen').addEventListener('click', async () => {
+  if (!confirm('Regenerate the newsletter?\n\nThis will make 13+ Claude API calls (~60s) and increment the issue counter.')) return;
+
+  const btn = document.getElementById('btn-regen');
+  btn.disabled = true;
+  btn.textContent = '↻ Regenerating…';
+  document.getElementById('nl-content').style.opacity = '0.4';
+
+  try {
+    const data = await apiFetch('/api/newsletter/regenerate', { method: 'POST' });
+    document.getElementById('nl-filename').textContent = data.filename;
+    document.getElementById('nl-date').textContent = 'Generated: ' + data.generated_at;
+    selectedSection = null;
+    updateChatHeader();
+    renderNewsletterHtml(data.html);
+    document.getElementById('nl-content').style.opacity = '1';
+    addChatMsg('ai', '✓ Newsletter regenerated: ' + data.filename);
+  } catch (err) {
+    document.getElementById('nl-content').style.opacity = '1';
+    addChatMsg('error', 'Regeneration failed: ' + err.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '↻ Regenerate newsletter';
+  }
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Posts — render
+// ─────────────────────────────────────────────────────────────────────────────
+
+let allPosts = [];
+let firstComments = [];
+let currentFilter = 'all';
+
+function postCardStatus(post) {
+  if (post.posted)   return 'posted';
+  if (post.approved) return 'approved';
+  if (post.status === 'blocked') return 'blocked';
+  if (post.status === 'edited')  return 'edited';
+  return 'ready';
+}
+
+function renderBadge(post) {
+  const s = postCardStatus(post);
+  return `<span class="badge badge-${s}">${s}</span>`;
+}
+
+function renderFirstComment(post) {
+  if (post.first_comment) {
+    return `<div class="first-comment-box">${esc(post.first_comment)}</div>`;
+  }
+  const sample = firstComments.length ? firstComments[Math.floor(Math.random() * firstComments.length)] : null;
+  return `<div class="first-comment-box pool">Rotates from pool at post time${sample ? ` — e.g. "${esc(sample)}"` : '.'}</div>`;
+}
+
+function renderBlockInfo(post) {
+  if (!post.block_reason && !(post.verification && post.verification.gate1_errors && post.verification.gate1_errors.length)) return '';
+  const errors = (post.verification && post.verification.gate1_errors) || [];
+  const gate2  = (post.verification && post.verification.gate2_notes)  || [];
+  return `<div class="block-info">
+    <div class="block-title">Why this post was blocked</div>
+    <div class="block-detail">
+      ${post.block_reason ? `<strong>Reason:</strong> ${esc(post.block_reason)}<br>` : ''}
+      ${errors.length ? errors.map(e => `• ${esc(e)}`).join('<br>') : ''}
+      ${gate2.length  ? gate2.map(n => `• ${esc(n)}`).join('<br>')  : ''}
+    </div>
+  </div>`;
+}
+
+function buildPostCard(post, idx) {
+  const s = postCardStatus(post);
+  const isBlocked  = s === 'blocked';
+  const isPosted   = s === 'posted';
+  const isApproved = s === 'approved';
+  const canApprove = !isBlocked && !isPosted && !isApproved;
+  const canEdit    = !isPosted;
+
+  return `
+    <div class="post-card is-${s}" data-idx="${idx}" data-status="${s}">
+      <div class="post-header">
+        <span class="post-day">${esc(post.day||'')}</span>
+        <span class="post-date">${fmtDate(post.date)}</span>
+        <span class="post-date">· ${esc(post.time||'')}</span>
+        ${renderBadge(post)}
+        <span class="post-label">${esc(post.label||post.section||'')}</span>
+      </div>
+      <div class="post-body">
+        ${isBlocked ? renderBlockInfo(post) : ''}
+        <div>
+          <label>Post text</label>
+          <textarea class="post-text-area" data-idx="${idx}" ${canEdit?'':'disabled'}>${esc(post.post_text||(isBlocked?'(Blocked — no text generated. Use Investigate or Find alternative below.)':''))}</textarea>
+        </div>
+        <div>
+          <label>First comment</label>
+          ${renderFirstComment(post)}
+        </div>
+        ${post.verification && post.verification.gate2_summary ? `<div style="font-size:13px;color:#555">${esc(post.verification.gate2_summary)}</div>` : ''}
+      </div>
+      <div class="post-footer">
+        ${canApprove   ? `<button class="btn btn-primary btn-sm"   data-action="approve"   data-idx="${idx}">Approve</button>` : ''}
+        ${isApproved   ? `<button class="btn btn-secondary btn-sm" data-action="unapprove" data-idx="${idx}">Remove approval</button>` : ''}
+        ${isApproved   ? `<span style="font-size:13px;font-weight:700;color:var(--gold)">✓ Approved</span>` : ''}
+        ${isPosted     ? `<span style="font-size:13px;color:var(--muted)">✓ Posted</span>` : ''}
+        ${isBlocked    ? `<button class="btn btn-danger btn-sm"   data-action="investigate" data-idx="${idx}">Investigate</button>` : ''}
+        ${!isPosted    ? `<button class="btn btn-warn btn-sm"     data-action="show-alt"    data-idx="${idx}">Find alternative</button>` : ''}
+        <span class="save-indicator" id="save-${idx}">Saved</span>
+      </div>
+      <!-- Expand areas (hidden by default) -->
+      <div id="investigate-panel-${idx}" style="display:none;padding:0 16px 14px"></div>
+      <div id="alt-panel-${idx}"         style="display:none;padding:0 16px 14px"></div>
+    </div>`;
+}
+
+async function loadPosts() {
+  try {
+    const [postsData, commentsData] = await Promise.all([
+      apiFetch('/api/posts'),
+      apiFetch('/api/first-comments').catch(() => ({ comments: [] })),
+    ]);
+    allPosts      = postsData.posts || [];
+    firstComments = commentsData.comments || [];
+
+    document.getElementById('posts-loading').style.display = 'none';
+    renderPosts();
+    bindPostEvents();
+  } catch (err) {
+    document.getElementById('posts-loading').innerHTML = `<span style="color:var(--red)">Error: ${esc(err.message)}</span>`;
+  }
+}
+
+function renderPosts() {
+  const list = document.getElementById('posts-list');
+  if (!allPosts.length) {
+    list.innerHTML = '<div class="empty-state"><strong>No posts found</strong>Run social/generate_posts.py to generate this week\'s posts.</div>';
+    return;
+  }
+  list.innerHTML = allPosts.map((p, i) => buildPostCard(p, i)).join('');
+  applyFilter();
+}
+
+function applyFilter() {
+  document.querySelectorAll('.post-card').forEach(card => {
+    const show = currentFilter === 'all' || card.dataset.status === currentFilter;
+    card.style.display = show ? '' : 'none';
+  });
+}
+
+function reRenderCard(idx) {
+  const existing = document.querySelector(`.post-card[data-idx="${idx}"]`);
+  if (!existing) return;
+  const tmp = document.createElement('div');
+  tmp.innerHTML = buildPostCard(allPosts[idx], idx);
+  const newCard = tmp.firstElementChild;
+  existing.replaceWith(newCard);
+  applyFilter();
+  bindPostEvents();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Posts — events
+// ─────────────────────────────────────────────────────────────────────────────
+
+function bindPostEvents() {
+  // Approve / unapprove buttons
+  document.querySelectorAll('.post-footer .btn[data-action="approve"], .post-footer .btn[data-action="unapprove"]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const idx = +btn.dataset.idx;
+      btn.disabled = true;
+      try {
+        const res = await apiFetch(`/api/posts/${idx}/${btn.dataset.action}`, { method: 'POST' });
+        allPosts[idx] = res.post;
+        reRenderCard(idx);
+      } catch (err) {
+        alert('Error: ' + err.message);
+        btn.disabled = false;
+      }
+    });
+  });
+
+  // Edit on blur
+  document.querySelectorAll('.post-text-area').forEach(ta => {
+    ta.addEventListener('blur', async () => {
+      const idx = +ta.dataset.idx;
+      const newText = ta.value;
+      if (newText === (allPosts[idx].post_text || '')) return;
+      try {
+        const res = await apiFetch(`/api/posts/${idx}/edit`, {
+          method: 'POST',
+          body: JSON.stringify({ post_text: newText }),
+        });
+        allPosts[idx] = res.post;
+        const card = document.querySelector(`.post-card[data-idx="${idx}"]`);
+        if (card) card.dataset.status = postCardStatus(res.post);
+        const ind = document.getElementById(`save-${idx}`);
+        if (ind) { ind.classList.add('show'); setTimeout(() => ind.classList.remove('show'), 2000); }
+      } catch (err) { console.error(err); }
+    });
+  });
+
+  // Investigate
+  document.querySelectorAll('.btn[data-action="investigate"]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const idx = +btn.dataset.idx;
+      const panel = document.getElementById(`investigate-panel-${idx}`);
+      if (panel.style.display !== 'none') { panel.style.display = 'none'; return; }
+
+      panel.style.display = 'block';
+      panel.innerHTML = `<div class="expand-loading"><span class="spinner"></span> Investigating with Claude…</div>`;
+      btn.disabled = true;
+
+      try {
+        const res = await apiFetch(`/api/posts/${idx}/investigate`, { method: 'POST' });
+        panel.innerHTML = `<div class="expand-panel">${mdToHtml(res.response)}</div>`;
+      } catch (err) {
+        panel.innerHTML = `<div class="expand-panel" style="color:var(--red)">Error: ${esc(err.message)}</div>`;
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  });
+
+  // Find alternative — show input panel
+  document.querySelectorAll('.btn[data-action="show-alt"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = +btn.dataset.idx;
+      const panel = document.getElementById(`alt-panel-${idx}`);
+      if (panel.style.display !== 'none' && panel.dataset.built) { panel.style.display = 'none'; delete panel.dataset.built; return; }
+
+      panel.style.display = 'block';
+      panel.dataset.built = '1';
+      panel.innerHTML = `
+        <div style="font-size:13px;color:var(--muted);margin-bottom:8px">Optional: give Claude a topic hint, or leave blank to let it pick the best angle.</div>
+        <div class="alt-row">
+          <input type="text" id="alt-hint-${idx}" placeholder="e.g. focus on the weather, or the FETF deadline…">
+          <button class="btn btn-warn btn-sm" data-action="run-alt" data-idx="${idx}">Generate</button>
+        </div>
+        <div id="alt-result-${idx}" style="margin-top:10px"></div>`;
+
+      // Bind the generate button
+      panel.querySelector('[data-action="run-alt"]').addEventListener('click', () => runAlternative(idx));
+    });
+  });
+}
+
+async function runAlternative(idx) {
+  const hint   = (document.getElementById(`alt-hint-${idx}`) || {}).value || '';
+  const result = document.getElementById(`alt-result-${idx}`);
+  const btn    = document.querySelector(`.btn[data-action="run-alt"][data-idx="${idx}"]`);
+  if (btn) btn.disabled = true;
+  result.innerHTML = `<div class="expand-loading"><span class="spinner"></span> Generating with Claude…</div>`;
+
+  try {
+    const res = await apiFetch(`/api/posts/${idx}/alternative`, {
+      method: 'POST',
+      body: JSON.stringify({ topic: hint }),
+    });
+    allPosts[idx] = res.post;
+    result.innerHTML = `<div class="expand-panel" style="background:#f0f7f2;border-color:#c8e6c9">${mdToHtml(res.response)}</div>
+      <div style="margin-top:8px;font-size:12px;color:var(--muted)">✓ Applied to post above — review and approve when ready.</div>`;
+    // Refresh the card to show new text
+    reRenderCard(idx);
+  } catch (err) {
+    result.innerHTML = `<div style="color:var(--red);font-size:13px">Error: ${esc(err.message)}</div>`;
+    if (btn) btn.disabled = false;
+  }
+}
+
+// Filter bar
+document.getElementById('filter-bar').addEventListener('click', e => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter = btn.dataset.filter;
+  applyFilter();
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Init
+// ─────────────────────────────────────────────────────────────────────────────
+
+async function initApp() {
+  // Check the local admin server is reachable before loading anything
+  try {
+    await fetch(API + '/api/posts', { headers: apiHdr(), signal: AbortSignal.timeout(3000) });
+  } catch (_) {
+    showOffline();
+    return;
+  }
+  loadNewsletter();
+  loadPosts();
+}
+
+function showOffline() {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'none';
+  document.body.innerHTML = `
+    <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;background:#1b3a2d;font-family:'Source Sans 3',sans-serif">
+      <div style="background:white;border-radius:8px;padding:40px 48px;max-width:420px;text-align:center">
+        <div style="font-size:32px;margin-bottom:16px">🔌</div>
+        <h2 style="font-family:'Playfair Display',serif;color:#1b3a2d;font-size:20px;margin-bottom:10px">Admin server not running</h2>
+        <p style="color:#888;font-size:14px;margin-bottom:24px">Start the local server from your project directory, then refresh this page.</p>
+        <code style="display:block;background:#f2f0eb;border:1px solid #e0dbd0;border-radius:4px;padding:12px 16px;font-size:13px;text-align:left;color:#1b3a2d;margin-bottom:24px">.venv/bin/python admin_server.py</code>
+        <button onclick="location.reload()" style="background:#1b3a2d;color:white;border:none;padding:10px 24px;border-radius:4px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">Retry</button>
+        <p style="color:#bbb;font-size:12px;margin-top:16px">This page only works when your local server is running on port 7657.</p>
+      </div>
+    </div>`;
+}
+
+if (storedPw() === CORRECT_PASSWORD) {
+  window.addEventListener('DOMContentLoaded', initApp);
+}
+</script>
+</body>
+</html>
