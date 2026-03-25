@@ -18,6 +18,12 @@
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "7656", "--directory", "."],
       "port": 7656
+    },
+    {
+      "name": "admin-preview",
+      "runtimeExecutable": ".venv/bin/python",
+      "runtimeArgs": ["admin_server.py"],
+      "port": 7657
     }
   ]
 }
