@@ -267,6 +267,8 @@ nav button.active { color:white; background:rgba(255,255,255,0.15); }
         <button class="filter-btn" data-filter="approved">Approved</button>
         <button class="filter-btn" data-filter="blocked">Blocked</button>
         <button class="filter-btn" data-filter="posted">Posted</button>
+        <span class="spacer"></span>
+        <button class="btn btn-secondary btn-sm" id="btn-regen-posts">↻ Regenerate posts</button>
       </div>
       <div id="posts-loading" style="padding:40px;text-align:center;color:var(--muted)"><span class="spinner"></span> Loading posts…</div>
       <div class="posts-list" id="posts-list"></div>
@@ -618,6 +620,28 @@ document.getElementById('btn-regen').addEventListener('click', async () => {
   } finally {
     btn.disabled = false;
     btn.textContent = '↻ Regenerate newsletter';
+  }
+});
+
+// Posts — regenerate
+document.getElementById('btn-regen-posts').addEventListener('click', async () => {
+  if (!confirm('Regenerate all 7 posts?\n\nThis runs the social scrapers + 7 Claude API calls (~60s). Current posts will be replaced.')) return;
+  const btn = document.getElementById('btn-regen-posts');
+  btn.disabled = true;
+  btn.textContent = '⏳ Regenerating…';
+  document.getElementById('posts-loading').style.display = 'block';
+  document.getElementById('posts-loading').innerHTML = '<span class="spinner"></span> Regenerating posts — running scrapers and calling Claude…';
+  try {
+    const data = await apiFetch('/api/posts/regenerate', { method: 'POST' });
+    allPosts = data.posts || [];
+    document.getElementById('posts-loading').style.display = 'none';
+    renderPosts();
+    bindPostEvents();
+  } catch (err) {
+    document.getElementById('posts-loading').innerHTML = `<span style="color:var(--red)">Error: ${esc(err.message)}</span>`;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '↻ Regenerate posts';
   }
 });
 
