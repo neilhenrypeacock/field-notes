@@ -219,7 +219,13 @@ def run_gate2(post_text: str, raw_data: dict, section: str) -> Gate2Result:
     verification_prompt = f"""You are a data accuracy checker for a farming newsletter.
 
 A post has been written for Facebook. Your job is to verify it against the raw source data.
-Be precise and strict. Farmers make financial decisions based on these numbers.
+Farmers make financial decisions based on these numbers.
+
+IMPORTANT — what counts as accurate:
+- Numbers: exact values AND natural rounding are both accurate (e.g. source: £179.82/t → post: "around £180/t" = CORRECT)
+- Paraphrasing a fact from source data = accurate, not invented
+- A brief "link in comments" call-to-action or hashtags are never invented content
+- Only flag if a number is MATERIALLY wrong (>2% off, wrong units, or wrong direction)
 
 RAW SOURCE DATA:
 {json.dumps(raw_data, indent=2, default=str)}
@@ -229,15 +235,15 @@ FINISHED POST TEXT:
 
 Answer each question with YES or NO, then one sentence of explanation.
 
-1. NUMBERS_MATCH: Does every number in the post appear correctly in the source data?
+1. NUMBERS_MATCH: Does every number in the post accurately reflect the source data? (Allow natural rounding within 2%.)
 2. DIRECTION_CORRECT: Are all directions (up/down/higher/lower/rising/falling) correct?
 3. SOURCE_ACCURATE: Is the source attribution in the post accurate?
-4. INVENTED_CONTENT: Does the post state anything not supported by the source data?
+4. INVENTED_CONTENT: Does the post state any specific fact (number, event, regulation) that has no basis in the source data? Standard post format elements (hashtags, "link in comments") do NOT count as invented content.
 5. CONFIDENCE: Rate your overall confidence: HIGH, MEDIUM, or LOW
 
-HIGH = every number verbatim from source, direction correct, nothing invented
-MEDIUM = numbers correct but some context reasonably inferred
-LOW = any uncertainty about numbers, direction, or claims
+HIGH = all key claims traceable to source data, numbers accurate (rounding OK), directions correct
+MEDIUM = numbers correct, but some explanatory context added that is reasonable inference, not directly stated in source
+LOW = any number materially wrong (>2%), direction incorrect, or specific claims that cannot be verified in source data
 
 Respond in this exact format:
 NUMBERS_MATCH: [YES/NO] — [explanation]

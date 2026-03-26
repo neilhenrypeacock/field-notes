@@ -2,25 +2,7 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "newsletter-preview",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "7654", "--directory", "newsletter/output"],
-      "port": 7654
-    },
-    {
-      "name": "web-preview",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "7655", "--directory", "web"],
-      "port": 7655
-    },
-    {
-      "name": "brand-preview",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "7656", "--directory", "."],
-      "port": 7656
-    },
-    {
-      "name": "admin-preview",
+      "name": "admin",
       "runtimeExecutable": ".venv/bin/python",
       "runtimeArgs": ["admin_server.py"],
       "port": 7657

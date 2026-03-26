@@ -199,6 +199,33 @@ nav button.active { color:white; background:rgba(255,255,255,0.15); }
 .empty-state strong { display:block; font-size:17px; color:#555; margin-bottom:8px; }
 
 .nl-loading { padding:40px; text-align:center; color:var(--muted); font-size:14px; }
+
+/* ── Confidence bar ─────────────────────────────────────────────────────── */
+#nl-confidence-bar {
+  display:none; background:white; border-bottom:1px solid var(--border);
+  padding:8px 20px; font-size:12px; flex-shrink:0; align-items:center; gap:8px; flex-wrap:wrap;
+}
+#nl-confidence-bar .conf-label { color:var(--muted); font-weight:600; margin-right:4px; white-space:nowrap; }
+.conf-chip {
+  display:inline-flex; align-items:center; gap:5px; padding:3px 9px;
+  border-radius:12px; cursor:pointer; font-size:12px; font-weight:600; border:none;
+  white-space:nowrap;
+}
+.conf-chip:hover { opacity:.8; }
+.conf-chip.green  { background:#e8f5e9; color:#2e7d32; }
+.conf-chip.amber  { background:#fff8e1; color:#b8860b; border:1px solid #ffe082; }
+.conf-chip.red    { background:#ffebee; color:#c62828; border:1px solid #ffcdd2; }
+.conf-all-ok { color:#2e7d32; font-size:12px; font-weight:600; }
+
+/* ── Post verification panel ─────────────────────────────────────────────── */
+.verif-panel { background:var(--cream); border:1px solid var(--border); border-radius:4px; padding:10px 14px; font-size:12.5px; line-height:1.7; margin:0 16px 10px; }
+.verif-panel table { width:100%; border-collapse:collapse; margin-bottom:8px; }
+.verif-panel td { padding:1px 6px; vertical-align:top; }
+.verif-panel td:first-child { color:var(--muted); width:44%; white-space:nowrap; }
+.verif-section { font-weight:700; color:#444; margin-top:8px; margin-bottom:3px; font-size:11.5px; text-transform:uppercase; letter-spacing:.5px; }
+.verif-check { color:#2e7d32; }
+.verif-warn  { color:#b8860b; }
+.verif-err   { color:var(--red); }
 </style>
 </head>
 <body>
@@ -234,6 +261,7 @@ nav button.active { color:white; background:rgba(255,255,255,0.15); }
       <button class="btn btn-secondary btn-sm" id="btn-regen">↻ Regenerate newsletter</button>
     </div>
     <div id="nl-loading-outer" class="nl-loading"><span class="spinner"></span> Loading newsletter…</div>
+    <div id="nl-confidence-bar"></div>
 
     <div class="nl-pane" id="nl-pane" style="display:none">
       <!-- Left: newsletter HTML -->
@@ -262,13 +290,15 @@ nav button.active { color:white; background:rgba(255,255,255,0.15); }
   <div id="tab-posts" class="tab-content">
     <div class="posts-scroll">
       <div class="filter-bar" id="filter-bar">
-        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="all">All</button>
+        <button class="filter-btn active" data-filter="high-confidence">High confidence</button>
         <button class="filter-btn" data-filter="ready">Ready</button>
         <button class="filter-btn" data-filter="approved">Approved</button>
         <button class="filter-btn" data-filter="blocked">Blocked</button>
         <button class="filter-btn" data-filter="posted">Posted</button>
         <span class="spacer"></span>
-        <button class="btn btn-secondary btn-sm" id="btn-regen-posts">↻ Regenerate posts</button>
+        <button class="btn btn-primary btn-sm" id="btn-approve-all">✓ Approve all ready</button>
+        <button class="btn btn-secondary btn-sm" id="btn-regen-posts">↻ Generate posts</button>
       </div>
       <div id="posts-loading" style="padding:40px;text-align:center;color:var(--muted)"><span class="spinner"></span> Loading posts…</div>
       <div class="posts-list" id="posts-list"></div>
@@ -415,6 +445,7 @@ function mdToHtml(text) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 let selectedSection = null;
+let confidenceData = {};
 
 async function loadNewsletter() {
   try {
@@ -432,10 +463,59 @@ async function loadNewsletter() {
     document.getElementById('nl-meta-bar').style.display = 'flex';
     document.getElementById('nl-pane').style.display = 'flex';
 
+    confidenceData = data.confidence || {};
     renderNewsletterHtml(data.html);
+    renderConfidence(confidenceData);
   } catch (err) {
     document.getElementById('nl-loading-outer').textContent = 'Error: ' + err.message;
   }
+}
+
+function renderConfidence(conf) {
+  const bar = document.getElementById('nl-confidence-bar');
+  bar.innerHTML = '';
+
+  if (!conf || Object.keys(conf).length === 0) {
+    bar.style.display = 'none';
+    return;
+  }
+
+  // Sections below threshold get a chip; everything else is silent
+  const issues = Object.entries(conf)
+    .map(([section, data]) => ({ section, score: data.confidence || 0, reason: data.reason || '', gaps: data.data_gaps || [] }))
+    .filter(x => x.score < 0.9)
+    .sort((a, b) => a.score - b.score);
+
+  bar.style.display = 'flex';
+
+  if (issues.length === 0) {
+    bar.innerHTML = '<span class="conf-all-ok">✓ All sections confident (0.9+)</span>';
+    return;
+  }
+
+  const label = document.createElement('span');
+  label.className = 'conf-label';
+  label.textContent = 'Confidence flags:';
+  bar.appendChild(label);
+
+  issues.forEach(({ section, score, reason, gaps }) => {
+    const cls = score >= 0.6 ? 'amber' : 'red';
+    const pct = Math.round(score * 100);
+    const chip = document.createElement('button');
+    chip.className = `conf-chip ${cls}`;
+    const sectionLabel = SECTION_LABELS[section] || section;
+    const tooltip = reason + (gaps.length ? ' — gaps: ' + gaps.join(', ') : '');
+    chip.title = tooltip;
+    chip.innerHTML = `${sectionLabel} <span style="opacity:.7">${pct}%</span>`;
+    chip.addEventListener('click', () => {
+      const el = document.querySelector(`#nl-content [id="${section}"]`);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        el.click();
+      }
+    });
+    bar.appendChild(chip);
+  });
 }
 
 function renderNewsletterHtml(html) {
@@ -470,6 +550,7 @@ function setupSectionClicks() {
         html: el.outerHTML.slice(0, 4000),
       };
       updateChatHeader();
+      showSectionCommentary(id);
     });
   });
 }
@@ -480,6 +561,22 @@ function updateChatHeader() {
     h.innerHTML = `<span>Discussing:</span> <span class="section-pill">${esc(selectedSection.label)}</span>`;
   } else {
     h.innerHTML = `<span class="hint">← Click any section to select it</span>`;
+  }
+}
+
+function showSectionCommentary(sectionId) {
+  const msgs = document.getElementById('chat-messages');
+  msgs.innerHTML = '';
+  const conf = confidenceData[sectionId];
+  if (conf && conf.commentary) {
+    const div = document.createElement('div');
+    div.className = 'chat-msg-ai';
+    div.innerHTML = `<div class="bubble bubble-ai" style="background:#f0f7f2;border-color:#c8e6c9;font-size:12.5px">
+      <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#2e7d32;display:block;margin-bottom:4px">Editorial context</span>
+      ${esc(conf.commentary)}
+    </div>`;
+    msgs.appendChild(div);
+    msgs.scrollTop = 0;
   }
 }
 
@@ -609,6 +706,8 @@ document.getElementById('btn-regen').addEventListener('click', async () => {
     const data = await apiFetch('/api/newsletter/regenerate', { method: 'POST' });
     document.getElementById('nl-filename').textContent = data.filename;
     document.getElementById('nl-date').textContent = 'Generated: ' + data.generated_at;
+    confidenceData = data.confidence || {};
+    renderConfidence(confidenceData);
     selectedSection = null;
     updateChatHeader();
     renderNewsletterHtml(data.html);
@@ -635,6 +734,10 @@ document.getElementById('btn-regen-posts').addEventListener('click', async () =>
     const data = await apiFetch('/api/posts/regenerate', { method: 'POST' });
     allPosts = data.posts || [];
     document.getElementById('posts-loading').style.display = 'none';
+    currentFilter = 'high-confidence';
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.filter === 'high-confidence');
+    });
     renderPosts();
     bindPostEvents();
   } catch (err) {
@@ -651,7 +754,7 @@ document.getElementById('btn-regen-posts').addEventListener('click', async () =>
 
 let allPosts = [];
 let firstComments = [];
-let currentFilter = 'all';
+let currentFilter = 'high-confidence';
 
 function postCardStatus(post) {
   if (post.posted)   return 'posted';
@@ -715,8 +818,10 @@ function buildPostCard(post, idx) {
           <label>First comment</label>
           ${renderFirstComment(post)}
         </div>
-        ${post.verification && post.verification.gate2_summary ? `<div style="font-size:13px;color:#555">${esc(post.verification.gate2_summary)}</div>` : ''}
+        ${renderVerifSummaryRow(post, idx)}
       </div>
+      <!-- Verification details (hidden by default) -->
+      <div id="verif-panel-${idx}" style="display:none"></div>
       <div class="post-footer">
         ${canApprove   ? `<button class="btn btn-primary btn-sm"   data-action="approve"   data-idx="${idx}">Approve</button>` : ''}
         ${isApproved   ? `<button class="btn btn-secondary btn-sm" data-action="unapprove" data-idx="${idx}">Remove approval</button>` : ''}
@@ -761,7 +866,16 @@ function renderPosts() {
 
 function applyFilter() {
   document.querySelectorAll('.post-card').forEach(card => {
-    const show = currentFilter === 'all' || card.dataset.status === currentFilter;
+    let show;
+    if (currentFilter === 'all') {
+      show = true;
+    } else if (currentFilter === 'high-confidence') {
+      const post = allPosts[parseInt(card.dataset.idx)];
+      const conf = post?.verification?.confidence;
+      show = conf === 'HIGH' && card.dataset.status !== 'blocked';
+    } else {
+      show = card.dataset.status === currentFilter;
+    }
     card.style.display = show ? '' : 'none';
   });
 }
@@ -840,6 +954,25 @@ function bindPostEvents() {
     });
   });
 
+  // Toggle verification detail panel
+  document.querySelectorAll('.btn[data-action="toggle-verif"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = +btn.dataset.idx;
+      const panel = document.getElementById(`verif-panel-${idx}`);
+      if (panel.style.display !== 'none') {
+        panel.style.display = 'none';
+        btn.textContent = '▸ Details';
+      } else {
+        if (!panel.dataset.built) {
+          panel.innerHTML = buildVerifPanel(allPosts[idx]);
+          panel.dataset.built = '1';
+        }
+        panel.style.display = 'block';
+        btn.textContent = '▸ Hide';
+      }
+    });
+  });
+
   // Find alternative — show input panel
   document.querySelectorAll('.btn[data-action="show-alt"]').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -885,6 +1018,84 @@ async function runAlternative(idx) {
     if (btn) btn.disabled = false;
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Posts — verification helpers
+// ─────────────────────────────────────────────────────────────────────────────
+
+function renderVerifSummaryRow(post, idx) {
+  const v = post.verification || {};
+  if (!v.gate2_summary && !(v.gate1_errors || []).length && !(v.gate1_checks || []).length) return '';
+  const conf = v.confidence || '';
+  const color = conf === 'HIGH' ? '#2e7d32' : conf === 'MEDIUM' ? '#b8860b' : conf === 'LOW' ? '#c62828' : '#888';
+  const line  = v.status_line || v.gate2_summary || '';
+  return `<div style="display:flex;align-items:center;gap:10px;padding:6px 16px;font-size:12.5px;border-top:1px solid var(--border)">
+    <span style="color:${color};font-weight:600;flex:1">${esc(line)}</span>
+    <button class="btn btn-secondary btn-sm" style="font-size:11px;padding:2px 8px" data-action="toggle-verif" data-idx="${idx}">▸ Details</button>
+  </div>`;
+}
+
+function buildVerifPanel(post) {
+  const v   = post.verification || {};
+  const raw = post.raw_data || {};
+  let html  = '';
+
+  // Data used
+  const fields = Object.entries(raw).filter(([k, val]) =>
+    !['section','raw','data_date'].includes(k) && val !== null && val !== '' && String(val) !== 'None'
+  );
+  if (fields.length && post.section !== 'monday_newsletter') {
+    html += `<div class="verif-section">Data used</div><table>`;
+    fields.forEach(([k, val]) => {
+      html += `<tr><td>${esc(k.replace(/_/g,' '))}</td><td>${esc(String(val))}</td></tr>`;
+    });
+    html += '</table>';
+  }
+
+  // Gate 1
+  if (post.section !== 'monday_newsletter') {
+    const checks   = v.gate1_checks   || [];
+    const warnings = v.gate1_warnings || [];
+    const errors   = v.gate1_errors   || [];
+    if (checks.length || warnings.length || errors.length) {
+      html += `<div class="verif-section">Gate 1 — data validation</div>`;
+      checks  .forEach(c => { html += `<div class="verif-check">✓ ${esc(c.replace(/^✓\s*/,''))}</div>`; });
+      warnings.forEach(w => { html += `<div class="verif-warn">⚠ ${esc(w)}</div>`; });
+      errors  .forEach(e => { html += `<div class="verif-err">✗ ${esc(e)}</div>`; });
+    }
+  }
+
+  // Gate 2
+  if (v.gate2_summary) {
+    html += `<div class="verif-section">Gate 2 — AI cross-check</div>`;
+    const conf = v.confidence || '';
+    const cls  = conf === 'HIGH' ? 'verif-check' : conf === 'LOW' ? 'verif-err' : 'verif-warn';
+    html += `<div class="${cls}">${esc(v.gate2_summary)}</div>`;
+    (v.gate2_notes || []).forEach(n => { html += `<div class="verif-warn">⚠ ${esc(n)}</div>`; });
+  }
+
+  return `<div class="verif-panel">${html || '<em style="color:var(--muted)">No verification data available</em>'}</div>`;
+}
+
+// Approve all ready
+document.getElementById('btn-approve-all').addEventListener('click', async () => {
+  const readyCount = allPosts.filter(p => !p.posted && !p.approved && p.status !== 'blocked').length;
+  if (!readyCount) { alert('No ready posts to approve.'); return; }
+  if (!confirm(`Approve all ${readyCount} ready post(s)?`)) return;
+  const btn = document.getElementById('btn-approve-all');
+  btn.disabled = true;
+  try {
+    const res = await apiFetch('/api/posts/approve-all', { method: 'POST' });
+    allPosts = res.posts || allPosts;
+    renderPosts();
+    bindPostEvents();
+    btn.textContent = `✓ Approved ${res.approved}`;
+    setTimeout(() => { btn.textContent = '✓ Approve all ready'; btn.disabled = false; }, 2500);
+  } catch (err) {
+    alert('Error: ' + err.message);
+    btn.disabled = false;
+  }
+});
 
 // Filter bar
 document.getElementById('filter-bar').addEventListener('click', e => {

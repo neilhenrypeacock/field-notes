@@ -55,8 +55,12 @@ logging.basicConfig(
 )
 logger = logging.getLogger("field_notes.generate")
 
-AI_MODEL = "claude-sonnet-4-5"
+AI_MODEL = "claude-sonnet-4-6"
 AI_MAX_TOKENS = 600
+
+# Accumulates confidence scores from each AI call during a generate run.
+# Saved as a sidecar JSON file alongside the HTML output for the admin dashboard.
+_confidence_scores: dict = {}
 
 # Colour constants for price tables
 GREEN = "#2e7d32"
@@ -177,8 +181,9 @@ SHARED_CONTEXT = (
     "one sentence: \"No data available for this section this week.\" "
     "Then output your confidence JSON. Do not pad, infer, speculate, or fill space.\n\n"
     "CONFIDENCE SCORE — output this JSON on the final line of every response, "
-    "on its own line, with no other text before or after it on that line:\n"
-    "{{\"confidence\": 0.0, \"reason\": \"\", \"data_gaps\": []}}\n"
+    "on its own line, with no other text before or after it on that line. "
+    "The entire JSON must be on a single line with no newlines inside it:\n"
+    "{{\"confidence\": 0.0, \"reason\": \"\", \"data_gaps\": [], \"commentary\": \"\"}}\n"
     "Score rules:\n"
     "- 0.9 to 1.0 — all expected data fields were received and are complete\n"
     "- 0.6 to 0.8 — some fields missing but enough data to write a useful section\n"
@@ -187,7 +192,11 @@ SHARED_CONTEXT = (
     "The confidence score reflects DATA COMPLETENESS ONLY. "
     "Never score low because you are uncertain about market interpretation or "
     "because prices moved unexpectedly. That is analysis, not a data quality issue. "
-    "Score what you received, not what you think about it.\n\n"
+    "Score what you received, not what you think about it.\n"
+    "The commentary field: 1-2 sentences for the editor explaining why this section "
+    "matters this week and what to check before approving. Name the key number or trend. "
+    "Second person, direct (e.g. 'Feed wheat is up for the third consecutive week — "
+    "check the direction is correct before approving.'). No newlines in this field.\n\n"
     "Today's date: {date}.\n\n"
 )
 
@@ -209,8 +218,18 @@ def get_ai_summary(section: str, data: dict, extra_context: str = "") -> str:
             messages=[{"role": "user", "content": full_prompt}],
         )
         text = message.content[0].text.strip()
-        # Strip trailing confidence JSON line added by SHARED_CONTEXT instruction
-        text = re.sub(r'\n\{"confidence":[^}]+\}\s*$', '', text).strip()
+        # Extract confidence JSON from the final line(s) and strip it from output.
+        # Walk back up to 5 lines to find the JSON (handles minor trailing whitespace).
+        lines = text.split('\n')
+        for i in range(len(lines) - 1, max(len(lines) - 6, -1), -1):
+            stripped = lines[i].strip()
+            if stripped.startswith('{') and '"confidence"' in stripped:
+                try:
+                    _confidence_scores[section] = json.loads(stripped)
+                    text = '\n'.join(lines[:i]).strip()
+                except (json.JSONDecodeError, Exception):
+                    pass
+                break
         # Log token usage
         _log_usage(section, message.usage)
         return text
@@ -1306,6 +1325,10 @@ def generate_newsletter() -> tuple[str, str]:
     plain_path = OUTPUT_DIR / f"field_notes_{date_slug}.txt"
     html_path.write_text(html_output)
     plain_path.write_text(plain_output)
+
+    # Save confidence sidecar for admin dashboard
+    conf_path = OUTPUT_DIR / f"field_notes_{date_slug}_confidence.json"
+    conf_path.write_text(json.dumps(_confidence_scores, indent=2))
 
     logger.info("Newsletter saved: %s", html_path)
     logger.info("Plain text saved: %s", plain_path)
