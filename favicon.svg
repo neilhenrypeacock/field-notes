@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="4" fill="#1b3a2d"/>
+  <!-- Three barley stalks in gold: centre tallest, outer stalks shorter -->
+  <!-- Left stalk, spine x=8 -->
+  <g stroke="#d4a853" stroke-linecap="round" fill="none" stroke-width="1.15">
+    <line x1="8" y1="28" x2="8" y2="10"/>
+    <line x1="8" y1="10" x2="8" y2="7"/>
+    <!-- right-side awns (interleaved with left) -->
+    <line x1="8" y1="21" x2="10.3" y2="17.6"/>
+    <line x1="8" y1="18" x2="10.3" y2="14.6"/>
+    <line x1="8" y1="15" x2="10.3" y2="11.6"/>
+    <line x1="8" y1="12" x2="10.3" y2="8.6"/>
+    <!-- left-side awns -->
+    <line x1="8" y1="19.5" x2="5.7" y2="16.1"/>
+    <line x1="8" y1="16.5" x2="5.7" y2="13.1"/>
+    <line x1="8" y1="13.5" x2="5.7" y2="10.1"/>
+    <line x1="8" y1="10.5" x2="5.7" y2="7.1"/>
+  </g>
+  <!-- Centre stalk, spine x=16 (taller) -->
+  <g stroke="#d4a853" stroke-linecap="round" fill="none" stroke-width="1.15">
+    <line x1="16" y1="28" x2="16" y2="8"/>
+    <line x1="16" y1="8" x2="16" y2="5"/>
+    <!-- right-side awns -->
+    <line x1="16" y1="21" x2="18.3" y2="17.6"/>
+    <line x1="16" y1="18" x2="18.3" y2="14.6"/>
+    <line x1="16" y1="15" x2="18.3" y2="11.6"/>
+    <line x1="16" y1="12" x2="18.3" y2="8.6"/>
+    <line x1="16" y1="9"  x2="18.3" y2="5.6"/>
+    <!-- left-side awns -->
+    <line x1="16" y1="19.5" x2="13.7" y2="16.1"/>
+    <line x1="16" y1="16.5" x2="13.7" y2="13.1"/>
+    <line x1="16" y1="13.5" x2="13.7" y2="9.7"/>
+    <line x1="16" y1="10.5" x2="13.7" y2="7.1"/>
+    <line x1="16" y1="7.5"  x2="13.7" y2="4.1"/>
+  </g>
+  <!-- Right stalk, spine x=24 (mirror of left) -->
+  <g stroke="#d4a853" stroke-linecap="round" fill="none" stroke-width="1.15">
+    <line x1="24" y1="28" x2="24" y2="10"/>
+    <line x1="24" y1="10" x2="24" y2="7"/>
+    <!-- right-side awns -->
+    <line x1="24" y1="21" x2="26.3" y2="17.6"/>
+    <line x1="24" y1="18" x2="26.3" y2="14.6"/>
+    <line x1="24" y1="15" x2="26.3" y2="11.6"/>
+    <line x1="24" y1="12" x2="26.3" y2="8.6"/>
+    <!-- left-side awns -->
+    <line x1="24" y1="19.5" x2="21.7" y2="16.1"/>
+    <line x1="24" y1="16.5" x2="21.7" y2="13.1"/>
+    <line x1="24" y1="13.5" x2="21.7" y2="10.1"/>
+    <line x1="24" y1="10.5" x2="21.7" y2="7.1"/>
+  </g>
+</svg>
