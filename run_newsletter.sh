@@ -1,6 +1,6 @@
 #!/bin/bash
-# Generates and sends the newsletter. Called by cron Monday morning.
-# Cron: 0 5 * * 1 (BST: 0 4 * * 1)
+# Generates and sends the newsletter. Called by cron Monday lunchtime.
+# Cron: 30 12 * * 1 (BST: 30 11 * * 1)
 # Set NEWSLETTER_ENV=draft in .env to review before live send.
 
 set -e

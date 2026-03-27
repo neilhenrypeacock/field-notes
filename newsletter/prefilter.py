@@ -52,6 +52,22 @@ MAJOR_NATIONAL_SOURCES = {
     "Frontier Agriculture",
 }
 
+# Tier 2 national sources: specialist orgs that publish high-quality national
+# farming news. Articles from these pass if they score >= 1 (same as Tier 1).
+NATIONAL_SOURCES_TIER2 = {
+    "AIC",
+    "NFFN",
+    "CHAP",
+    "AA Farmer",
+    "Agronomist & Arable Farmer",
+    "Agri-TechE",
+    "UK AgriTech",
+    "Agrifunder",
+}
+
+# How many slots (of 20) to reserve for nationally important stories
+NATIONAL_RESERVED_SLOTS = 5
+
 # All new article scrapers to call. Each returns list[dict].
 NEW_SCRAPERS = [
     # EA local
@@ -175,6 +191,10 @@ def _score_and_filter(items, keywords):
         if score >= 3:
             passing.append(item)
         elif score >= 1 and item.get("source") in MAJOR_NATIONAL_SOURCES:
+            item["_national"] = True
+            passing.append(item)
+        elif score >= 1 and item.get("source") in NATIONAL_SOURCES_TIER2:
+            item["_national"] = True
             passing.append(item)
         # score <= 0: discard
 
@@ -255,10 +275,26 @@ def run():
     buckets["events_online"] = scored_events_online
 
     # Sort by score descending, cap, write
+    # For the news bucket, reserve slots for nationally important stories
     written = {}
     for cat, items in buckets.items():
         items.sort(key=lambda x: x.get("_score", 0), reverse=True)
-        items = items[:CAPS.get(cat, 20)]
+        cap = CAPS.get(cat, 20)
+
+        if cat == "news" and len(items) > cap:
+            # Partition: local (score >= 3) vs national (score < 3, flagged _national)
+            local_items = [a for a in items if a.get("_score", 0) >= 3]
+            national_items = [a for a in items if a.get("_score", 0) < 3 and a.get("_national")]
+            other_items = [a for a in items if a.get("_score", 0) < 3 and not a.get("_national")]
+
+            # Reserve slots for national, fill rest with local, then other
+            national_count = min(NATIONAL_RESERVED_SLOTS, len(national_items))
+            local_slots = cap - national_count
+            items = local_items[:local_slots] + national_items[:national_count] + other_items
+            items = items[:cap]
+            logger.info("  news: %d local + %d national reserved", min(local_slots, len(local_items)), national_count)
+
+        items = items[:cap]
         out_path = FILTERED_DIR / "{}.json".format(cat)
         with open(str(out_path), "w") as f:
             json.dump(items, f, indent=2, default=str)

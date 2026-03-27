@@ -291,18 +291,68 @@ def _scrape_poultry() -> dict:
         return {"note": "See ahdb.org.uk/poultry for poultry market commentary.", "source_url": POULTRY_PAGE_URL}
 
 
+def _scrape_sheep_deadweight() -> dict:
+    """Scrape AHDB GB sheep/lamb deadweight prices (weekly Excel).
+
+    AHDB calls this the SQQ (Standard Quality Quotation) for sheep.
+    Published on the same beef-and-lamb/prices-and-markets page as beef.
+    """
+    logger.info("Fetching AHDB sheep/lamb deadweight prices")
+    try:
+        excel_url = _find_excel_url(
+            BEEF_PAGE_URL,
+            ["sheep", "lamb", "deadweight", "sqq", "weekly"],
+        )
+        if not excel_url:
+            return {"error": "Could not find sheep deadweight Excel on AHDB page"}
+
+        buf = download_excel(excel_url)
+        wb = openpyxl.load_workbook(buf, read_only=True, data_only=True)
+
+        target_ws = None
+        for name in wb.sheetnames:
+            name_lower = name.lower()
+            if any(kw in name_lower for kw in ["sheep", "lamb", "sqq", "deadweight", "gb"]):
+                target_ws = wb[name]
+                break
+        if target_ws is None:
+            target_ws = wb.active
+
+        price, date_str, prev = _latest_two_rows(target_ws, date_col=0, price_col=1)
+        if price is None:
+            return {"error": "No sheep price data found in Excel"}
+
+        previous = load_previous("ahdb_livestock.json")
+        prev_week = previous.get("sheep_prices", {}).get("price")
+        change = round(price - (prev if prev is not None else prev_week), 2) if (prev is not None or prev_week is not None) else None
+
+        return {
+            "series": "GB Sheep/Lamb Deadweight (SQQ)",
+            "unit": "p/kg dwt",
+            "week_ending": date_str,
+            "price": round(price, 2),
+            "prev_week_price": prev_week,
+            "change": change,
+        }
+    except Exception as exc:
+        logger.error("Sheep price scrape failed: %s", exc)
+        return {"error": str(exc)}
+
+
 def scrape() -> dict:
     pig = _scrape_pig_spp()
     milk = _scrape_milk()
     eggs = _scrape_eggs()
     beef = _scrape_beef()
     poultry = _scrape_poultry()
+    sheep = _scrape_sheep_deadweight()
 
     logger.info(
-        "Livestock prices: pig=%s p/kg, milk=%s ppl, beef=%s p/kg",
+        "Livestock prices: pig=%s p/kg, milk=%s ppl, beef=%s p/kg, sheep=%s p/kg",
         pig.get("price", "ERR"),
         milk.get("price", "ERR"),
         beef.get("price", "ERR"),
+        sheep.get("price", "ERR"),
     )
     return {
         "source": "AHDB",
@@ -311,6 +361,7 @@ def scrape() -> dict:
         "egg_prices": eggs,
         "beef_prices": beef,
         "poultry_prices": poultry,
+        "sheep_prices": sheep,
     }
 
 
@@ -321,4 +372,5 @@ if __name__ == "__main__":
     print(f"Pig SPP: {data['pig_prices'].get('price', 'ERR')} p/kg dwt")
     print(f"Milk: {data['milk_prices'].get('price', 'ERR')} ppl")
     print(f"Beef: {data['beef_prices'].get('price', 'ERR')} p/kg dwt")
+    print(f"Sheep: {data['sheep_prices'].get('price', 'ERR')} p/kg dwt")
     print(f"Eggs: {data['egg_prices'].get('price', 'ERR')} p/doz")

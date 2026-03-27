@@ -46,6 +46,7 @@ from social.config import (
     SECTION_TAGS,
     HIGH_VALUE_SECTIONS,
     SCRAPERS_DIR,
+    PROJECT_ROOT,
 )
 from social.verify import verify_post, VerificationResult
 
@@ -68,6 +69,19 @@ SCRAPER_MAP = {
     "livestock":          ("scrapers.ahdb_livestock",   "scrape"),
     "land_jobs_machinery": None,  # handled specially — picks best of land/jobs/machinery
     "monday_newsletter":  None,   # handled specially — no scraper needed
+}
+
+# Cached JSON files to fall back to if a live scraper fails.
+# These are the same files the newsletter pipeline reads from.
+FALLBACK_DATA_FILES = {
+    "markets":   "ahdb_grain.json",
+    "inputs":    "ahdb_feed.json",
+    "schemes":   "govuk_schemes.json",
+    "news":      "defra_blog.json",
+    "land":      "land_listings.json",
+    "jobs":      "jobs.json",
+    "machinery": "machinery_auctions.json",
+    "livestock": "ahdb_livestock.json",
 }
 
 
@@ -94,6 +108,37 @@ def run_scraper(section: str) -> Optional[dict]:
         return None
 
 
+def run_scraper_with_fallback(section: str) -> Optional[dict]:
+    """
+    Try the live scraper first. If it fails or returns nothing, fall back to
+    the cached data/*.json file (same data the newsletter uses).
+    Posts generated from cached data are only flagged, never hard-blocked.
+    """
+    data = run_scraper(section)
+    if data is not None:
+        return data
+
+    fallback_file = FALLBACK_DATA_FILES.get(section)
+    if not fallback_file:
+        return None
+
+    data_path = PROJECT_ROOT / "data" / fallback_file
+    if not data_path.exists():
+        logger.warning(f"No cached fallback for {section} ({fallback_file})")
+        return None
+
+    try:
+        cached = json.loads(data_path.read_text(encoding="utf-8"))
+        if not cached:
+            return None
+        cached["data_source"] = "cached"
+        logger.warning(f"⚠ Live scraper failed — using cached data for {section} ({fallback_file})")
+        return cached
+    except Exception as e:
+        logger.error(f"Failed to load cached fallback for {section}: {e}")
+        return None
+
+
 def run_land_jobs_machinery_scraper() -> tuple[str, dict]:
     """
     For Saturday's post, pick the most interesting of land/jobs/machinery.
@@ -101,14 +146,9 @@ def run_land_jobs_machinery_scraper() -> tuple[str, dict]:
     """
     candidates = {}
     for s in ["land", "jobs", "machinery"]:
-        try:
-            module_path, func_name = SCRAPER_MAP[s]
-            module = importlib.import_module(module_path)
-            data = getattr(module, func_name)()
-            if data:
-                candidates[s] = data
-        except Exception as e:
-            logger.warning(f"Could not scrape {s}: {e}")
+        data = run_scraper_with_fallback(s)
+        if data:
+            candidates[s] = data
 
     # Prefer land if it has listings, then machinery, then jobs
     for preferred in ["land", "machinery", "jobs"]:
@@ -307,7 +347,7 @@ def main():
             actual_section, raw_data = run_land_jobs_machinery_scraper()
         else:
             actual_section = section
-            raw_data = run_scraper(section)
+            raw_data = run_scraper_with_fallback(section)
 
         if raw_data is None:
             print(f"   🔴 BLOCKED — scraper returned no data\n")

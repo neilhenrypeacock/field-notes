@@ -163,6 +163,29 @@ BNG
 monitor farm
 Recommended List
 variety trial
+Agricultural Property Relief
+APR
+agricultural tenancy
+tenant farming
+farm tenancy
+agricultural wages
+food security
+food strategy
+net zero agriculture
+TB testing
+bovine TB
+avian influenza
+bird flu
+crop insurance
+red tractor
+farm assurance
+countryside stewardship
+CS Mid Tier
+CS Higher Tier
+landscape recovery
+animal welfare
+farm payments
+delinked payments
 
 # TIER C — Discard signals
 # Scoring: -5 points per match

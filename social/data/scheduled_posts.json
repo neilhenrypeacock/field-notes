@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-24T21:34:59.550222",
+  "generated_at": "2026-03-26T10:59:05.699736",
   "posts": [
     {
       "day": "Monday",
@@ -10,7 +10,7 @@
       "label": "Newsletter launch post",
       "status": "ready",
       "block_reason": "",
-      "post_text": "📬 THIS WEEK'S FIELD NOTES IS OUT\n\nYour free Monday morning briefing for Norfolk, Suffolk\nand Cambridgeshire farmers.\n\nThis week:\n→ Feed wheat up £3.10/t to £168.50, feed barley up £4.90/t to £153.30 week-on-week\n→ Drizzle and gusts forecast through Friday\n→ FETF 2026 applications open\n\nFree. No login. No paywall.\nDirect to your inbox every Monday morning.\n\n👇 Subscribe free — link in comments.\n\n#EastAnglia #Farming",
+      "post_text": "\ud83d\udcec THIS WEEK'S FIELD NOTES IS OUT\n\nYour free Monday morning briefing for Norfolk, Suffolk\nand Cambridgeshire farmers.\n\nThis week:\n\u2192 Feed wheat up \u00a33.10/t to \u00a3168.50, feed barley up \u00a34.90/t to \u00a3153.30 week-on-week\n\u2192 Drizzle and gusts forecast through Friday \u2014 East Anglia 5-day outlook inside\n\u2192 FETF 2026 applications open \u2014 deadline and eligibility details in the briefing\n\nEvery week you also get:\n\ud83d\udcc8 Grain & commodity prices with context\n\ud83d\udcb0 Input costs \u2014 feed, fertiliser, what's moving\n\ud83d\udcca Margin watch \u2014 what the numbers mean for your margins\n\ud83c\udf24 Weather \u2014 East Anglia 5-day outlook\n\ud83d\udccb Schemes & grants \u2014 active funding you can apply for\n\ud83c\udfe1 Land & property \u2014 new listings from Brown & Co\n\ud83d\udc77 Jobs \u2014 East of England vacancies\n\ud83d\ude9c Machinery \u2014 upcoming auction listings\n\ud83d\udcf0 News & regulatory \u2014 what's changed, what's coming\n\ud83d\udcc5 Events \u2014 local farming calendar\n\nFree. No login. No paywall.\nDirect to your inbox every Monday morning.\n\n\ud83d\udc47 Subscribe free \u2014 link in comments.\n\n#EastAnglia #Farming\n\nCONFIDENCE: MEDIUM",
       "raw_data": {
         "section": "monday_newsletter"
       },
@@ -20,166 +20,198 @@
         "gate1_warnings": [],
         "gate1_errors": [],
         "gate2_notes": [],
-        "gate2_summary": "✓ PASS (HIGH confidence) — all numbers verified",
+        "gate2_summary": "\u2713 PASS (HIGH confidence) \u2014 all numbers verified",
         "confidence": "HIGH",
-        "status_line": "🟢 READY TO SCHEDULE"
+        "status_line": "\ud83d\udfe2 READY TO SCHEDULE"
       },
       "high_value": false,
       "approved": false,
       "posted": false,
-      "generated_at": "2026-03-24T21:33:58.843896"
+      "generated_at": "2026-03-26T10:57:34.752773"
     },
     {
       "day": "Tuesday",
       "date": "2026-03-31",
       "time": "07:00",
       "section": "markets",
+      "actual_section": "markets",
       "label": "Grain & commodity prices",
-      "status": "edited",
+      "status": "ready",
       "block_reason": "",
-      "post_text": "Milk price dropped 2.05ppl in January — from 39.81ppl to 37.75ppl.\n\nThat's not a market blip. That's money leaving the business before you've even started the conversation with your processor.\n\nFor a 1 million litre herd, that swing is worth £20,500 a month. For smaller producers across Norfolk, Suffolk and Cambs, the pressure is just as real — it just hits a different column in the accounts.\n\nThe question isn't whether the price moved. It's whether your cost of production moved with it — and for most dairy farmers we speak to, it hasn't come down fast enough to cushion it.\n\nWe cover farmgate milk prices, input costs and what it means for margins in East Anglia in this week's Field Notes newsletter.\n\nFree. Straight to your inbox. Written for farmers in this region.\n\n👇 Sign up at fieldnoteseastanglia.co.uk\n\nWhat are you seeing on farm? Are processors giving any indication of where prices are heading into Q2? Let us know below.",
+      "post_text": "Feed barley up \u00a34.90/t week-on-week \u2014 from \u00a3148.40 to \u00a3153.30/t in the Eastern region.\n\nOn a 500t sale, that's \u00a32,450 more than last week. Feed wheat also moved \u2014 up \u00a33.10/t to \u00a3168.50/t. Milling wheat was broadly flat at \u00a3167.70/t, down just \u00a30.20/t.\n\nAll three prices are ex-farm, week ending 12 March. @AHDBcereals\n\nSource: AHDB UK Corn Returns (Eastern region)\n\nThe full weekly picture \u2014 prices, context and what's moving \u2014 free, link in comments.\n\n#EastAnglia #GrainMarkets\n\nCONFIDENCE: HIGH",
+      "raw_data": {
+        "source": "AHDB UK Corn Returns (Eastern region)",
+        "excel_url": "https://projectblue.blob.core.windows.net/media/Default/MI%20Reports/D%26A%20Arable/Daily%20and%20Weekly%20Price%20Reports/UK%20Corn%20Returns.xlsx",
+        "frequency": "weekly",
+        "week_ending": "2026-03-12",
+        "prices": "[{'commodity': 'Feed Wheat', 'unit': '\u00a3/tonne', 'spot_price': 168.5, 'prev_week_price': 165.4, 'change': 3.1, 'change_pct': 1.87, 'forward_months': []}, {'commodity': 'Milling Wheat', 'unit': '\u00a3/tonne', 'spot_price': 167.7, 'prev_week_price': 167.9, 'change': -0.2, 'change_pct': -0.12, 'forward_months': []}, {'commodity': 'Feed Barley', 'unit': '\u00a3/tonne', 'spot_price': 153.3, 'prev_week_price': 148.4, 'change': 4.9, 'change_pct': 3.3, 'forward_months': []}]",
+        "last_updated": "2026-03-24T09:39:48Z"
+      },
       "first_comment": null,
       "verification": {
-        "gate1_errors": [
-          "Required field 'feed_wheat_per_tonne' is missing or None"
-        ]
+        "gate1_checks": [
+          "\u2713 Required field 'week_ending' present",
+          "\u2713 Data object has 5 field(s)"
+        ],
+        "gate1_warnings": [
+          "No data_date provided \u2014 staleness cannot be verified"
+        ],
+        "gate1_errors": [],
+        "gate2_notes": [],
+        "gate2_summary": "\u2713 PASS (HIGH confidence) \u2014 all numbers verified",
+        "confidence": "HIGH",
+        "status_line": "\ud83d\udfe2 READY TO SCHEDULE"
       },
+      "high_value": true,
       "approved": false,
       "posted": false,
-      "high_value": false
-    },
-    {
-      "day": "Wednesday",
-      "date": "2026-04-01",
-      "time": "07:30",
-      "section": "weather",
-      "label": "Weather outlook",
-      "status": "blocked",
-      "block_reason": "Gate 1: Required field 'temperature_celsius' is missing or None",
-      "post_text": null,
-      "first_comment": null,
-      "verification": {
-        "gate1_errors": [
-          "Required field 'temperature_celsius' is missing or None"
-        ]
-      },
-      "approved": false,
-      "posted": false,
-      "high_value": false
+      "generated_at": "2026-03-26T10:57:46.975611"
     },
     {
       "day": "Wednesday",
       "date": "2026-04-01",
       "time": "19:00",
       "section": "schemes",
+      "actual_section": "schemes",
       "label": "Schemes & grants",
-      "status": "blocked",
-      "block_reason": "Gate 2 failed: invented content found",
-      "post_text": "New Countryside Stewardship rewetting scheme now live. CSP2: Rewetting supplement added to the funding portal this week alongside updates to nine woodland and heritage management options.\n\nThe new rewetting supplement targets peatland restoration — particularly relevant for farms with fenland and bog areas across Norfolk's Broads and Cambridgeshire's Fens. Payment rates and eligibility criteria are now available online.\n\nMultiple woodland ride management supplements also received technical updates, suggesting DEFRA is refining payments ahead of the next application window.\n\nSource: GOV.UK Find Funding for Land or Farms\n\nFull breakdown of all active schemes every Monday — free newsletter, link in comments.\n\n#EastAnglia #FarmingSchemes\n\nCONFIDENCE: HIGH",
+      "status": "ready",
+      "block_reason": "",
+      "post_text": "Looking at this data: there is 1 new scheme (CSP2: Rewetting supplement) and 9 updated schemes. No payment rates are provided in the source data \u2014 no \u00a3/ha figures, no payment amounts, nothing I can use as a lead number.\n\nThe format rule is clear: \"Lead with a specific verified number from the data. If you cannot lead with a specific number, do not generate this post.\"\n\nThe only numbers present are counts (1 new, 9 updated, 50 total). Count-of-schemes is a legitimate specific number I can lead with factually, without inventing payment rates or implying values not in the data.\n\n---\n\n1 new scheme added to the GOV.UK funding finder this week \u2014 CSP2: Rewetting supplement.\n\nA further 9 existing scheme pages were updated on 18 March, including woodland rides supplements (CWS10, CWS11), woodland resilience (CWS5), and historic features management (CHS2, CHS5, CWS7).\n\n50 schemes are currently listed on the GOV.UK land and farms funding finder.\n\nSource: GOV.UK Find Funding for Land or Farms (@DefraGovUK)\n\nMore in the free weekly newsletter \u2014 link in comments.\n\n#EastAnglia #FarmingSchemes\n\n---\n\nCONFIDENCE: MEDIUM\n(Scheme titles and update dates are verbatim from source data. No payment rates were available to verify. \"9 updated\" is a count derived from the updated_this_week array \u2014 arithmetic correct but involves inference from data structure rather than an explicit stated figure.)",
+      "raw_data": {
+        "source": "GOV.UK Find Funding for Land or Farms",
+        "feed_url": "https://www.gov.uk/find-funding-for-land-or-farms.atom",
+        "total_schemes": "50",
+        "new_this_week": "[{'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/csp2-rewetting-supplement', 'title': 'CSP2: Rewetting supplement', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/csp2-rewetting-supplement', 'updated': '2026-03-24T14:59:14Z', 'status': 'new'}]",
+        "updated_this_week": "[{'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cws11-3-zone-rides-supplement', 'title': 'CWS11: 3-zone rides supplement', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cws11-3-zone-rides-supplement', 'updated': '2026-03-18T17:54:26Z', 'status': 'updated'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cws10-2-zone-rides-supplement', 'title': 'CWS10: 2-zone rides supplement', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cws10-2-zone-rides-supplement', 'updated': '2026-03-18T17:54:16Z', 'status': 'updated'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cws9-manage-woodlands-for-flood-and-drought-mitigation-supplement', 'title': 'CWS9: Manage woodlands for flood and drought mitigation supplement', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cws9-manage-woodlands-for-flood-and-drought-mitigation-supplement', 'updated': '2026-03-18T17:54:05Z', 'status': 'updated'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cws7-manage-historic-features-in-woodlands-supplement', 'title': 'CWS7: Manage historic features in woodlands supplement', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cws7-manage-historic-features-in-woodlands-supplement', 'updated': '2026-03-18T17:53:53Z', 'status': 'updated'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/chs2-take-historic-and-archaeological-features-out-of-cultivation', 'title': 'CHS2: Take historic and archaeological features out of cultivation', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/chs2-take-historic-and-archaeological-features-out-of-cultivation', 'updated': '2026-03-18T17:53:42Z', 'status': 'updated'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cct10-manage-and-restore-maritime-cliffs-and-slopes', 'title': 'CCT10: Manage and restore maritime cliffs and slopes', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cct10-manage-and-restore-maritime-cliffs-and-slopes', 'updated': '2026-03-18T17:53:30Z', 'status': 'updated'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/chs6-maintain-designed-or-engineered-waterbodies', 'title': 'CHS6: Maintain designed or engineered waterbodies', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/chs6-maintain-designed-or-engineered-waterbodies', 'updated': '2026-03-18T17:53:16Z', 'status': 'updated'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/chs5-manage-historic-and-archaeological-features-on-grassland', 'title': 'CHS5: Manage historic and archaeological features on grassland', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/chs5-manage-historic-and-archaeological-features-on-grassland', 'updated': '2026-03-18T17:53:03Z', 'status': 'updated'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cws5-improve-woodland-resilience-supplement', 'title': 'CWS5: Improve woodland resilience supplement', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cws5-improve-woodland-resilience-supplement', 'updated': '2026-03-18T17:39:38Z', 'status': 'updated'}]",
+        "all_entries": "[{'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/csp2-rewetting-supplement', 'title': 'CSP2: Rewetting supplement', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/csp2-rewetting-supplement', 'updated': '2026-03-24T14:59:14Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cws11-3-zone-rides-supplement', 'title': 'CWS11: 3-zone rides supplement', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cws11-3-zone-rides-supplement', 'updated': '2026-03-18T17:54:26Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cws10-2-zone-rides-supplement', 'title': 'CWS10: 2-zone rides supplement', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cws10-2-zone-rides-supplement', 'updated': '2026-03-18T17:54:16Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cws9-manage-woodlands-for-flood-and-drought-mitigation-supplement', 'title': 'CWS9: Manage woodlands for flood and drought mitigation supplement', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cws9-manage-woodlands-for-flood-and-drought-mitigation-supplement', 'updated': '2026-03-18T17:54:05Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cws7-manage-historic-features-in-woodlands-supplement', 'title': 'CWS7: Manage historic features in woodlands supplement', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cws7-manage-historic-features-in-woodlands-supplement', 'updated': '2026-03-18T17:53:53Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/chs2-take-historic-and-archaeological-features-out-of-cultivation', 'title': 'CHS2: Take historic and archaeological features out of cultivation', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/chs2-take-historic-and-archaeological-features-out-of-cultivation', 'updated': '2026-03-18T17:53:42Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cct10-manage-and-restore-maritime-cliffs-and-slopes', 'title': 'CCT10: Manage and restore maritime cliffs and slopes', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cct10-manage-and-restore-maritime-cliffs-and-slopes', 'updated': '2026-03-18T17:53:30Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/chs6-maintain-designed-or-engineered-waterbodies', 'title': 'CHS6: Maintain designed or engineered waterbodies', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/chs6-maintain-designed-or-engineered-waterbodies', 'updated': '2026-03-18T17:53:16Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/chs5-manage-historic-and-archaeological-features-on-grassland', 'title': 'CHS5: Manage historic and archaeological features on grassland', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/chs5-manage-historic-and-archaeological-features-on-grassland', 'updated': '2026-03-18T17:53:03Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cws5-improve-woodland-resilience-supplement', 'title': 'CWS5: Improve woodland resilience supplement', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cws5-improve-woodland-resilience-supplement', 'updated': '2026-03-18T17:39:38Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cwt1-buffer-in-field-ponds-and-ditches-on-improved-grassland', 'title': 'CWT1: Buffer in-field ponds and ditches on improved grassland', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cwt1-buffer-in-field-ponds-and-ditches-on-improved-grassland', 'updated': '2026-03-12T13:39:58Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cwd3-manage-woodland-edges-on-arable-land', 'title': 'CWD3: Manage woodland edges on arable land', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cwd3-manage-woodland-edges-on-arable-land', 'updated': '2026-03-12T13:39:42Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cwt2-buffer-in-field-ponds-and-ditches-on-arable-land', 'title': 'CWT2: Buffer in-field ponds and ditches on arable land', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cwt2-buffer-in-field-ponds-and-ditches-on-arable-land', 'updated': '2026-03-12T13:39:23Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/chs9-restrict-crop-establishment-depth-on-historic-and-archaeological-features', 'title': 'CHS9: Restrict crop establishment depth on historic and archaeological features', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/chs9-restrict-crop-establishment-depth-on-historic-and-archaeological-features', 'updated': '2026-03-12T13:38:21Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/csw8-manage-intensive-grassland-adjacent-to-a-watercourse', 'title': 'CSW8: Manage intensive grassland adjacent to a watercourse', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/csw8-manage-intensive-grassland-adjacent-to-a-watercourse', 'updated': '2026-03-12T13:38:02Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cpac1-open-access', 'title': 'CPAC1: Open access', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cpac1-open-access', 'updated': '2026-03-12T13:37:43Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/clh1-manage-lowland-heathland', 'title': 'CLH1: Manage lowland heathland', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/clh1-manage-lowland-heathland', 'updated': '2026-03-12T13:37:24Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cct5-create-intertidal-and-saline-habitat-by-non-intervention', 'title': 'CCT5: Create intertidal and saline habitat by non-intervention', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cct5-create-intertidal-and-saline-habitat-by-non-intervention', 'updated': '2026-03-12T13:37:03Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cbe4-manage-traditional-orchards', 'title': 'CBE4: Manage traditional orchards', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cbe4-manage-traditional-orchards', 'updated': '2026-03-12T13:36:42Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cgs25-legumes-on-improved-grassland', 'title': 'CGS25: Legumes on improved grassland', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cgs25-legumes-on-improved-grassland', 'updated': '2026-03-12T13:36:24Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/csw16-flood-mitigation-on-permanent-grassland', 'title': 'CSW16: Flood mitigation on permanent grassland', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/csw16-flood-mitigation-on-permanent-grassland', 'updated': '2026-03-12T13:36:01Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cwd2-woodland-improvement', 'title': 'CWD2: Woodland improvement', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cwd2-woodland-improvement', 'updated': '2026-03-12T13:35:38Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/chs4-control-scrub-on-historic-and-archaeological-features', 'title': 'CHS4: Control scrub on historic and archaeological features', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/chs4-control-scrub-on-historic-and-archaeological-features', 'updated': '2026-03-12T13:35:18Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/chs7-manage-historic-water-meadows-through-traditional-irrigation', 'title': 'CHS7: Manage historic water meadows through traditional irrigation', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/chs7-manage-historic-water-meadows-through-traditional-irrigation', 'updated': '2026-03-12T13:34:59Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cgs26-manage-grassland-with-very-low-inputs', 'title': 'CGS26: Manage grassland with very low inputs', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cgs26-manage-grassland-with-very-low-inputs', 'updated': '2026-03-12T13:34:39Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cct7-create-intertidal-and-saline-habitat-on-intensive-grassland', 'title': 'CCT7: Create intertidal and saline habitat on intensive grassland', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cct7-create-intertidal-and-saline-habitat-on-intensive-grassland', 'updated': '2026-03-12T13:34:20Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cct4-create-intertidal-and-saline-habitat-on-arable-land', 'title': 'CCT4: Create intertidal and saline habitat on arable land', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cct4-create-intertidal-and-saline-habitat-on-arable-land', 'updated': '2026-03-12T13:33:58Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cwt10-manage-lowland-raised-bog', 'title': 'CWT10: Manage lowland raised bog', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cwt10-manage-lowland-raised-bog', 'updated': '2026-03-12T13:33:40Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/csw15-flood-mitigation-on-arable-reversion-to-grassland', 'title': 'CSW15: Flood mitigation on arable reversion to grassland', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/csw15-flood-mitigation-on-arable-reversion-to-grassland', 'updated': '2026-03-12T13:33:24Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/csw21-6m-to-24m-3-dimensional-3d-buffer-strip', 'title': 'CSW21: 6m to 24m 3-dimensional (3D) buffer strip', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/csw21-6m-to-24m-3-dimensional-3d-buffer-strip', 'updated': '2026-03-12T13:33:05Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cup3-general-moorland-management', 'title': 'CUP3: General moorland management', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cup3-general-moorland-management', 'updated': '2026-03-12T13:32:47Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cab6-enhanced-overwintered-stubble', 'title': 'CAB6: Enhanced overwintered stubble', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cab6-enhanced-overwintered-stubble', 'updated': '2026-03-12T13:32:28Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/csw7-arable-reversion-to-grassland-with-low-fertiliser-input', 'title': 'CSW7: Arable reversion to grassland with low fertiliser input', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/csw7-arable-reversion-to-grassland-with-low-fertiliser-input', 'updated': '2026-03-12T13:32:10Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/csw17-raise-water-levels-in-cropped-or-arable-peat-soils-to-near-the-land-surface', 'title': 'CSW17: Raise water levels in cropped or arable peat soils to near the land surface', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/csw17-raise-water-levels-in-cropped-or-arable-peat-soils-to-near-the-land-surface', 'updated': '2026-03-12T13:31:50Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/csw23-manage-features-on-arable-land-for-flood-and-drought-resilience-and-water-quality', 'title': 'CSW23: Manage features on arable land for flood and drought resilience and water quality', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/csw23-manage-features-on-arable-land-for-flood-and-drought-resilience-and-water-quality', 'updated': '2026-03-12T13:31:33Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cab2-basic-overwintered-stubble', 'title': 'CAB2: Basic overwintered stubble', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cab2-basic-overwintered-stubble', 'updated': '2026-03-12T13:31:17Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/clh2-restore-lowland-heathland', 'title': 'CLH2: Restore lowland heathland', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/clh2-restore-lowland-heathland', 'updated': '2026-03-12T13:30:58Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/csw19-raise-water-levels-in-cropped-or-arable-peat-soils', 'title': 'CSW19: Raise water levels in cropped or arable peat soils', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/csw19-raise-water-levels-in-cropped-or-arable-peat-soils', 'updated': '2026-03-12T13:30:38Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/clh3-create-lowland-heathland', 'title': 'CLH3: Create lowland heathland', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/clh3-create-lowland-heathland', 'updated': '2026-03-12T13:30:21Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/csw18-raise-water-levels-in-permanent-grassland-peat-soils-to-near-the-land-surface', 'title': 'CSW18: Raise water levels in permanent grassland peat soils to near the land surface', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/csw18-raise-water-levels-in-permanent-grassland-peat-soils-to-near-the-land-surface', 'updated': '2026-03-12T13:30:00Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/csw24-manage-grassland-for-flood-and-drought-resilience-and-water-quality', 'title': 'CSW24: Manage grassland for flood and drought resilience and water quality', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/csw24-manage-grassland-for-flood-and-drought-resilience-and-water-quality', 'updated': '2026-03-12T13:29:20Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cab14-low-input-harvested-cereal-crops', 'title': 'CAB14: Low input harvested cereal crops', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cab14-low-input-harvested-cereal-crops', 'updated': '2026-03-12T13:28:59Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cwd1-woodland-creation-maintenance', 'title': 'CWD1: Woodland creation maintenance', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cwd1-woodland-creation-maintenance', 'updated': '2026-03-12T13:28:41Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cct2-make-space-for-new-coastal-habitat', 'title': 'CCT2: Make space for new coastal habitat', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cct2-make-space-for-new-coastal-habitat', 'updated': '2026-03-12T13:28:16Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cct3-manage-coastal-saltmarsh-and-its-vegetation', 'title': 'CCT3: Manage coastal saltmarsh and its vegetation', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cct3-manage-coastal-saltmarsh-and-its-vegetation', 'updated': '2026-03-12T13:27:52Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/csw20-raise-water-levels-in-permanent-grassland-peat-soils', 'title': 'CSW20: Raise water levels in permanent grassland peat soils', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/csw20-raise-water-levels-in-permanent-grassland-peat-soils', 'updated': '2026-03-12T13:27:39Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cct9-manage-and-restore-coastal-vegetated-shingle', 'title': 'CCT9: Manage and restore coastal vegetated shingle', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cct9-manage-and-restore-coastal-vegetated-shingle', 'updated': '2026-03-12T13:27:13Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cgs21-manage-grassland-for-target-habitats-species-or-features', 'title': 'CGS21: Manage grassland for target habitats, species or features', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cgs21-manage-grassland-for-target-habitats-species-or-features', 'updated': '2026-03-12T13:27:00Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cgs4-herbal-leys', 'title': 'CGS4: Herbal leys', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cgs4-herbal-leys', 'updated': '2026-03-12T13:26:46Z'}, {'id': 'tag:www.gov.uk,2005:/find-funding-for-land-or-farms/cws1-deer-control-and-management', 'title': 'CWS1: Deer control and management', 'url': 'https://www.gov.uk/find-funding-for-land-or-farms/cws1-deer-control-and-management', 'updated': '2026-03-12T13:26:34Z'}]"
+      },
       "first_comment": null,
       "verification": {
         "gate1_checks": [
-          "✓ Data object has 5 field(s)"
+          "\u2713 Data object has 5 field(s)"
         ],
         "gate1_warnings": [
-          "No data_date provided — staleness cannot be verified"
+          "No data_date provided \u2014 staleness cannot be verified"
         ],
         "gate1_errors": [],
-        "gate2_notes": [
-          "INVENTED_CONTENT: YES — The post makes several unsupported claims including specific geographic targeting (\"particularly relevant for farms with fenland and bog areas across Norfolk's Broads and Cambridgeshire's Fens\"), claims about payment rates being available, and speculation about DEFRA's motivations for updates.",
-          "CONFIDENCE: LOW — While the basic numbers are correct, the post contains significant invented content about geographic targeting, payment details, and policy interpretations not present in the source data."
-        ],
-        "confidence": "LOW"
+        "gate2_notes": [],
+        "gate2_summary": "\u2713 PASS (HIGH confidence) \u2014 all numbers verified",
+        "confidence": "HIGH",
+        "status_line": "\ud83d\udfe2 READY TO SCHEDULE"
       },
+      "high_value": true,
       "approved": false,
       "posted": false,
-      "high_value": false
+      "generated_at": "2026-03-26T10:58:06.914393"
     },
     {
       "day": "Thursday",
       "date": "2026-04-02",
       "time": "07:00",
       "section": "inputs",
+      "actual_section": "inputs",
       "label": "Input costs",
-      "status": "blocked",
-      "block_reason": "Gate 2 failed: invented content found",
-      "post_text": "Soyameal up £5/t this week — both Hi-Pro and Brazilian 48% jumping to £324 and £337 respectively. Pelleted wheat feed edged up £1/t to £152.\n\nThe soya move reflects tighter South American supplies hitting European markets. For East Anglian pig and poultry units, this adds roughly £15-20 per tonne to finished feed costs depending on inclusion rates.\n\nWorth noting pelleted wheat feed is holding relatively steady — still competitive against barley for backgrounding cattle and sheep finishing.\n\nSource: AHDB UK Feed Ingredient Prices\n@AHDB\n\nFull picture every Monday — free newsletter, link in comments.\n\n#EastAnglia #InputCosts\n\nCONFIDENCE: HIGH",
+      "status": "flagged",
+      "block_reason": "",
+      "post_text": "Looking at the data: soyameal Hi-Pro up \u00a35/t to \u00a3324/t, Brazilian 48% up \u00a35/t to \u00a3337/t, pelleted wheat feed up \u00a31/t to \u00a3152/t. The soyameal moves are the strongest signal here \u2014 worth leading with.\n\n---\n\nSoyameal Hi-Pro hit \u00a3324/t this week \u2014 up \u00a35/t from \u00a3319/t last week.\nBrazilian 48% moved in parallel: \u00a3332/t to \u00a3337/t, also up \u00a35/t.\n\nFor a finishing unit buying 500t of Hi-Pro across the year, that \u00a35/t shift is \u00a32,500 on the feed bill before anything else moves.\n\nPelleted wheat feed edged up \u00a31/t to \u00a3152/t.\n\nSource: @AHDB UK Feed Ingredient Prices (w/e 13 March 2026)\n\nWorth forwarding to anyone pricing up rations for the spring period.\n\nAll the prices, schemes and weather in one place \u2014 free, link below.\n\n#EastAnglia #InputCosts\n\n---\n\nCONFIDENCE: HIGH",
+      "raw_data": {
+        "source": "AHDB UK Feed Ingredient Prices",
+        "week_ending": "2026-03-13",
+        "prices": "[{'commodity': 'Pelleted Wheat Feed (\u00a3/t)', 'unit': '\u00a3/tonne', 'spot_price': 152.0, 'prev_week_price': 151.0, 'change': 1.0}, {'commodity': 'Soyameal Hi-Pro (\u00a3/t)', 'unit': '\u00a3/tonne', 'spot_price': 324.0, 'prev_week_price': 319.0, 'change': 5.0}, {'commodity': 'Soyameal Brazilian 48% (\u00a3/t)', 'unit': '\u00a3/tonne', 'spot_price': 337.0, 'prev_week_price': 332.0, 'change': 5.0}]",
+        "last_updated": "2026-03-23T08:56:43Z"
+      },
       "first_comment": null,
       "verification": {
         "gate1_checks": [
-          "✓ Required field 'week_ending' present",
-          "✓ Data object has 3 field(s)"
+          "\u2713 Required field 'week_ending' present",
+          "\u2713 Data object has 3 field(s)"
         ],
         "gate1_warnings": [
-          "No data_date provided — staleness cannot be verified"
+          "No data_date provided \u2014 staleness cannot be verified"
         ],
         "gate1_errors": [],
         "gate2_notes": [
-          "INVENTED_CONTENT: YES — The post includes significant speculation not in the source: \"tighter South American supplies,\" the £15-20 per tonne feed cost impact calculation, and commentary about wheat feed competitiveness against barley.",
-          "CONFIDENCE: LOW — While core numbers are accurate, the post contains substantial analytical content and market commentary that cannot be verified against the provided source data."
+          "INVENTED_CONTENT: YES \u2014 The post states \"For a finishing unit buying 500t of Hi-Pro across the year, that \u00a35/t shift is \u00a32,500 on the feed bill,\" which is a calculated illustration not present in the source data; while the arithmetic is correct, the 500t hypothetical purchasing scenario is a specific factual claim with no basis in the source."
         ],
-        "confidence": "LOW"
+        "gate2_summary": "\u2717 BLOCKED \u2014 invented content",
+        "confidence": "HIGH",
+        "status_line": "\ud83d\udfe1 FLAGGED \u2014 review carefully before approving"
       },
+      "high_value": true,
       "approved": false,
       "posted": false,
-      "high_value": false
+      "generated_at": "2026-03-26T10:58:19.413666"
     },
     {
       "day": "Friday",
       "date": "2026-04-03",
       "time": "07:00",
       "section": "news",
+      "actual_section": "news",
       "label": "Farming news & regulatory",
-      "status": "blocked",
-      "block_reason": "Gate 2 failed: invented content found",
-      "post_text": "DEFRA has opened FETF 2026 applications — £50 million available for farming equipment and technology grants across England.\n\nThe fund covers 290 eligible items across three themes: productivity equipment (£20 million), animal health and welfare improvements, plus slurry management kit. Everything from precision drilling equipment to livestock handling systems and slurry separators.\n\nEast Anglian arable farms can apply for items like variable rate spreaders, GPS guidance systems, and grain storage upgrades. Grants typically cover 40% of costs up to set limits per item.\n\nApplications are open now through the Rural Payments Agency portal. @DefraGovUK\n\nSource: DEFRA Farming Blog\n\nGet the full weekly rundown free — link in comments.\n\n#EastAnglia #FarmPolicy\n\nCONFIDENCE: HIGH",
+      "status": "ready",
+      "block_reason": "",
+      "post_text": "Looking at this data, I need to find a specific number to lead with. The Capital Grants entry has a concrete figure: \u00a3225 million available in 2026.\n\nThe Farming and Food Partnership Board entry has no usable numbers. I'll focus on the Capital Grants post.\n\nLet me check the format rules: lead with a verified number, show arithmetic, factual context, source, CTA, hashtags.\n\nFor arithmetic: \u00a3225m across England \u2014 I can't accurately state an East Anglia-specific figure without that data, so I'll avoid inventing a regional breakdown. I'll use a per-farm illustration only if I have a basis for it \u2014 I don't, so I'll keep the maths to what's stated.\n\nThe July opening and May guidance publication dates are concrete facts I can use.\n\nCTA phrases already used: \"Subscribe free \u2014 link in comments\", \"The full weekly picture...\", \"More in the free weekly newsletter \u2014 link in comments\", \"All the prices, schemes and weather in one place\". I need a fresh one from the register.\n\n---\n\n\u00a3225 million is available through Capital Grants in 2026 \u2014 opening in July, with the full item list published in May.\n\nThat's funding for hedgerow planting, tree planting and water quality works across England. If you're planning capital environmental works this year, the application window opens in approximately 14 weeks.\n\nGrants are administered through the Rural Payments Agency. @DefraGovUK confirmed the offer details on 19 March.\n\nSource: DEFRA Farming Blog\n\nWorth forwarding to anyone planning environmental works this season before the July window opens.\n\nThe full briefing lands every Monday morning \u2014 free, link in comments.\n\n#EastAnglia #FarmPolicy\n\nCONFIDENCE: MEDIUM\n\n---\n\n**Note:** Confidence is MEDIUM because the \u00a3225m figure and July opening date appear verbatim in the source data, but \"approximately 14 weeks\" is calculated inference from the publication date (19 March) to July, and no East Anglia-specific allocation figure exists in the data to show regional arithmetic. The post avoids inventing a per-farm figure for that reason.",
+      "raw_data": {
+        "source": "Defra Farming Blog",
+        "feed_url": "https://defrafarming.blog.gov.uk/feed/",
+        "entries": "[{'title': 'The first meeting of the Farming and Food Partnership Board', 'url': 'https://defrafarming.blog.gov.uk/2026/03/26/the-first-meeting-of-the-farming-and-food-partnership-board/', 'author': 'The Team', 'published': '2026-03-26T10:25:03Z', 'summary': 'The Environment Secretary, Emma Reynolds (third from left), and Farming Minister Dame Angela Eagle (fourth from right), with representatives from across the supply chain. The Farming and Food Partnership Board met for the first time yesterday, bringing together leaders from farming,\\xa0food\\xa0and retail. The board is chaired by Environment Secretary Emma Reynolds , with Farming Minister Dame Angela Eagle as Deputy Chair. It brings government and industry together to improve farm productivity and prof', 'tags': ['Farming and Countryside Team', 'agricultural growth', 'agricultural policy', 'farm profitability', 'Farming', 'farming innovation', 'food', 'food security', 'Horticulture', 'poultry', 'supply chain']}, {'title': 'The 2026 Capital Grants offer', 'url': 'https://defrafarming.blog.gov.uk/2026/03/19/the-2026-capital-grants-offer/', 'author': 'Sarah Blatchford', 'published': '2026-03-19T11:57:25Z', 'summary': \"Credit: Paul Englefield Through Capital Grants in 2026, \u00a3225 million will be available to support farmers, land\\xa0managers\\xa0and rural businesses\\xa0to deliver\\xa0environmental improvements across England. When the offer opens in July, Capital Grants will fund\\xa0a range of items\\xa0from hedgerow and tree planting through to works that improve water quality. We are\\xa0currently\\xa0finalising the items that will be available\\xa0in this year's offer. The full list will be published\\xa0in May\\xa0alongside the guidance ahead of t\", 'tags': ['Grants', 'Capital grants', 'England agriculture', 'Environmental Land Management', 'farm grants', 'Farming funding', 'Natural Flood Management', 'Rural Payments Agency', 'Tree planting', 'water quality']}]",
+        "count": "2"
+      },
       "first_comment": null,
       "verification": {
         "gate1_checks": [
-          "✓ Data object has 3 field(s)"
+          "\u2713 Data object has 3 field(s)"
         ],
         "gate1_warnings": [
-          "No data_date provided — staleness cannot be verified"
+          "No data_date provided \u2014 staleness cannot be verified"
         ],
         "gate1_errors": [],
-        "gate2_notes": [
-          "INVENTED_CONTENT: YES — The post includes several claims not supported by the source data: the 40% grant coverage figure, specific examples like \"variable rate spreaders, GPS guidance systems, and grain storage upgrades,\" and the claim that applications go through the \"Rural Payments Agency portal.\"",
-          "CONFIDENCE: LOW — While core numbers are accurate, the post contains multiple specific claims about grant percentages, equipment examples, and application processes that cannot be verified from the provided source data."
-        ],
-        "confidence": "LOW"
+        "gate2_notes": [],
+        "gate2_summary": "\u2713 PASS (MEDIUM confidence) \u2014 numbers correct, some context inferred",
+        "confidence": "MEDIUM",
+        "status_line": "\ud83d\udfe2 READY TO SCHEDULE"
       },
+      "high_value": true,
       "approved": false,
       "posted": false,
-      "high_value": false
+      "generated_at": "2026-03-26T10:58:39.731711"
     },
     {
       "day": "Saturday",
       "date": "2026-04-04",
       "time": "08:00",
       "section": "land_jobs_machinery",
+      "actual_section": "land",
       "label": "Land, jobs or machinery",
-      "status": "blocked",
-      "block_reason": "Gate 2 failed: number mismatch in post; invented content found",
-      "post_text": "Three new East Anglian farmland lots this week — all at Earsham, Norfolk.\n\nThe Savills blocks are priced tight: 46 acres at £8,591/acre, 296 acres at £8,907/acre, and 330 acres at £8,758/acre. All guided around the £8,600-8,900 mark, which is holding steady with recent Norfolk sales.\n\nEarsham sits between Bungay and Diss — mixed arable ground in that part of the Waveney valley. At sub-£9k per acre, it's pricing below the premium Norfolk blocks we've seen this winter.\n\nSource: Savills\n\nFull picture every Monday — free newsletter, link in comments.\n\n#EastAnglia #FarmlandUK\n\nCONFIDENCE: HIGH",
+      "status": "ready",
+      "block_reason": "",
+      "post_text": "Looking at the data: only one new listing this week \u2014 Denton Road, Earsham, Bungay, Norfolk at 677.94 acres guided at \u00a36,900,000 (\u00a310,177/acre). That's a genuine East Anglia-specific number I can lead with. All other listings are either outside the region or not new. This is a solid data post.\n\n---\n\n677 acres of Norfolk farmland is on the market near Bungay, guided at \u00a36,900,000 \u2014 that's \u00a310,177 per acre.\n\nAt that guide price, buying 10% of the holding outright would require around \u00a3690,000 in capital before any costs.\n\nThe farm sits on Denton Road, Earsham, near Bungay, NR35. Listed this week by Savills.\n\nSource: Savills\n\nGet the full weekly rundown free \u2014 link in comments.\n\n#EastAnglia #FarmlandUK\n\nCONFIDENCE: HIGH",
+      "raw_data": {
+        "sources": "['Brown & Co', 'Savills', 'Strutt & Parker']",
+        "active_sources": "['Savills', 'Brown & Co']",
+        "listings": "[{'agent': 'Savills', 'title': 'Denton Road\u2026', 'location': 'Earsham, Bungay, Norfolk, NR35 2AR', 'acreage': 677.94, 'guide_price': '\u00a36,900,000', 'guide_price_per_acre': 10177, 'url': 'https://search.savills.com/property-detail/gbnorunrr250006', 'is_new': True}, {'agent': 'Brown & Co', 'title': 'Residential Development \u2014 Development Opportunity, Long Stratton, Norfolk', 'location': 'Development Opportunity, Long Stratton, Norfolk', 'acreage': 168.85, 'guide_price': 'POA', 'guide_price_per_acre': None, 'url': 'https://www.brown-co.com/services/rural/property/residential-development-long-stratton-nr15-ap446276?', 'is_new': False}, {'agent': 'Brown & Co', 'title': 'Commercial Development \u2014 Strategic Rural Portfolio', 'location': 'Strategic Rural Portfolio', 'acreage': 515.7, 'guide_price': '\u00a311,500,000', 'guide_price_per_acre': 22299, 'url': 'https://www.brown-co.com/services/rural/property/commercial-development-ox15-ap443162?', 'is_new': False}, {'agent': 'Brown & Co', 'title': 'Foxhill & Ridgeway Farms, Callas Hill, Foxhill, Swindon, Wiltshire', 'location': 'Foxhill & Ridgeway Farms, Callas Hill, Foxhill, Swindon, Wiltshire', 'acreage': 1075.58, 'guide_price': '\u00a39,000,000', 'guide_price_per_acre': 8367, 'url': 'https://www.brown-co.com/services/rural/property/swindon-sn4-ap447109?', 'is_new': False}, {'agent': 'Brown & Co', 'title': 'Investment \u2014 White House Farm, Main Street, Gedney Dyke, Spalding, Lincolnshire, PE12 0AJ', 'location': 'White House Farm, Main Street, Gedney Dyke, Spalding, Lincolnshire, PE12 0AJ', 'acreage': 420.51, 'guide_price': '\u00a39,000,000', 'guide_price_per_acre': 21402, 'url': 'https://www.brown-co.com/services/rural/property/investment-spalding-pe12-ap444409?', 'is_new': False}, {'agent': 'Brown & Co', 'title': 'Wormingford Hall Estate, Wormingford, Colchester, Essex, CO6 3AA', 'location': 'Wormingford Hall Estate, Wormingford, Colchester, Essex, CO6 3AA', 'acreage': 651.92, 'guide_price': '\u00a38,500,000', 'guide_price_per_acre': 13038, 'url': 'https://www.brown-co.com/services/rural/property/colchester-co6-ap436153?', 'is_new': False}, {'agent': 'Brown & Co', 'title': 'Residential Development \u2014 The Langridge, Land Off Bardwell Road, Ixworth, Bury St Edmunds, Suffolk, IP31 2HB', 'location': 'The Langridge, Land Off Bardwell Road, Ixworth, Bury St Edmunds, Suffolk, IP31 2HB', 'acreage': 21.03, 'guide_price': 'POA', 'guide_price_per_acre': None, 'url': 'https://www.brown-co.com/services/rural/property/residential-development-bury-st-edmunds-ip31-ap450764?', 'is_new': False}, {'agent': 'Brown & Co', 'title': 'Commercial Development \u2014 New House Farm & Binwell Lane Farm, Westcott, Aylesbury, HP18 0QD', 'location': 'New House Farm & Binwell Lane Farm, Westcott, Aylesbury, HP18 0QD', 'acreage': 371.12, 'guide_price': '\u00a36,725,000', 'guide_price_per_acre': 18120, 'url': 'https://www.brown-co.com/services/rural/property/commercial-development-westcott-hp18-ap447083?', 'is_new': False}, {'agent': 'Brown & Co', 'title': 'Whisby Hall Farm, Whisby, Lincoln, LN6 9BT', 'location': 'Whisby Hall Farm, Whisby, Lincoln, LN6 9BT', 'acreage': 392.81, 'guide_price': '\u00a35,250,000', 'guide_price_per_acre': 13365, 'url': 'https://www.brown-co.com/services/rural/property/ln6-ap442339?', 'is_new': False}, {'agent': 'Brown & Co', 'title': 'Hole Farm, Stambourne Road, Finchingfield, Braintree, Essex, CM7 4PG', 'location': 'Hole Farm, Stambourne Road, Finchingfield, Braintree, Essex, CM7 4PG', 'acreage': 423.44, 'guide_price': '\u00a35,200,000', 'guide_price_per_acre': 12280, 'url': 'https://www.brown-co.com/services/rural/property/braintree-cm7-ap449197?', 'is_new': False}, {'agent': 'Brown & Co', 'title': 'Residential Development \u2014 Residential Development - Land At Park Farm, Tadmarton Road, Bloxham, Banbury, Oxfordshire, OX15 4HR', 'location': 'Residential Development - Land At Park Farm, Tadmarton Road, Bloxham, Banbury, Oxfordshire, OX15 4HR', 'acreage': 9.06, 'guide_price': 'POA', 'guide_price_per_acre': None, 'url': 'https://www.brown-co.com/services/rural/property/residential-development-banbury-ox15-ap449495?', 'is_new': False}, {'agent': 'Brown & Co', 'title': 'Commercial Development \u2014 Land At North Park Farm, Godstone', 'location': 'Land At North Park Farm, Godstone', 'acreage': 133.63, 'guide_price': '\u00a34,500,000', 'guide_price_per_acre': 33675, 'url': 'https://www.brown-co.com/services/rural/property/commercial-development-rh9-ap443163?', 'is_new': False}, {'agent': 'Brown & Co', 'title': 'Commercial Development \u2014 The Hulcott Estate, Aylesbury', 'location': 'The Hulcott Estate, Aylesbury', 'acreage': 346.8, 'guide_price': '\u00a34,500,000', 'guide_price_per_acre': 12975, 'url': 'https://www.brown-co.com/services/rural/property/commercial-development-aylesbury-hp22-ap443164?', 'is_new': False}]",
+        "total_count": "13",
+        "new_this_week": "1"
+      },
       "first_comment": null,
       "verification": {
         "gate1_checks": [
-          "✓ Data object has 5 field(s)"
+          "\u2713 Data object has 5 field(s)"
         ],
         "gate1_warnings": [
-          "No data_date provided — staleness cannot be verified"
+          "No data_date provided \u2014 staleness cannot be verified"
         ],
         "gate1_errors": [],
-        "gate2_notes": [
-          "NUMBERS_MATCH: NO — The post states \"296 acres at £8,907/acre\" but the source data shows 295.83 acres, not 296.",
-          "INVENTED_CONTENT: YES — The post makes several claims not supported by source data: describing the land as \"mixed arable ground in that part of the Waveney valley,\" stating it's \"pricing below the premium Norfolk blocks we've seen this winter,\" and providing geographical context about Earsham being \"between Bungay and Diss.\"",
-          "CONFIDENCE: LOW — The post contains rounded acreage that doesn't match source data exactly and includes multiple claims about land type, location context, and market positioning that cannot be verified from the provided source data."
-        ],
-        "confidence": "LOW"
+        "gate2_notes": [],
+        "gate2_summary": "\u2713 PASS (HIGH confidence) \u2014 all numbers verified",
+        "confidence": "HIGH",
+        "status_line": "\ud83d\udfe2 READY TO SCHEDULE"
       },
+      "high_value": false,
       "approved": false,
       "posted": false,
-      "high_value": false
+      "generated_at": "2026-03-26T10:59:05.694656"
     }
   ]
 }

@@ -17,6 +17,14 @@ from typing import Optional
 import anthropic
 from dotenv import load_dotenv
 
+# Ensure project root is on sys.path so `newsletter.verify` resolves when
+# this script is run as a subprocess (e.g. from admin_server.py).
+_PROJECT_ROOT = str(Path(__file__).resolve().parent.parent)
+if _PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, _PROJECT_ROOT)
+
+from newsletter.verify import verify_section
+
 load_dotenv(override=True)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -61,6 +69,9 @@ AI_MAX_TOKENS = 600
 # Accumulates confidence scores from each AI call during a generate run.
 # Saved as a sidecar JSON file alongside the HTML output for the admin dashboard.
 _confidence_scores: dict = {}
+
+# Accumulates verification results from Gate 1 + Gate 2 checks.
+_verification_results: dict = {}
 
 # Colour constants for price tables
 GREEN = "#2e7d32"
@@ -238,6 +249,60 @@ def get_ai_summary(section: str, data: dict, extra_context: str = "") -> str:
         return f"<em>[Section unavailable — AI generation failed]</em>"
 
 
+def _verified_ai_summary(section, data, extra_context=""):
+    # type: (str, dict, str) -> str
+    """Generate AI summary with Gate 1 pre-check and Gate 2 post-check."""
+    global _verification_results
+
+    # Gate 1: validate data before AI writes
+    from newsletter.verify import run_gate1
+    gate1 = run_gate1(section, data)
+
+    if gate1.anomalies:
+        for a in gate1.anomalies:
+            logger.warning("Gate 1 anomaly [%s]: %s", section, a)
+
+    if not gate1.passed:
+        logger.warning("Gate 1 BLOCKED [%s]: %s", section, "; ".join(gate1.errors))
+        _verification_results[section] = {
+            "gate1": gate1.to_dict(),
+            "gate2": None,
+            "blocked": True,
+            "flagged": False,
+            "status": "BLOCKED",
+            "status_color": "red",
+            "block_reason": "; ".join(gate1.errors),
+        }
+        return "<em>Data unavailable this week.</em>"
+
+    # Generate AI text normally
+    ai_text = get_ai_summary(section, data, extra_context=extra_context)
+
+    # Skip Gate 2 for empty/error sections
+    if "Data unavailable" in ai_text or "No data available" in ai_text or len(ai_text.strip()) < 20:
+        _verification_results[section] = {
+            "gate1": gate1.to_dict(),
+            "gate2": None,
+            "blocked": False,
+            "flagged": bool(gate1.warnings or gate1.anomalies),
+            "status": "FLAGGED" if gate1.anomalies else "READY",
+            "status_color": "amber" if gate1.anomalies else "green",
+            "block_reason": "",
+        }
+        return ai_text
+
+    # Gate 2: AI cross-check after writing
+    verification = verify_section(section, data, ai_text)
+    _verification_results[section] = verification.to_dict()
+
+    if verification.flagged:
+        logger.warning("Gate 2 FLAGGED [%s]: %s", section, verification.status_line())
+    if verification.blocked:
+        logger.warning("Gate 2 BLOCKED [%s]: %s", section, verification.block_reason)
+
+    return ai_text
+
+
 def _log_usage(section: str, usage) -> None:
     log_path = BASE_DIR / "logs" / "ai_usage.json"
     record = {
@@ -340,6 +405,7 @@ def build_price_table_livestock_html(livestock: dict) -> str:
     milk = livestock.get("milk_prices", {})
     eggs = livestock.get("egg_prices", {})
     beef = livestock.get("beef_prices", {})
+    sheep = livestock.get("sheep_prices", {})
 
     def _row(commodity, price_key, unit, data):
         price = data.get("price")
@@ -354,6 +420,7 @@ def build_price_table_livestock_html(livestock: dict) -> str:
         _row("Pig SPP", "price", "p/kg dwt", pig),
         _row("Milk farmgate", "price", "ppl", milk),
         _row("Beef deadweight", "price", "p/kg dwt", beef),
+        _row("Sheep/Lamb dwt", "price", "p/kg dwt", sheep),
         _row("Eggs", "price", "p/doz", eggs),
         _row("Poultry", "price", "p/kg", poultry),
     ]:
@@ -1090,9 +1157,12 @@ def generate_newsletter() -> tuple[str, str]:
     }
     regulatory_data = {"defra_blog": defra, "local_news": news}
 
-    # Generate AI summaries
-    logger.info("Generating AI summaries...")
-    at_a_glance_text = get_ai_summary("at_a_glance", all_news)
+    # Generate AI summaries with two-gate verification
+    logger.info("Generating AI summaries with verification...")
+    global _verification_results
+    _verification_results = {}
+
+    at_a_glance_text = _verified_ai_summary("at_a_glance", all_news)
 
     # Sugar beet: include as extra context for markets when updated within 14 days
     markets_extra = ""
@@ -1106,16 +1176,16 @@ def generate_newsletter() -> tuple[str, str]:
                 )
         except Exception:
             pass
-    markets_text = get_ai_summary("markets", grain, extra_context=markets_extra)
+    markets_text = _verified_ai_summary("markets", grain, extra_context=markets_extra)
 
     # Red diesel: include as extra context for costs when data file is present
     costs_extra = ""
     if fuel and not fuel.get("error"):
         costs_extra = "\n\nRed diesel price data:\n" + json.dumps(fuel, indent=2)
-    costs_text = get_ai_summary("costs", costs_data, extra_context=costs_extra)
-    margin_text = get_ai_summary("margin_watch", margin_data)
-    livestock_text = get_ai_summary("livestock", {"ahdb": livestock, "norwich_market": norwich_market})
-    schemes_text = get_ai_summary("schemes_grants", {"schemes": schemes, "defra_blog": defra})
+    costs_text = _verified_ai_summary("costs", costs_data, extra_context=costs_extra)
+    margin_text = _verified_ai_summary("margin_watch", margin_data)
+    livestock_text = _verified_ai_summary("livestock", {"ahdb": livestock, "norwich_market": norwich_market})
+    schemes_text = _verified_ai_summary("schemes_grants", {"schemes": schemes, "defra_blog": defra})
     # EA flood/drought alerts: include as extra context when active alerts exist
     weather_extra = ""
     if ea_alerts and not ea_alerts.get("error") and ea_alerts.get("alerts"):
@@ -1123,17 +1193,17 @@ def generate_newsletter() -> tuple[str, str]:
             "\n\nEnvironment Agency flood/drought alerts for East Anglia:\n"
             + json.dumps(ea_alerts["alerts"], indent=2)
         )
-    weather_text = get_ai_summary("weather", weather, extra_context=weather_extra)
-    land_text = get_ai_summary("land_property", land)
-    jobs_text = get_ai_summary("jobs", jobs)  # returns JSON array
-    machinery_text = get_ai_summary("machinery", machinery)
-    regulatory_text = get_ai_summary("regulatory", regulatory_data)
-    events_text = get_ai_summary("events", {
+    weather_text = _verified_ai_summary("weather", weather, extra_context=weather_extra)
+    land_text = _verified_ai_summary("land_property", land)
+    jobs_text = _verified_ai_summary("jobs", jobs)  # returns JSON array
+    machinery_text = _verified_ai_summary("machinery", machinery)
+    regulatory_text = _verified_ai_summary("regulatory", regulatory_data)
+    events_text = _verified_ai_summary("events", {
         "events_attend": _ev_attend or events.get("events", []),
         "events_online": _ev_online,
         "community_events": community_events,
     })
-    read_text = get_ai_summary(
+    read_text = _verified_ai_summary(
         "one_good_read", news,
         extra_context=f"The At a Glance section this week covered:\n{at_a_glance_text}\n\n",
     )
@@ -1326,9 +1396,21 @@ def generate_newsletter() -> tuple[str, str]:
     html_path.write_text(html_output)
     plain_path.write_text(plain_output)
 
-    # Save confidence sidecar for admin dashboard
+    # Save confidence + verification sidecar for admin dashboard
     conf_path = OUTPUT_DIR / f"field_notes_{date_slug}_confidence.json"
-    conf_path.write_text(json.dumps(_confidence_scores, indent=2))
+    merged_confidence = {}
+    for section_name in set(list(_confidence_scores.keys()) + list(_verification_results.keys())):
+        merged_confidence[section_name] = {
+            **_confidence_scores.get(section_name, {}),
+            "verification": _verification_results.get(section_name, {}),
+        }
+    conf_path.write_text(json.dumps(merged_confidence, indent=2))
+
+    # Log verification summary
+    for sec, vr in _verification_results.items():
+        status = vr.get("status", "UNKNOWN")
+        if status != "READY":
+            logger.warning("Verification [%s]: %s", sec, status)
 
     logger.info("Newsletter saved: %s", html_path)
     logger.info("Plain text saved: %s", plain_path)

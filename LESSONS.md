@@ -2,6 +2,38 @@
 
 ---
 
+## 27 March 2026 (verification enhancements)
+
+### Cross-week comparison catches scraper errors
+Week-on-week plausibility checking (>15% change = flag) using `data/previous/` files catches a category of error that single-week validation misses: a scraper returning last month's data, a decimal point shift, or a unit change. Comparing current prices against the previous week's saved data adds a cheap, high-value sanity check. Important: the cross-week check uses the SAME extractors as the in-week check — no code duplication.
+
+### AHDB blocks automated link checks (404 on GET/HEAD)
+Most ahdb.org.uk subpages return 404 to automated requests regardless of User-Agent. The pages work fine in browsers. Solution: maintain a `_SKIP_LINK_CHECK_DOMAINS` set and bypass link checking for known bot-blocking domains. False "broken link" alerts waste reviewer time and erode trust in the verification system.
+
+### Review guidance must be actionable, not vague
+"Check the source" is useless — the reviewer needs clickable links to the exact page where they can verify the data. Built a `REVIEW_LINKS` mapping with verified-working URLs for each section, and `build_review_guidance()` generates numbered action items tied to specific anomalies. The reviewer sees "1. Milling wheat is below feed wheat — check the AHDB Corn Returns Excel (link below)" with a clickable link, not "search for AHDB grain prices."
+
+---
+
+## 27 March 2026 (accuracy & verification)
+
+### Confidence score ≠ accuracy check
+The original confidence scoring only measured data completeness ("did I get the data?"), not accuracy ("is the output correct?"). It explicitly said "never score low because prices moved unexpectedly." This meant anomalies like feed wheat being more expensive than milling wheat (unusual market inversion) were never flagged. Lesson: self-reported confidence from the writer AI is not a substitute for an independent verification step.
+
+### Two-gate verification catches what self-scoring misses
+Adapted the social pipeline's 2-gate system for the newsletter. Gate 1 runs codified market rules (cross-commodity relationships, plausible ranges, week-on-week plausibility) BEFORE the AI writes. Gate 2 runs an independent AI call AFTER writing to cross-check numbers, directions, and sources. Gate 1 immediately caught the milling/feed wheat inversion on first test.
+
+### Cross-commodity rules must be warnings, not blocks
+Milling wheat below feed wheat IS unusual but CAN happen (e.g. surplus in milling grade, tight feed supply). So it's a warning (amber flag) not a block (red). The farmer-editor makes the final call. Blocking would have suppressed a genuine data point.
+
+### AHDB page URLs break periodically
+The beef-and-lamb/prices-and-markets page returned 404 during testing. The `_find_excel_url()` pattern is resilient (page-scrapes for links rather than hardcoding URLs), but the page itself needs to exist. Sheep scraper follows the same pattern — it will work once the page is accessible. Graceful error handling (returns `{"error": "..."}`) means the newsletter still generates with whatever data IS available.
+
+### National news needs reserved slots, not just scoring
+Pure score-ranked sorting means 20 local NFU meeting posts crowd out nationally important policy stories (inheritance tax reform, bird flu alerts). Reserving 5 of 20 news slots for nationally important stories ensures the farmer sees both local and national news that affects their business.
+
+---
+
 ## 23 March 2026 (strategy session)
 
 ### Send time: Monday 12:30pm lunchtime beats 5am

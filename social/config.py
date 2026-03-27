@@ -86,7 +86,7 @@ NOTIFICATION_EMAIL   = "neil@neilpeacock.co.uk"
 # ── Anthropic API ──────────────────────────────────────────────────────────
 
 ANTHROPIC_API_KEY    = os.getenv("ANTHROPIC_API_KEY", "")
-CLAUDE_MODEL         = "claude-sonnet-4-20250514"
+CLAUDE_MODEL         = "claude-sonnet-4-6"
 MAX_TOKENS_POST      = 600
 MAX_TOKENS_VERIFY    = 400
 MAX_TOKENS_RESEARCH  = 2000

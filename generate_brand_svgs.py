@@ -9,8 +9,9 @@ import re
 import os
 import math
 import subprocess
+from pathlib import Path
 
-MAP_PATH = '/Users/neilpeacock/farm/field-notes/newsletter/assets/fn_map_east_anglia_banner.svg'
+MAP_PATH = str(Path(__file__).resolve().parent / 'newsletter/assets/fn_map_east_anglia_banner.svg')
 
 
 def read_map_inner():

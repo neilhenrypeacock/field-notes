@@ -1,15 +1,13 @@
 """
 Field Notes Admin Server
 ========================
-Lightweight local admin dashboard server.
+Lightweight local admin dashboard server. No auth — local-only.
 
 Usage:
     .venv/bin/python admin_server.py
     .venv/bin/python admin_server.py --port 7657
 
 Then open: http://localhost:7657/admin
-
-Password: fieldnotes2026  (change ADMIN_PASSWORD below)
 """
 
 import datetime
@@ -196,9 +194,7 @@ class AdminHandler(BaseHTTPRequestHandler):
         print(f"  {self.address_string()} {format % args}")
 
     def _check_auth(self):
-        if self.headers.get("X-Admin-Password", "") != ADMIN_PASSWORD:
-            _error(self, "Unauthorised", 401)
-            return False
+        # Auth disabled — local-only server, no password needed
         return True
 
     def do_OPTIONS(self):
@@ -233,8 +229,12 @@ class AdminHandler(BaseHTTPRequestHandler):
             if html is None:
                 _json_response(self, {"html": None, "filename": None})
             else:
+                stem = Path(filename).stem  # e.g. "field_notes_2026_03_26"
+                conf_file = NEWSLETTER_OUTPUT_DIR / f"{stem}_confidence.json"
+                confidence = json.loads(conf_file.read_text(encoding="utf-8")) if conf_file.exists() else {}
                 _json_response(self, {"html": html, "filename": filename,
-                                      "generated_at": _newsletter_meta(filename)})
+                                      "generated_at": _newsletter_meta(filename),
+                                      "confidence": confidence})
             return
 
         if path == "/api/posts":
@@ -268,6 +268,10 @@ class AdminHandler(BaseHTTPRequestHandler):
 
         if path == "/api/posts/regenerate":
             self._posts_regenerate()
+            return
+
+        if path == "/api/posts/approve-all":
+            self._posts_approve_all()
             return
 
         # Posts endpoints: /api/posts/{idx}/{action}
@@ -420,7 +424,8 @@ Return ONLY the modified HTML. Do not add explanation. Keep the identical struct
                 cwd=str(BASE_DIR),
             )
             if result.returncode != 0:
-                _error(self, f"generate_posts.py failed:\n{result.stderr[-1200:]}", 500)
+                output = (result.stdout + "\n" + result.stderr).strip()
+                _error(self, f"generate_posts.py failed:\n{output[-1500:]}", 500)
                 return
             posts_data = _load_posts()
             _json_response(self, {
@@ -434,6 +439,20 @@ Return ONLY the modified HTML. Do not add explanation. Keep the identical struct
             _error(self, "Post regeneration timed out after 360s", 500)
         except Exception as e:
             _error(self, str(e), 500)
+
+    # ── Posts: approve all ready ─────────────────────────────────────────────
+
+    def _posts_approve_all(self):
+        data = _load_posts()
+        posts = data.get("posts", [])
+        count = 0
+        for post in posts:
+            if not post.get("posted") and not post.get("approved") and post.get("status") != "blocked":
+                post["approved"] = True
+                count += 1
+        data["posts"] = posts
+        _save_posts(data)
+        _json_response(self, {"ok": True, "approved": count, "posts": posts})
 
     # ── Posts: investigate blocked post ──────────────────────────────────────
 

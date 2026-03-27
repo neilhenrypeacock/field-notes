@@ -1,0 +1,66 @@
+{
+  "_comment": "Newsletter Gate 1 validation config. Edit ranges as market conditions change.",
+  "_last_updated": "2026-03-27",
+
+  "price_ranges": {
+    "feed_wheat":       { "min": 100, "max": 400, "unit": "£/t",      "label": "Feed wheat" },
+    "milling_wheat":    { "min": 120, "max": 450, "unit": "£/t",      "label": "Milling wheat" },
+    "feed_barley":      { "min":  80, "max": 350, "unit": "£/t",      "label": "Feed barley" },
+    "oilseed_rape":     { "min": 250, "max": 700, "unit": "£/t",      "label": "Oilseed rape" },
+    "an_fertiliser":    { "min": 200, "max": 900, "unit": "£/t",      "label": "Ammonium nitrate" },
+    "urea":             { "min": 200, "max": 900, "unit": "£/t",      "label": "Urea" },
+    "uan":              { "min": 150, "max": 700, "unit": "£/t",      "label": "UAN" },
+    "mop":              { "min": 150, "max": 800, "unit": "£/t",      "label": "MOP" },
+    "dap":              { "min": 250, "max": 1000,"unit": "£/t",      "label": "DAP" },
+    "tsp":              { "min": 150, "max": 800, "unit": "£/t",      "label": "TSP" },
+    "pig_spp":          { "min": 100, "max": 250, "unit": "p/kg dwt", "label": "Pig SPP" },
+    "milk_farmgate":    { "min":  20, "max":  60, "unit": "ppl",      "label": "Milk farmgate" },
+    "beef_deadweight":  { "min": 200, "max": 600, "unit": "p/kg dwt", "label": "Beef deadweight" },
+    "sheep_deadweight": { "min": 300, "max": 800, "unit": "p/kg dwt", "label": "Sheep/Lamb deadweight" },
+    "egg_price":        { "min":  40, "max": 200, "unit": "p/doz",    "label": "Eggs" }
+  },
+
+  "cross_commodity_rules": [
+    {
+      "name": "milling_above_feed_wheat",
+      "description": "Milling wheat typically commands a premium over feed wheat",
+      "field_a": "milling_wheat",
+      "field_b": "feed_wheat",
+      "check": "a_above_b",
+      "severity": "warning",
+      "message": "Milling wheat ({a}) is BELOW feed wheat ({b}) — this is unusual and may indicate data quality issues or a genuine market inversion. Check source data."
+    },
+    {
+      "name": "feed_wheat_above_barley",
+      "description": "Feed wheat typically trades above feed barley",
+      "field_a": "feed_wheat",
+      "field_b": "feed_barley",
+      "check": "a_above_b",
+      "severity": "info",
+      "message": "Feed wheat ({a}) is BELOW feed barley ({b}) — unusual. Verify data."
+    }
+  ],
+
+  "max_weekly_change_pct": 15,
+  "_max_weekly_change_comment": "Flag any single-week change exceeding this percentage as a likely scraper error",
+
+  "staleness_rules": {
+    "max_data_age_days": 10
+  },
+
+  "required_fields_by_section": {
+    "markets":        ["prices"],
+    "costs":          [],
+    "margin_watch":   [],
+    "livestock":      [],
+    "schemes_grants": [],
+    "weather":        ["days"],
+    "events":         [],
+    "land_property":  [],
+    "jobs":           [],
+    "machinery":      [],
+    "regulatory":     [],
+    "one_good_read":  [],
+    "at_a_glance":    []
+  }
+}

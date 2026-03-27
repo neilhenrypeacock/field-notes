@@ -24,19 +24,8 @@
 
 body { font-family: 'Source Sans 3', sans-serif; background: var(--parch); color: #222; min-height: 100vh; }
 
-/* ── Login ──────────────────────────────────────────────────────────────── */
-#login-screen { display:flex; align-items:center; justify-content:center; min-height:100vh; background:var(--green); }
-.login-card { background:white; border-radius:8px; padding:40px 48px; width:320px; text-align:center; }
-.login-card h1 { font-family:'Playfair Display',serif; color:var(--green); font-size:22px; margin-bottom:6px; }
-.login-card p { color:var(--muted); font-size:14px; margin-bottom:28px; }
-.login-card input[type="password"] { width:100%; padding:10px 14px; border:1px solid var(--border); border-radius:4px; font-family:inherit; font-size:15px; margin-bottom:12px; outline:none; }
-.login-card input[type="password"]:focus { border-color:var(--green); }
-.login-card button { width:100%; background:var(--green); color:white; border:none; padding:11px; border-radius:4px; font-family:inherit; font-size:15px; font-weight:600; cursor:pointer; }
-.login-card button:hover { background:var(--green2); }
-#login-error { color:var(--red); font-size:13px; margin-top:10px; min-height:18px; }
-
 /* ── App shell ──────────────────────────────────────────────────────────── */
-#app { display:none; height:100vh; display:none; flex-direction:column; }
+#app { height:100vh; flex-direction:column; }
 
 header { background:var(--green); color:white; padding:0 24px; display:flex; align-items:center; gap:24px; height:var(--header-h); flex-shrink:0; }
 .logo { font-family:'Playfair Display',serif; font-size:17px; color:var(--gold); white-space:nowrap; }
@@ -127,7 +116,43 @@ nav button.active { color:white; background:rgba(255,255,255,0.15); }
 /* ── Posts tab ──────────────────────────────────────────────────────────── */
 #tab-posts { overflow-y:auto; }
 
-.posts-scroll { padding:24px; max-width:860px; margin:0 auto; }
+.posts-scroll { padding:24px; max-width:900px; margin:0 auto; }
+
+/* Strategy panel */
+.strategy-panel {
+  background:white; border:1px solid var(--border); border-radius:6px;
+  margin-bottom:24px; overflow:hidden;
+}
+.strategy-toggle {
+  display:flex; align-items:center; gap:8px;
+  padding:12px 16px; cursor:pointer; user-select:none;
+  background:var(--cream); border-bottom:1px solid transparent;
+  font-size:14px; font-weight:700; color:var(--green);
+}
+.strategy-toggle:hover { background:#eef5f0; }
+.strategy-toggle .arrow { transition:transform .2s; font-size:12px; }
+.strategy-toggle.open .arrow { transform:rotate(90deg); }
+.strategy-toggle.open { border-bottom-color:var(--border); }
+.strategy-body { display:none; padding:16px 20px; }
+.strategy-body.open { display:block; }
+.strategy-body h3 { font-size:13px; font-weight:700; color:var(--green); text-transform:uppercase; letter-spacing:.06em; margin:14px 0 6px 0; }
+.strategy-body h3:first-child { margin-top:0; }
+.strategy-body p, .strategy-body li { font-size:13px; line-height:1.65; color:#444; }
+.strategy-body ul { padding-left:18px; margin:4px 0 8px; }
+.strategy-body .strat-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:8px 0 14px; }
+.strategy-body .strat-card { background:var(--cream); border:1px solid var(--border); border-radius:4px; padding:10px 12px; }
+.strategy-body .strat-card .strat-day { font-weight:700; color:var(--green); font-size:12px; text-transform:uppercase; letter-spacing:.04em; }
+.strategy-body .strat-card .strat-desc { font-size:12.5px; color:#555; margin-top:2px; }
+.strategy-body .strat-card .strat-group { font-size:11.5px; color:var(--muted); margin-top:4px; }
+.strategy-body .target-row { display:flex; align-items:flex-start; gap:10px; padding:6px 0; border-bottom:1px solid var(--border); }
+.strategy-body .target-row:last-child { border-bottom:none; }
+.strategy-body .target-icon { width:28px; height:28px; border-radius:50%; background:var(--green); color:white; display:flex; align-items:center; justify-content:center; font-size:13px; flex-shrink:0; margin-top:2px; }
+.strategy-body .target-name { font-weight:700; font-size:13px; color:#333; }
+.strategy-body .target-detail { font-size:12px; color:#666; line-height:1.5; }
+.strategy-body .metric-bar { display:flex; gap:16px; margin:8px 0 6px; flex-wrap:wrap; }
+.strategy-body .metric { text-align:center; background:var(--cream); border-radius:4px; padding:8px 14px; min-width:80px; }
+.strategy-body .metric .metric-val { font-size:20px; font-weight:700; color:var(--green); }
+.strategy-body .metric .metric-lbl { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; }
 
 .filter-bar { display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap; }
 .filter-btn { background:white; border:1px solid var(--border); border-radius:20px; padding:5px 14px; font-family:inherit; font-size:13px; cursor:pointer; color:#555; }
@@ -201,22 +226,42 @@ nav button.active { color:white; background:rgba(255,255,255,0.15); }
 
 .nl-loading { padding:40px; text-align:center; color:var(--muted); font-size:14px; }
 
-/* ── Confidence bar ─────────────────────────────────────────────────────── */
-#nl-confidence-bar {
-  display:none; background:white; border-bottom:1px solid var(--border);
-  padding:8px 20px; font-size:12px; flex-shrink:0; align-items:center; gap:8px; flex-wrap:wrap;
+/* ── Confidence bar (legacy — hidden, replaced by sidebar section list) ──── */
+#nl-confidence-bar { display:none !important; }
+
+/* ── Sidebar section list ───────────────────────────────────────────────── */
+#nl-section-list {
+  border-bottom:1px solid var(--border);
+  overflow-y:auto;
+  flex:0 0 auto;
+  max-height:240px;
+  min-height:60px;
 }
-#nl-confidence-bar .conf-label { color:var(--muted); font-weight:600; margin-right:4px; white-space:nowrap; }
-.conf-chip {
-  display:inline-flex; align-items:center; gap:5px; padding:3px 9px;
-  border-radius:12px; cursor:pointer; font-size:12px; font-weight:600; border:none;
-  white-space:nowrap;
+.section-list-hdr {
+  position:sticky; top:0; z-index:1;
+  padding:6px 14px 5px;
+  font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.06em;
+  color:var(--muted); background:var(--cream);
+  border-bottom:1px solid var(--border);
 }
-.conf-chip:hover { opacity:.8; }
-.conf-chip.green  { background:#e8f5e9; color:#2e7d32; }
-.conf-chip.amber  { background:#fff8e1; color:#b8860b; border:1px solid #ffe082; }
-.conf-chip.red    { background:#ffebee; color:#c62828; border:1px solid #ffcdd2; }
-.conf-all-ok { color:#2e7d32; font-size:12px; font-weight:600; }
+.section-row {
+  display:flex; align-items:center; gap:7px;
+  padding:5px 14px; cursor:pointer;
+  font-size:12.5px; border-bottom:1px solid transparent;
+  transition:background .1s;
+}
+.section-row:hover  { background:var(--parch); }
+.section-row.active { background:#f0f7f2; }
+.sect-dot {
+  width:8px; height:8px; border-radius:50%; flex-shrink:0;
+}
+.sect-dot.green { background:#2e7d32; }
+.sect-dot.amber { background:#d4a853; }
+.sect-dot.red   { background:var(--red); }
+.sect-dot.grey  { background:#bbb; }
+.sect-name  { font-weight:600; white-space:nowrap; flex-shrink:0; }
+.sect-score { color:var(--muted); font-size:11.5px; white-space:nowrap; flex-shrink:0; }
+.sect-reason { color:#666; font-size:11px; flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 
 /* ── Post verification panel ─────────────────────────────────────────────── */
 .verif-panel { background:var(--cream); border:1px solid var(--border); border-radius:4px; padding:10px 14px; font-size:12.5px; line-height:1.7; margin:0 16px 10px; }
@@ -231,19 +276,8 @@ nav button.active { color:white; background:rgba(255,255,255,0.15); }
 </head>
 <body>
 
-<!-- Login -->
-<div id="login-screen">
-  <div class="login-card">
-    <h1>Field Notes</h1>
-    <p>Admin dashboard</p>
-    <input type="password" id="pw-input" placeholder="Password" autocomplete="current-password">
-    <button id="pw-btn">Sign in</button>
-    <div id="login-error"></div>
-  </div>
-</div>
-
 <!-- App -->
-<div id="app">
+<div id="app" style="display:flex">
   <header>
     <span class="logo">Field Notes · Admin</span>
     <nav>
@@ -270,14 +304,15 @@ nav button.active { color:white; background:rgba(255,255,255,0.15); }
         <div id="nl-content"></div>
       </div>
 
-      <!-- Right: chat panel -->
+      <!-- Right: section list + chat panel -->
       <div id="nl-right">
+        <div id="nl-section-list"><div class="section-list-hdr">Sections</div></div>
         <div class="chat-header" id="chat-header">
-          <span class="hint">← Click any section to select it</span>
+          <span class="hint">Select a section or ask a question below</span>
         </div>
         <div id="chat-messages"></div>
         <div class="chat-input-area">
-          <textarea id="chat-input" placeholder="Ask a question about the selected section, or give an instruction to update copy…"></textarea>
+          <textarea id="chat-input" placeholder="Ask about any section, or select one above and say 'update copy'…"></textarea>
           <div class="chat-btn-row">
             <button class="btn btn-primary" id="btn-ask">Ask</button>
             <button class="btn btn-secondary" id="btn-update">Update copy</button>
@@ -290,16 +325,133 @@ nav button.active { color:white; background:rgba(255,255,255,0.15); }
   <!-- Posts tab -->
   <div id="tab-posts" class="tab-content">
     <div class="posts-scroll">
+
+      <!-- Strategy legend (collapsible) -->
+      <div class="strategy-panel">
+        <div class="strategy-toggle" id="strat-toggle">
+          <span class="arrow">&#9654;</span>
+          Facebook Strategy &amp; Growth Playbook
+        </div>
+        <div class="strategy-body" id="strat-body">
+
+          <h3>Weekly Posting Schedule</h3>
+          <div class="strat-grid">
+            <div class="strat-card">
+              <div class="strat-day">Monday 07:00</div>
+              <div class="strat-desc">Newsletter launch post</div>
+              <div class="strat-group">Anchor post — drives sign-ups from all page visitors</div>
+            </div>
+            <div class="strat-card">
+              <div class="strat-day">Tuesday 07:00</div>
+              <div class="strat-desc">Grain &amp; commodity prices</div>
+              <div class="strat-group">Highest engagement — lead with a specific number. Share to: grain groups</div>
+            </div>
+            <div class="strat-card">
+              <div class="strat-day">Wednesday 19:00</div>
+              <div class="strat-desc">Schemes &amp; grants</div>
+              <div class="strat-group">Evening slot — farmers have time to read. Share to: NFU groups</div>
+            </div>
+            <div class="strat-card">
+              <div class="strat-day">Thursday 07:00</div>
+              <div class="strat-desc">Input costs</div>
+              <div class="strat-group">Fertiliser &amp; feed costs. Show the maths. Share to: arable groups</div>
+            </div>
+            <div class="strat-card">
+              <div class="strat-day">Friday 07:00</div>
+              <div class="strat-desc">Farming news &amp; regulatory</div>
+              <div class="strat-group">Policy changes, Defra blog, disease alerts. Share to: NFU &amp; news groups</div>
+            </div>
+            <div class="strat-card">
+              <div class="strat-day">Saturday 08:00</div>
+              <div class="strat-desc">Land, jobs or machinery</div>
+              <div class="strat-group">Rotates best content. Weekend browsing slot. Share to: specialist groups</div>
+            </div>
+          </div>
+
+          <h3>Target Groups &amp; Audiences</h3>
+          <div style="margin:6px 0 14px">
+            <div class="target-row">
+              <div class="target-icon">1</div>
+              <div>
+                <div class="target-name">NFU County Branches (Norfolk, Suffolk, Cambs)</div>
+                <div class="target-detail">Email county secretaries directly. Every branch has 200-500 members. Ask to be included in their WhatsApp/email circular. Personal introduction, not a cold pitch.</div>
+              </div>
+            </div>
+            <div class="target-row">
+              <div class="target-icon">2</div>
+              <div>
+                <div class="target-name">Facebook Farming Groups</div>
+                <div class="target-detail">East Anglian Farming, Norfolk Farming, Suffolk Farmers, Cambridgeshire Arable, UK Grain Markets. Share highest-value posts (markets, schemes) 2x per week max. The page must be a member first. Lead with data, not promotion.</div>
+              </div>
+            </div>
+            <div class="target-row">
+              <div class="target-icon">3</div>
+              <div>
+                <div class="target-name">Cheffins Auction Days</div>
+                <div class="target-detail">QR code card at machinery auctions. You already pull their data — natural conversation starter. "We include your listings in our free weekly briefing."</div>
+              </div>
+            </div>
+            <div class="target-row">
+              <div class="target-icon">4</div>
+              <div>
+                <div class="target-name">Young Farmers Clubs (Norfolk, Suffolk, Cambs YFC)</div>
+                <div class="target-detail">County federations are digitally active. Offer to present at a meeting. "10 data sources, one email, every Monday — free."</div>
+              </div>
+            </div>
+            <div class="target-row">
+              <div class="target-icon">5</div>
+              <div>
+                <div class="target-name">LinkedIn Agronomists</div>
+                <div class="target-detail">Agronomists serve 20-50 farmers each. One convert shares with their whole client list. Post the grain price table on LinkedIn weekly with #ukfarming.</div>
+              </div>
+            </div>
+            <div class="target-row">
+              <div class="target-icon">6</div>
+              <div>
+                <div class="target-name">Agricultural Colleges (Easton, Writtle, Shuttleworth)</div>
+                <div class="target-detail">Contact lecturers directly. Useful teaching resource. Students become future subscribers and share with farming families.</div>
+              </div>
+            </div>
+            <div class="target-row">
+              <div class="target-icon">7</div>
+              <div>
+                <div class="target-name">Norfolk &amp; Suffolk Shows</div>
+                <div class="target-detail">Badge/card presence at Royal Norfolk Show, Suffolk Show, Hadleigh Show, Tendring Show. QR code to sign-up. "Your weekly briefing, from the data that matters."</div>
+              </div>
+            </div>
+          </div>
+
+          <h3>Messaging Strategy</h3>
+          <ul>
+            <li><strong>Lead with data, not promotion.</strong> Every post starts with a verified number. The newsletter CTA comes at the end, in the comments — never the headline.</li>
+            <li><strong>The maths speaks.</strong> "On a 500t sale, that's &pound;2,450 more than last week" is more powerful than "prices are up."</li>
+            <li><strong>Credibility through sources.</strong> Always cite AHDB, Met Office, GOV.UK, Defra. Farmers trust what they can verify.</li>
+            <li><strong>Local specificity wins.</strong> "Eastern region ex-farm" beats "UK average." "Norwich Livestock Market" beats "cattle prices."</li>
+            <li><strong>Never advise.</strong> Report what the data says. Let the farmer draw their own conclusions. "Your farm, your call" is the unspoken principle.</li>
+            <li><strong>Share hooks on high-value posts.</strong> "Worth forwarding to anyone with uncontracted old crop" — specific, useful, not generic "tag a farmer."</li>
+          </ul>
+
+          <h3>Growth Milestones</h3>
+          <div class="metric-bar">
+            <div class="metric"><div class="metric-val" id="metric-subs">0</div><div class="metric-lbl">Subscribers</div></div>
+            <div class="metric"><div class="metric-val" id="metric-target">200</div><div class="metric-lbl">Target</div></div>
+            <div class="metric"><div class="metric-val" id="metric-posts">0</div><div class="metric-lbl">Posts this week</div></div>
+            <div class="metric"><div class="metric-val" id="metric-approved">0</div><div class="metric-lbl">Approved</div></div>
+          </div>
+          <p style="font-size:12px;color:var(--muted);margin-top:4px">First 200 subscribers come from personal outreach — NFU branches, Facebook groups, Cheffins auction days. Automation helps after that.</p>
+        </div>
+      </div>
+
       <div class="filter-bar" id="filter-bar">
-        <button class="filter-btn" data-filter="all">All</button>
-        <button class="filter-btn active" data-filter="high-confidence">High confidence</button>
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="high-confidence">High confidence</button>
         <button class="filter-btn" data-filter="ready">Ready</button>
         <button class="filter-btn" data-filter="approved">Approved</button>
         <button class="filter-btn" data-filter="blocked">Blocked</button>
         <button class="filter-btn" data-filter="posted">Posted</button>
         <span class="spacer"></span>
-        <button class="btn btn-primary btn-sm" id="btn-approve-all">✓ Approve all ready</button>
-        <button class="btn btn-secondary btn-sm" id="btn-regen-posts">↻ Generate posts</button>
+        <button class="btn btn-primary btn-sm" id="btn-approve-all">Approve all ready</button>
+        <button class="btn btn-secondary btn-sm" id="btn-regen-posts">Generate posts</button>
       </div>
       <div id="posts-loading" style="padding:40px;text-align:center;color:var(--muted)"><span class="spinner"></span> Loading posts…</div>
       <div class="posts-list" id="posts-list"></div>
@@ -312,14 +464,8 @@ nav button.active { color:white; background:rgba(255,255,255,0.15); }
 // Config
 // ─────────────────────────────────────────────────────────────────────────────
 
-const API = 'http://localhost:7657';
-const CORRECT_PASSWORD = 'fieldnotes2026';
-const PASS_KEY = 'fn_admin_pw';
-
-// When served from the live HTTPS site, the browser blocks fetch() to localhost.
-// So we handle it differently: live site = password gate + redirect to localhost.
-// Local server = full dashboard.
-const IS_LOCAL = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+const API = window.location.origin;
+// Local-only dashboard — no auth needed
 
 const SECTION_IDS = ['glance','markets','costs','margins','livestock','schemes',
                      'weather','events','land','jobs','machinery','tech-watch',
@@ -336,8 +482,7 @@ const SECTION_LABELS = {
 // Auth helpers
 // ─────────────────────────────────────────────────────────────────────────────
 
-function storedPw() { return sessionStorage.getItem(PASS_KEY) || ''; }
-function apiHdr() { return { 'X-Admin-Password': storedPw(), 'Content-Type': 'application/json' }; }
+function apiHdr() { return { 'Content-Type': 'application/json' }; }
 
 async function apiFetch(path, opts={}) {
   const res = await fetch(API + path, { ...opts, headers: { ...apiHdr(), ...(opts.headers||{}) } });
@@ -349,59 +494,10 @@ async function apiFetch(path, opts={}) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Login
+// Auto-start (no login — local-only server)
 // ─────────────────────────────────────────────────────────────────────────────
 
-function tryLogin() {
-  const val = document.getElementById('pw-input').value.trim();
-  if (val !== CORRECT_PASSWORD) {
-    document.getElementById('login-error').textContent = 'Incorrect password.';
-    document.getElementById('pw-input').select();
-    return;
-  }
-  sessionStorage.setItem(PASS_KEY, val);
-
-  if (!IS_LOCAL) {
-    // Live HTTPS site: navigate to the local admin server.
-    // Navigation HTTPS → http://localhost is allowed (unlike fetch).
-    // Pass an encoded token so the local page auto-authenticates.
-    window.location.href = 'http://localhost:7657/admin#auth=' + btoa(val);
-    return;
-  }
-
-  showDashboard();
-}
-
-function showDashboard() {
-  document.getElementById('login-screen').style.display = 'none';
-  document.getElementById('app').style.display = 'flex';
-  initApp();
-}
-
-document.getElementById('pw-btn').addEventListener('click', tryLogin);
-document.getElementById('pw-input').addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
-
-// On local: auto-login if already authenticated this session
-if (IS_LOCAL && storedPw() === CORRECT_PASSWORD) {
-  document.getElementById('login-screen').style.display = 'none';
-  document.getElementById('app').style.display = 'flex';
-  window.addEventListener('DOMContentLoaded', initApp);
-}
-
-// On local: auto-authenticate from #auth token passed by live site redirect
-window.addEventListener('DOMContentLoaded', () => {
-  if (!IS_LOCAL) return;
-  const m = window.location.hash.match(/[#&]auth=([^&]+)/);
-  if (!m) return;
-  try {
-    const pw = atob(m[1]);
-    if (pw === CORRECT_PASSWORD) {
-      sessionStorage.setItem(PASS_KEY, pw);
-      history.replaceState(null, '', window.location.pathname); // clean up URL
-      showDashboard();
-    }
-  } catch (_) {}
-});
+window.addEventListener('DOMContentLoaded', initApp);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Tabs
@@ -466,7 +562,7 @@ async function loadNewsletter() {
 
     confidenceData = data.confidence || {};
     renderNewsletterHtml(data.html);
-    renderConfidence(confidenceData);
+    renderSectionList();
   } catch (err) {
     document.getElementById('nl-loading-outer').textContent = 'Error: ' + err.message;
   }
@@ -519,6 +615,92 @@ function renderConfidence(conf) {
   });
 }
 
+function renderSectionList() {
+  const list = document.getElementById('nl-section-list');
+  list.innerHTML = '<div class="section-list-hdr">Sections · Verification</div>';
+
+  SECTION_IDS.forEach(id => {
+    const conf = confidenceData[id];
+    const label = SECTION_LABELS[id] || id;
+    const row = document.createElement('div');
+    row.className = 'section-row';
+    row.dataset.section = id;
+
+    let dotClass = 'grey', scoreStr = '', reasonStr = '';
+    if (conf) {
+      const score = conf.confidence || 0;
+      const v = conf.verification || null;
+
+      // Determine dot color: verification status takes priority over confidence score
+      if (v) {
+        if (v.blocked) {
+          dotClass = 'red';
+        } else if (v.flagged) {
+          dotClass = 'amber';
+        } else if (v.status_color) {
+          dotClass = v.status_color;
+        } else {
+          dotClass = score >= 0.9 ? 'green' : (score >= 0.75 ? 'amber' : 'red');
+        }
+      } else {
+        dotClass = score >= 0.9 ? 'green' : (score >= 0.75 ? 'amber' : 'red');
+      }
+
+      scoreStr = Math.round(score * 100) + '%';
+
+      // Build reason string from verification + confidence
+      if (v && v.status && v.status !== 'READY') {
+        reasonStr = v.status;
+        // Add Gate 1 anomalies
+        if (v.gate1 && v.gate1.anomalies && v.gate1.anomalies.length) {
+          reasonStr += ' — ' + v.gate1.anomalies[0].substring(0, 80);
+        }
+        // Add Gate 2 notes
+        if (v.gate2 && v.gate2.notes && v.gate2.notes.length) {
+          reasonStr += ' — ' + v.gate2.notes[0].substring(0, 80);
+        }
+      } else {
+        reasonStr = conf.reason || '';
+      }
+    }
+
+    row.innerHTML =
+      `<span class="sect-dot ${dotClass}"></span>` +
+      `<span class="sect-name">${esc(label)}</span>` +
+      (scoreStr  ? `<span class="sect-score">${scoreStr}</span>` : '') +
+      (reasonStr ? `<span class="sect-reason">${esc(reasonStr)}</span>` : '');
+
+    row.addEventListener('click', () => {
+      if (selectedSection && selectedSection.el) {
+        selectedSection.el.classList.remove('nl-section-selected');
+      }
+      const el = document.querySelector(`#nl-content [id="${id}"]`);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        el.classList.add('nl-section-selected');
+        selectedSection = {
+          id, label, el,
+          text: (el.innerText || el.textContent || '').slice(0, 2500),
+          html: el.outerHTML.slice(0, 4000),
+        };
+      } else {
+        selectedSection = { id, label, el: null, text: '', html: '' };
+      }
+      updateChatHeader();
+      updateSectionListHighlight(id);
+      showSectionCommentary(id);
+    });
+
+    list.appendChild(row);
+  });
+}
+
+function updateSectionListHighlight(sectionId) {
+  document.querySelectorAll('.section-row').forEach(row => {
+    row.classList.toggle('active', row.dataset.section === sectionId);
+  });
+}
+
 function renderNewsletterHtml(html) {
   // Strip outer html/head/body wrappers, remove font @imports (already loaded)
   let h = html
@@ -551,6 +733,7 @@ function setupSectionClicks() {
         html: el.outerHTML.slice(0, 4000),
       };
       updateChatHeader();
+      updateSectionListHighlight(id);
       showSectionCommentary(id);
     });
   });
@@ -561,7 +744,7 @@ function updateChatHeader() {
   if (selectedSection) {
     h.innerHTML = `<span>Discussing:</span> <span class="section-pill">${esc(selectedSection.label)}</span>`;
   } else {
-    h.innerHTML = `<span class="hint">← Click any section to select it</span>`;
+    h.innerHTML = `<span class="hint">No section selected — ask a general question or pick one above</span>`;
   }
 }
 
@@ -569,6 +752,86 @@ function showSectionCommentary(sectionId) {
   const msgs = document.getElementById('chat-messages');
   msgs.innerHTML = '';
   const conf = confidenceData[sectionId];
+
+  // Show verification panel if present
+  if (conf && conf.verification) {
+    const v = conf.verification;
+    const div = document.createElement('div');
+    div.className = 'chat-msg-ai';
+
+    const statusColor = v.status_color === 'red' ? '#c62828' : (v.status_color === 'amber' ? '#b8860b' : '#2e7d32');
+    const statusBg = v.status_color === 'red' ? '#fdf2f2' : (v.status_color === 'amber' ? '#fffbf0' : '#f0f7f2');
+    const statusBorder = v.status_color === 'red' ? '#ffcdd2' : (v.status_color === 'amber' ? '#ffe0b2' : '#c8e6c9');
+
+    let verifHtml = `<div class="bubble bubble-ai" style="background:${statusBg};border-color:${statusBorder};font-size:12.5px">`;
+    verifHtml += `<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:${statusColor};display:block;margin-bottom:6px">Verification: ${esc(v.status || 'Unknown')}</span>`;
+
+    // Gate 1 details
+    if (v.gate1) {
+      const g1 = v.gate1;
+      if (g1.anomalies && g1.anomalies.length) {
+        verifHtml += `<div style="margin:4px 0;color:#b8860b;font-weight:600;font-size:12px">Anomalies detected:</div>`;
+        g1.anomalies.forEach(a => { verifHtml += `<div style="margin:2px 0 2px 8px;font-size:12px;color:#8b6914">⚠ ${esc(a)}</div>`; });
+      }
+      if (g1.warnings && g1.warnings.length) {
+        g1.warnings.forEach(w => { verifHtml += `<div style="margin:2px 0 2px 8px;font-size:12px;color:#8b6914">⚠ ${esc(w)}</div>`; });
+      }
+      if (g1.errors && g1.errors.length) {
+        g1.errors.forEach(e => { verifHtml += `<div style="margin:2px 0 2px 8px;font-size:12px;color:#c62828">✗ ${esc(e)}</div>`; });
+      }
+    }
+
+    // Gate 2 details
+    if (v.gate2) {
+      const g2 = v.gate2;
+      verifHtml += `<div style="margin:6px 0 2px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#666">AI Cross-Check: ${esc(g2.confidence || 'N/A')}</div>`;
+      if (g2.notes && g2.notes.length) {
+        g2.notes.forEach(n => { verifHtml += `<div style="margin:2px 0 2px 8px;font-size:12px;color:#555">${esc(n)}</div>`; });
+      }
+      if (g2.number_mismatch) verifHtml += `<div style="font-size:12px;color:#c62828;margin:2px 0">✗ Number mismatch detected</div>`;
+      if (g2.direction_error) verifHtml += `<div style="font-size:12px;color:#c62828;margin:2px 0">✗ Direction error detected</div>`;
+      if (g2.invented_content) verifHtml += `<div style="font-size:12px;color:#c62828;margin:2px 0">✗ Invented content detected</div>`;
+    }
+
+    // Broken links
+    if (v.broken_links && v.broken_links.length) {
+      verifHtml += `<div style="margin:6px 0 2px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#c62828">Broken Links</div>`;
+      v.broken_links.forEach(bl => {
+        verifHtml += `<div style="margin:2px 0 2px 8px;font-size:12px;color:#c62828">✗ <a href="${esc(bl.url)}" target="_blank" style="color:#c62828">${esc(bl.url)}</a> (${esc(bl.detail)})</div>`;
+      });
+    }
+
+    verifHtml += '</div>';
+    div.innerHTML = verifHtml;
+    msgs.appendChild(div);
+  }
+
+  // Show review guidance for flagged/blocked sections
+  if (conf && conf.verification && conf.verification.review_guidance) {
+    const rg = conf.verification.review_guidance;
+    if ((rg.actions && rg.actions.length) || (rg.verify_links && rg.verify_links.length)) {
+      const div = document.createElement('div');
+      div.className = 'chat-msg-ai';
+      let rgHtml = `<div class="bubble bubble-ai" style="background:#fffbf0;border-color:#ffe0b2;font-size:12.5px">`;
+      rgHtml += `<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#b8860b;display:block;margin-bottom:6px">Review Checklist</span>`;
+      if (rg.actions && rg.actions.length) {
+        rg.actions.forEach((a, i) => {
+          rgHtml += `<div style="margin:3px 0 3px 0;font-size:12.5px;color:#333">${i + 1}. ${esc(a)}</div>`;
+        });
+      }
+      if (rg.verify_links && rg.verify_links.length) {
+        rgHtml += `<div style="margin:8px 0 4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#666">Verify here:</div>`;
+        rg.verify_links.forEach(lnk => {
+          rgHtml += `<div style="margin:2px 0 2px 8px;font-size:12.5px">→ <a href="${esc(lnk.url)}" target="_blank" rel="noopener" style="color:#1b3a2d;text-decoration:underline">${esc(lnk.label)}</a></div>`;
+        });
+      }
+      rgHtml += '</div>';
+      div.innerHTML = rgHtml;
+      msgs.appendChild(div);
+    }
+  }
+
+  // Show editorial context below verification
   if (conf && conf.commentary) {
     const div = document.createElement('div');
     div.className = 'chat-msg-ai';
@@ -577,8 +840,9 @@ function showSectionCommentary(sectionId) {
       ${esc(conf.commentary)}
     </div>`;
     msgs.appendChild(div);
-    msgs.scrollTop = 0;
   }
+
+  msgs.scrollTop = 0;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -708,10 +972,10 @@ document.getElementById('btn-regen').addEventListener('click', async () => {
     document.getElementById('nl-filename').textContent = data.filename;
     document.getElementById('nl-date').textContent = 'Generated: ' + data.generated_at;
     confidenceData = data.confidence || {};
-    renderConfidence(confidenceData);
     selectedSection = null;
     updateChatHeader();
     renderNewsletterHtml(data.html);
+    renderSectionList();
     document.getElementById('nl-content').style.opacity = '1';
     addChatMsg('ai', '✓ Newsletter regenerated: ' + data.filename);
   } catch (err) {
@@ -735,17 +999,21 @@ document.getElementById('btn-regen-posts').addEventListener('click', async () =>
     const data = await apiFetch('/api/posts/regenerate', { method: 'POST' });
     allPosts = data.posts || [];
     document.getElementById('posts-loading').style.display = 'none';
-    currentFilter = 'high-confidence';
+    currentFilter = 'all';
     document.querySelectorAll('.filter-btn').forEach(b => {
-      b.classList.toggle('active', b.dataset.filter === 'high-confidence');
+      b.classList.toggle('active', b.dataset.filter === 'all');
     });
     renderPosts();
     bindPostEvents();
+    updateStrategyMetrics();
   } catch (err) {
-    document.getElementById('posts-loading').innerHTML = `<span style="color:var(--red)">Error: ${esc(err.message)}</span>`;
+    document.getElementById('posts-loading').innerHTML =
+      `<div style="color:var(--red);text-align:left;max-width:600px;margin:0 auto">` +
+      `<strong>Generation failed:</strong> ${esc(err.message)}<br><br>` +
+      `<small style="color:var(--muted)">Try restarting the admin server and clicking Regenerate again.</small></div>`;
   } finally {
     btn.disabled = false;
-    btn.textContent = '↻ Regenerate posts';
+    btn.textContent = '↻ Generate posts';
   }
 });
 
@@ -755,7 +1023,7 @@ document.getElementById('btn-regen-posts').addEventListener('click', async () =>
 
 let allPosts = [];
 let firstComments = [];
-let currentFilter = 'high-confidence';
+let currentFilter = 'all';
 
 function postCardStatus(post) {
   if (post.posted)   return 'posted';
@@ -850,6 +1118,7 @@ async function loadPosts() {
     document.getElementById('posts-loading').style.display = 'none';
     renderPosts();
     bindPostEvents();
+    updateStrategyMetrics();
   } catch (err) {
     document.getElementById('posts-loading').innerHTML = `<span style="color:var(--red)">Error: ${esc(err.message)}</span>`;
   }
@@ -1107,6 +1376,29 @@ document.getElementById('filter-bar').addEventListener('click', e => {
   currentFilter = btn.dataset.filter;
   applyFilter();
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Init
+// ─────────────────────────────────────────────────────────────────────────────
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Strategy panel toggle
+// ─────────────────────────────────────────────────────────────────────────────
+
+document.getElementById('strat-toggle').addEventListener('click', () => {
+  const toggle = document.getElementById('strat-toggle');
+  const body = document.getElementById('strat-body');
+  toggle.classList.toggle('open');
+  body.classList.toggle('open');
+});
+
+function updateStrategyMetrics() {
+  const ready = allPosts.filter(p => p.status !== 'blocked' && !p.posted).length;
+  const approved = allPosts.filter(p => p.approved && !p.posted).length;
+  const posted = allPosts.filter(p => p.posted).length;
+  document.getElementById('metric-posts').textContent = allPosts.length || '0';
+  document.getElementById('metric-approved').textContent = approved || '0';
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Init
